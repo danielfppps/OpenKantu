@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <Name Value="zmsql"/>
+    <AddToProjectUsesSection Value="True"/>
+    <Author Value="Zlatko Matić"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <SearchPaths>
+        <OtherUnitFiles Value="$(LazarusDir)/lcl/units/$(TargetCPU)-$(TargetOS);$(LazarusDir)/lcl/units/$(TargetCPU)-$(TargetOS)/$(LCLWidgetType);$(LazarusDir)/components/codetools/units/$(TargetCPU)-$(TargetOS);$(LazarusDir)/components/custom;$(LazarusDir)/packager/units/$(TargetCPU)-$(TargetOS)"/>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+      <Other>
+        <CompilerPath Value="$(CompPath)"/>
+      </Other>
+    </CompilerOptions>
+    <Description Value="ZMSQL database system is based on TBufDataset in-memory dataset and TJanSQL database engine.
+It works with flat .txt (csv) files as tables and folders as databases.
+It supplements in-memory database with features of: loading/saving to CSV tables, SQL queries on CSV tables, parameterized queries, master/detail filtration and referential (insert/update/delete) integrity."/>
+    <License Value="Free"/>
+    <Version Minor="1" Release="13"/>
+    <Files Count="15">
+      <Item1>
+        <Filename Value="janSQL.pas"/>
+        <UnitName Value="janSQL"/>
+      </Item1>
+      <Item2>
+        <Filename Value="janSQLExpression2.pas"/>
+        <UnitName Value="janSQLExpression2"/>
+      </Item2>
+      <Item3>
+        <Filename Value="janSQLStrings.pas"/>
+        <UnitName Value="janSQLStrings"/>
+      </Item3>
+      <Item4>
+        <Filename Value="janSQLTokenizer.pas"/>
+        <UnitName Value="janSQLTokenizer"/>
+      </Item4>
+      <Item5>
+        <Filename Value="mwStringHashList.pas"/>
+        <UnitName Value="mwStringHashList"/>
+      </Item5>
+      <Item6>
+        <Filename Value="zmconnection.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="ZMConnection"/>
+      </Item6>
+      <Item7>
+        <Filename Value="zmquerydataset.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="ZMQueryDataSet"/>
+      </Item7>
+      <Item8>
+        <Filename Value="zmconnection.lrs"/>
+        <Type Value="LRS"/>
+      </Item8>
+      <Item9>
+        <Filename Value="zmquerydataset.lrs"/>
+        <Type Value="LRS"/>
+      </Item9>
+      <Item10>
+        <Filename Value="zmconnection.png"/>
+        <Type Value="Binary"/>
+      </Item10>
+      <Item11>
+        <Filename Value="zmquerydataset.png"/>
+        <Type Value="Binary"/>
+      </Item11>
+      <Item12>
+        <Filename Value="zmbufdataset.pas"/>
+        <AddToUsesPkgSection Value="False"/>
+        <UnitName Value="ZMBufDataset"/>
+      </Item12>
+      <Item13>
+        <Filename Value="zmreferentialkey.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="ZMReferentialKey"/>
+      </Item13>
+      <Item14>
+        <Filename Value="ZMReferentialKey.png"/>
+        <Type Value="Binary"/>
+      </Item14>
+      <Item15>
+        <Filename Value="zmbufdataset_parser.pp"/>
+        <UnitName Value="zmbufdataset_parser"/>
+      </Item15>
+    </Files>
+    <Type Value="RunAndDesignTime"/>
+    <RequiredPkgs Count="4">
+      <Item1>
+        <PackageName Value="SQLDBLaz"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="SDFLaz"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="lazdbexport"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="FCL"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item4>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <DestinationDirectory Value="/root/my-documents/my-documents/MojiProgrami/TZMSQL-0.1.6_cleaned"/>
+      <UseExcludeFileFilter Value="True"/>
+    </PublishOptions>
+    <CustomOptions Items="ExternHelp" Version="2">
+      <_ExternHelp Items="Count"/>
+    </CustomOptions>
+  </Package>
+</CONFIG>

@@ -1,0 +1,1 @@
+SELECT ordrs.ordr, ordrs.ordr_type,ordrs.prdct,ordrs.prdct_dscr,ordrs.prdct_targ_qty,ordrs.prdct_targ_qty_unt,rqrmts.cmpnt,rqrmts.cmpnt_dscr,rqrmts.cmpnt_rqrd from ordrs,rqrmts WHERE ordrs.ordr=rqrmts.ordr AND ordrs.prdct_dscr='@PRODUCT DESCRIPTION@'

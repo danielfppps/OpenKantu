@@ -1,0 +1,4 @@
+ORDRS_TYPES_ID;ORDR_TYPE;ORDR_TYPE_DSCR;ORDR_TYPE_PRTY
+2;LA;Planned orders;3
+3;PI01;Process orders;1
+4;PIPP;Repackging orders;2

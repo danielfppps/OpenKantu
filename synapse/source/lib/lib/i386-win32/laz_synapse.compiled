@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<CONFIG>
+  <Compiler Value="C:\lazarus\fpc\2.6.2\bin\i386-win32\fpc.exe" Date="1131441888"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -g -gl -vewnhi -FuC:\lazarus\packager\units\i386-win32 -FuE:\asirikuy_svn2\development\Kantu\vendor\synapse\source\lib\ -FUE:\asirikuy_svn2\development\Kantu\vendor\synapse\source\lib\lib\i386-win32\ -l laz_synapse.pas"/>
+</CONFIG>

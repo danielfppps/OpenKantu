@@ -1,0 +1,216 @@
+object Form1: TForm1
+  Left = 234
+  Height = 423
+  Top = 73
+  Width = 745
+  Caption = 'Form1'
+  ClientHeight = 423
+  ClientWidth = 745
+  LCLVersion = '0.9.30'
+  object Button1: TButton
+    Left = 80
+    Height = 25
+    Top = 8
+    Width = 106
+    AutoSize = True
+    Caption = 'Load from CSV'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 224
+    Height = 25
+    Top = 72
+    Width = 241
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    DataSource = Datasource1
+    TabOrder = 1
+  end
+  object DBGrid1: TDBGrid
+    Left = 15
+    Height = 299
+    Top = 109
+    Width = 720
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'ORDR'
+        Width = 98
+        FieldName = 'ORDR'
+      end    
+      item
+        Title.Caption = 'PRDCT'
+        Width = 98
+        FieldName = 'PRDCT'
+      end    
+      item
+        Title.Caption = 'CMPNT'
+        Width = 98
+        FieldName = 'CMPNT'
+      end    
+      item
+        Title.Caption = 'CMPNT_DSCR'
+        Width = 98
+        FieldName = 'CMPNT_DSCR'
+      end    
+      item
+        Title.Caption = 'CMPNT_RQRD'
+        Width = 98
+        FieldName = 'CMPNT_RQRD'
+        DisplayFormat = '#,##0.00'
+      end    
+      item
+        Title.Caption = 'CMPNT_RQRD_UNT'
+        Width = 98
+        FieldName = 'CMPNT_RQRD_UNT'
+      end    
+      item
+        Title.Caption = 'CMPNT_TOT_AVLB'
+        Width = 99
+        FieldName = 'CMPNT_TOT_AVLB'
+        DisplayFormat = '#,##0.00'
+      end>
+    DataSource = Datasource1
+    TabOrder = 2
+  end
+  object Button2: TButton
+    Left = 560
+    Height = 25
+    Top = 8
+    Width = 75
+    Caption = 'Save To CSV'
+    OnClick = Button2Click
+    TabOrder = 3
+  end
+  object ZMConnection1: TZMConnection
+    DatabasePath = 'DemoProject1'
+    Connected = True
+    DecimalSeparator = #0
+    left = 256
+    top = 8
+  end
+  object ZMQueryDataSet1: TZMQueryDataSet
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'RQRMTS_ID'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'ORDR'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'PRDCT'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'CMPNT'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'CMPNT_DSCR'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'CMPNT_RQRD'
+        DataType = ftFloat
+        Precision = 2
+        Size = -1
+      end    
+      item
+        Name = 'CMPNT_TOT_RQRD'
+        DataType = ftFloat
+        Precision = 2
+        Size = -1
+      end    
+      item
+        Name = 'CMPNT_RQRD_UNT'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'CMPNT_AVLB'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'CMPNT_TOT_AVLB'
+        DataType = ftFloat
+        Precision = 2
+        Size = 10
+      end    
+      item
+        Name = 'CMPNT_TOT_AVLB_CURR'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'CMPNT_TOT_AVLB_CURR_QINS'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'CMPNT_TOT_AVLB_CURR_QINS_ORDRD'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'CMPNT_SHRTG'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'CMPNT_TOT_SHRTG'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end    
+      item
+        Name = 'STRG_LOC'
+        DataType = ftString
+        Precision = -1
+        Size = 217
+      end>
+    ZMConnection = ZMConnection1
+    QueryExecuted = False
+    TableName = 'rqrmts'
+    TableLoaded = False
+    TableSaved = False
+    PersistentSave = False
+    Parameters = <>
+    left = 376
+    top = 8
+  end
+  object Datasource1: TDatasource
+    DataSet = ZMQueryDataSet1
+    left = 504
+    top = 8
+  end
+end
