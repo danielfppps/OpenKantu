@@ -1,0 +1,261 @@
+object SingleSystem: TSingleSystem
+  Left = 394
+  Height = 511
+  Top = 56
+  Width = 318
+  BorderStyle = bsToolWindow
+  Caption = 'Run a custom single system'
+  ClientHeight = 511
+  ClientWidth = 318
+  FormStyle = fsStayOnTop
+  Position = poMainFormCenter
+  LCLVersion = '1.0.14.0'
+  object RulesList: TListBox
+    Left = 24
+    Height = 88
+    Top = 24
+    Width = 280
+    ItemHeight = 0
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 24
+    Height = 16
+    Top = 8
+    Width = 100
+    Caption = 'Entry pattern Rules'
+    ParentColor = False
+  end
+  object Button1: TButton
+    Left = 24
+    Height = 25
+    Top = 152
+    Width = 76
+    Caption = 'Add Rule'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 176
+    Height = 26
+    Top = 151
+    Width = 131
+    Caption = 'Clear All Rules'
+    OnClick = Button2Click
+    TabOrder = 2
+  end
+  object Button3: TButton
+    Left = 24
+    Height = 25
+    Top = 456
+    Width = 280
+    Caption = 'Run Single System'
+    OnClick = Button3Click
+    TabOrder = 3
+  end
+  object ComboBox1: TComboBox
+    Left = 24
+    Height = 23
+    Top = 120
+    Width = 80
+    ItemHeight = 15
+    Style = csDropDownList
+    TabOrder = 4
+  end
+  object ComboBox2: TComboBox
+    Left = 176
+    Height = 23
+    Top = 120
+    Width = 80
+    ItemHeight = 15
+    Style = csDropDownList
+    TabOrder = 5
+  end
+  object Label2: TLabel
+    Left = 159
+    Height = 16
+    Top = 125
+    Width = 9
+    Caption = '>'
+    ParentColor = False
+  end
+  object Edit1: TEdit
+    Left = 112
+    Height = 23
+    Top = 120
+    Width = 40
+    TabOrder = 6
+    Text = '1'
+  end
+  object Edit2: TEdit
+    Left = 264
+    Height = 23
+    Top = 120
+    Width = 40
+    TabOrder = 7
+    Text = '1'
+  end
+  object EditSL: TEdit
+    Left = 104
+    Height = 23
+    Top = 364
+    Width = 56
+    TabOrder = 8
+  end
+  object Label3: TLabel
+    Left = 32
+    Height = 16
+    Top = 371
+    Width = 51
+    Caption = 'Stop Loss'
+    ParentColor = False
+  end
+  object EditTP: TEdit
+    Left = 248
+    Height = 23
+    Top = 368
+    Width = 56
+    TabOrder = 9
+  end
+  object Label4: TLabel
+    Left = 169
+    Height = 16
+    Top = 371
+    Width = 58
+    Caption = 'Take Profit'
+    ParentColor = False
+  end
+  object Label5: TLabel
+    Left = 32
+    Height = 16
+    Top = 400
+    Width = 55
+    Caption = 'Hour filter'
+    ParentColor = False
+  end
+  object Label6: TLabel
+    Left = 169
+    Height = 16
+    Top = 400
+    Width = 48
+    Caption = 'Day filter'
+    ParentColor = False
+  end
+  object ExitComboBox1: TComboBox
+    Left = 24
+    Height = 23
+    Top = 296
+    Width = 80
+    ItemHeight = 15
+    Style = csDropDownList
+    TabOrder = 10
+  end
+  object ExitEdit1: TEdit
+    Left = 112
+    Height = 23
+    Top = 296
+    Width = 40
+    TabOrder = 11
+    Text = '1'
+  end
+  object Label7: TLabel
+    Left = 160
+    Height = 16
+    Top = 301
+    Width = 9
+    Caption = '<'
+    ParentColor = False
+  end
+  object ExitComboBox2: TComboBox
+    Left = 176
+    Height = 23
+    Top = 296
+    Width = 80
+    ItemHeight = 15
+    Style = csDropDownList
+    TabOrder = 12
+  end
+  object ExitEdit2: TEdit
+    Left = 264
+    Height = 23
+    Top = 296
+    Width = 40
+    TabOrder = 13
+    Text = '1'
+  end
+  object ExitRulesList: TListBox
+    Left = 24
+    Height = 88
+    Top = 200
+    Width = 280
+    ItemHeight = 0
+    TabOrder = 14
+  end
+  object Label8: TLabel
+    Left = 24
+    Height = 16
+    Top = 184
+    Width = 91
+    Caption = 'Exit Pattern Rules'
+    ParentColor = False
+  end
+  object Button4: TButton
+    Left = 24
+    Height = 25
+    Top = 328
+    Width = 76
+    Caption = 'Add Rule'
+    OnClick = Button4Click
+    TabOrder = 15
+  end
+  object Button5: TButton
+    Left = 176
+    Height = 25
+    Top = 328
+    Width = 131
+    Caption = 'Clear Rules'
+    OnClick = Button5Click
+    TabOrder = 16
+  end
+  object EditHourFilter: TEdit
+    Left = 104
+    Height = 23
+    Top = 393
+    Width = 56
+    TabOrder = 17
+  end
+  object EditDayFilter: TEdit
+    Left = 248
+    Height = 23
+    Top = 393
+    Width = 56
+    TabOrder = 18
+  end
+  object SymbolsCombo: TComboBox
+    Left = 29
+    Height = 23
+    Top = 424
+    Width = 275
+    ItemHeight = 15
+    Style = csDropDownList
+    TabOrder = 19
+  end
+  object Button6: TButton
+    Left = 104
+    Height = 25
+    Top = 152
+    Width = 67
+    Caption = 'Del Rule'
+    OnClick = Button6Click
+    TabOrder = 20
+  end
+  object Button7: TButton
+    Left = 104
+    Height = 25
+    Top = 328
+    Width = 67
+    Caption = 'Del Rule'
+    OnClick = Button7Click
+    TabOrder = 21
+  end
+end
