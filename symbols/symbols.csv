@@ -1,0 +1,3 @@
+Symbol;datafile;timeframe;slippage;spread;contractSize;commission;isVolume;pointConversion;roundLots;MinStop
+"USDCHF_AUK_1D";"USDCHF_1440.csv";"1440";"0.0005";"0.0003";"10";"0";"1";"10000";"2";"0.0015"
+"USDJPY_AUK_1H";"USDJPY_60.csv";"60";"0.0005";"0.03";"10";"0";"0";"100";"2";"0.15"

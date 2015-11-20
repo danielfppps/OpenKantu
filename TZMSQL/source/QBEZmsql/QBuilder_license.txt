@@ -1,0 +1,65 @@
+All copyrights to Open QBuilder are owned by Sergey Orlik and 
+Fast Reports, Inc.
+
+The Open QBuilder is freeware. This means:
+
+  You may use this software during any period of time.
+
+  The  Open QBuilder  may be  freely  distributed,  provided  the
+distribution  package is  not  modified. No person or  company may
+charge a fee for the distribution of Open QBuilder without written
+permission from the copyright holder.
+
+  THE  FAST FONT SET IS  DISTRIBUTED "AS  IS". NO WARRANTY OF ANY 
+KIND IS EXPRESSED OR IMPLIED. YOU USE AT YOUR OWN RISK. THE AUTHOR 
+WILL NOT BE LIABLE  FOR DATA LOSS, DAMAGES, LOSS OF PROFITS OR ANY 
+OTHER KIND OF LOSS WHILE USING OR MISUSING THIS SOFTWARE.
+
+  You   may  not  emulate,  clone,  rent,  lease,  sell,  modify,
+decompile,  disassemble, otherwise reverse engineer Open QBuilder, 
+except  as  provided  for in this agreement. Any such unauthorized   
+use shall result in immediate and automatic  termination  of  this 
+license and may result in criminal and/or civil prosecution.
+
+  All rights not expressly  granted here are reserved by Fast 
+Reports, Inc.
+
+  This  license  is not distributed to the distribution  packages
+created  with  the  Open QBuilder. You may freely dispose of your 
+distribution packages.
+
+  Installing  and  using  Open QBuilder signifies acceptance of 
+these terms and conditions of the license.
+
+  If  you  do not agree with the terms of this license  you  must
+remove Open QBuilder files  from your storage devices and cease to 
+use the product.
+
+
+=============================================================================
+Copyright (c) 1996-2003 Sergey Orlik 
+Copyright (c) 2003 Fast Reports, Inc
+=============================================================================
+http://www.fast-report.com/en/oqb.php
+
+=============================================================================
+Converted to Lazarus/Free Pascal by Jean Patrick      
+Data: 14/02/2013                                      
+E-mail: jpsoft-sac-pa@hotmail.com                     
+=============================================================================
+
+Clarification on license:
+http://support.fast-report.com/tickets/260019?key=4f6db20d1c96007
+Question:
+"I created a modified version of the Open Query Builder to compile in Lazarus. It&#039;s working perfectly, with all the resources in Windows and Linux GTK2 and QT. I created also an enginer to connect with a suite of components ZEOS.
+
+Download: http://github.com/jepafi/Laz_Query_Builder/archive/master.zip
+
+I wonder if you have any objections to what I did? And what you allow me to do with the modified code? Can I use the code converted to Lazarus in commercial software?
+
+Link to Laz Query builder: https://github.com/jepafi/Laz_Query_Builder
+
+Discussion what is happening in Lazarus forum: http://www.lazarus.freepascal.org/index.php/topic, 19927.0.html "
+Response from Den Zubov:
+"Hello,
+We don't have any objections it's an open source software you can use it whatever you want. "

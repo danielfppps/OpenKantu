@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <Name Value="zmsql"/>
+    <Type Value="RunAndDesignTime"/>
+    <AddToProjectUsesSection Value="True"/>
+    <Author Value="Zlatko Matić"/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <SearchPaths>
+        <IncludeFiles Value="source"/>
+        <OtherUnitFiles Value="source;source/QBEZmsql"/>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)/$(LCLWidgetType)"/>
+      </SearchPaths>
+      <Other>
+        <Verbosity>
+          <ShowHintsForUnusedUnitsInMainSrc Value="True"/>
+          <ShowHintsForSenderNotUsed Value="True"/>
+        </Verbosity>
+      </Other>
+    </CompilerOptions>
+    <Description Value="ZMSQL database system is based on TBufDataset in-memory dataset and TJanSQL database engine.
+It is working with flat .csv files as tables and folders as databases."/>
+    <License Value="Free"/>
+    <Version Minor="1" Release="19"/>
+    <Files Count="31">
+      <Item1>
+        <Filename Value="source/AllzmsqlRegister.pas"/>
+        <HasRegisterProc Value="True"/>
+        <UnitName Value="AllzmsqlRegister"/>
+      </Item1>
+      <Item2>
+        <Filename Value="source/AllzmsqlRegister.lrs"/>
+        <Type Value="LRS"/>
+      </Item2>
+      <Item3>
+        <Filename Value="source/janSQL.pas"/>
+        <UnitName Value="janSQL"/>
+      </Item3>
+      <Item4>
+        <Filename Value="source/janSQLExpression2.pas"/>
+        <UnitName Value="janSQLExpression2"/>
+      </Item4>
+      <Item5>
+        <Filename Value="source/janSQLStrings.pas"/>
+        <UnitName Value="janSQLStrings"/>
+      </Item5>
+      <Item6>
+        <Filename Value="source/janSQLTokenizer.pas"/>
+        <UnitName Value="janSQLTokenizer"/>
+      </Item6>
+      <Item7>
+        <Filename Value="source/mwStringHashList.pas"/>
+        <UnitName Value="mwStringHashList"/>
+      </Item7>
+      <Item8>
+        <Filename Value="source/zmbufdataset.pas"/>
+        <UnitName Value="ZMBufDataset"/>
+      </Item8>
+      <Item9>
+        <Filename Value="source/zmconnection.pas"/>
+        <UnitName Value="ZMConnection"/>
+      </Item9>
+      <Item10>
+        <Filename Value="source/zmquerydataset.pas"/>
+        <UnitName Value="ZMQueryDataSet"/>
+      </Item10>
+      <Item11>
+        <Filename Value="source/zmreferentialkey.pas"/>
+        <UnitName Value="ZMReferentialKey"/>
+      </Item11>
+      <Item12>
+        <Filename Value="source/zmbufdataset_parser.pp"/>
+        <UnitName Value="ZMBufDataset_parser"/>
+      </Item12>
+      <Item13>
+        <Filename Value="source/QBEZmsql/QBLnkFrm.lfm"/>
+        <Type Value="LFM"/>
+      </Item13>
+      <Item14>
+        <Filename Value="source/QBEZmsql/QBuilder_license.txt"/>
+        <Type Value="Text"/>
+      </Item14>
+      <Item15>
+        <Filename Value="source/QBEZmsql/QBDBFrm2.lfm"/>
+        <Type Value="LFM"/>
+      </Item15>
+      <Item16>
+        <Filename Value="source/QBEZmsql/QBDBFrm2.pas"/>
+        <UnitName Value="QBDBFrm2"/>
+      </Item16>
+      <Item17>
+        <Filename Value="source/QBEZmsql/QBuilder_readme.txt"/>
+        <Type Value="Text"/>
+      </Item17>
+      <Item18>
+        <Filename Value="source/QBEZmsql/QBuilder.lfm"/>
+        <Type Value="LFM"/>
+      </Item18>
+      <Item19>
+        <Filename Value="source/QBEZmsql/QBuilder.pas"/>
+        <UnitName Value="QBuilder"/>
+      </Item19>
+      <Item20>
+        <Filename Value="source/QBEZmsql/QBDirFrm.lfm"/>
+        <Type Value="LFM"/>
+      </Item20>
+      <Item21>
+        <Filename Value="source/QBEZmsql/QBDirFrm.pas"/>
+        <UnitName Value="QBDirFrm"/>
+      </Item21>
+      <Item22>
+        <Filename Value="source/QBEZmsql/QBDBFrm.lfm"/>
+        <Type Value="LFM"/>
+      </Item22>
+      <Item23>
+        <Filename Value="source/QBEZmsql/QBuilder.lfm"/>
+        <Type Value="LFM"/>
+      </Item23>
+      <Item24>
+        <Filename Value="source/QBEZmsql/QBDirFrm.lfm"/>
+        <Type Value="LFM"/>
+      </Item24>
+      <Item25>
+        <Filename Value="source/QBEZmsql/QBAbout.lfm"/>
+        <Type Value="LFM"/>
+      </Item25>
+      <Item26>
+        <Filename Value="source/QBEZmsql/QBAbout.pas"/>
+        <UnitName Value="QBAbout"/>
+      </Item26>
+      <Item27>
+        <Filename Value="source/QBEZmsql/QBLnkFrm.pas"/>
+        <UnitName Value="QBLnkFrm"/>
+      </Item27>
+      <Item28>
+        <Filename Value="source/QBEZmsql/QBDBFrm.pas"/>
+        <UnitName Value="QBDBFrm"/>
+      </Item28>
+      <Item29>
+        <Filename Value="source/QBEZmsql/QBEZmsql.pas"/>
+        <UnitName Value="QBEZmsql"/>
+      </Item29>
+      <Item30>
+        <Filename Value="source/QBEZmsql/QBDBFrm2.lfm"/>
+        <Type Value="LFM"/>
+      </Item30>
+      <Item31>
+        <Filename Value="source/zmquerybuilder.pas"/>
+        <UnitName Value="ZMQueryBuilder"/>
+      </Item31>
+    </Files>
+    <RequiredPkgs Count="4">
+      <Item1>
+        <PackageName Value="SQLDBLaz"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="SDFLaz"/>
+      </Item2>
+      <Item3>
+        <PackageName Value="lazdbexport"/>
+      </Item3>
+      <Item4>
+        <PackageName Value="FCL"/>
+        <MinVersion Major="1" Valid="True"/>
+      </Item4>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <DestinationDirectory Value="/home/zlatko/Dokumenti/MojiProgrami/pl_zmsql_new"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

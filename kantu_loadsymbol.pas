@@ -90,8 +90,8 @@ end;
 procedure TloadSymbol.Button1Click(Sender: TObject);
 begin
     ZMQueryDataset1.TableName:='symbols';
-     ShowMessage('Dataset is going to be saved to: '+ ZMQueryDataset1.ZMConnection.DatabasePathFull+ZMQueryDataset1.TableName+'.txt');
-    ZMQueryDataset1.SaveToCSV(';');
+     ShowMessage('Dataset is going to be saved to: '+ ZMQueryDataset1.ZMConnection.DatabasePathFull+ZMQueryDataset1.TableName+'.csv');
+    ZMQueryDataset1.SaveToTable(';');
 
     loadSymbol.SymbolsList.Clear;
 

@@ -70,8 +70,8 @@ begin
   Application.CreateForm(TCustomFilterForm, CustomFilterForm);
   Application.CreateForm(TloadSymbol, loadSymbol);
   // set proper formatting
-  DefaultFormatSettings.ShortDateFormat 	 := 'dd/mm/yyyy' ;
-  DefaultFormatSettings.DateSeparator 	         := '/' ;
+  DefaultFormatSettings.ShortDateFormat 	 := 'yyyy.mm.dd' ;
+  DefaultFormatSettings.DateSeparator 	         := '.' ;
   DefaultFormatSettings.DecimalSeparator 	 := '.' ;
   MainForm.Enabled := true;
 

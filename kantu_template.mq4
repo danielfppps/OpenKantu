@@ -6,7 +6,7 @@
 //| interface coded in part by Maxim Feinshtein.                       |
 //+--------------------------------------------------------------------+
 
-#property copyright "System created using Kantu by, Daniel Fernandez Copyright © 2013"
+#property copyright "System created using Kantu by, Daniel Fernandez Copyright © 2015"
 #property link      "www.asirikuy.com"
 
 #include <stdlib.mqh>
@@ -16,7 +16,7 @@
 #define EPSILON 0.0000001
 
 #define COMPONENT_NAME        "KANTU_GENERATED_SYSTEM"
-#define COMPONENT_VERSION     "KT_v2.00"
+#define COMPONENT_VERSION     "KT_v2.10"
 
 #define OP_DEPOSITORWITHDRAWAL         6
 
@@ -884,13 +884,6 @@ int longExitPattern = (PATTERN_NONE);
 
 //noExitPatternInsertReturn
 
-
-    if (
-//insertLongExitLogic
-       )
-       longExitPattern = LONG_EXIT_PATTERN;
-
-return(longExitPattern);
 }
 
 int detectShortExitPattern()
@@ -899,13 +892,6 @@ int shortExitPattern = (PATTERN_NONE);
 
 //noExitPatternInsertReturn
 
-
-    if (
-//insertShortExitLogic
-       )
-       shortExitPattern = LONG_EXIT_PATTERN;
-
-return(shortExitPattern);
 }
 
 void calculateATR()

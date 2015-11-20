@@ -15,19 +15,12 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
-    Button4: TButton;
-    Button5: TButton;
     Button6: TButton;
-    Button7: TButton;
     ComboBox1: TComboBox;
     ComboBox2: TComboBox;
     SymbolsCombo: TComboBox;
-    ExitComboBox1: TComboBox;
-    ExitComboBox2: TComboBox;
     Edit1: TEdit;
     Edit2: TEdit;
-    ExitEdit1: TEdit;
-    ExitEdit2: TEdit;
     EditHourFilter: TEdit;
     EditDayFilter: TEdit;
     EditSL: TEdit;
@@ -38,17 +31,12 @@ type
     Label4: TLabel;
     Label5: TLabel;
     Label6: TLabel;
-    Label7: TLabel;
-    Label8: TLabel;
     RulesList: TListBox;
-    ExitRulesList: TListBox;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure Button4Click(Sender: TObject);
-    procedure Button5Click(Sender: TObject);
     procedure Button6Click(Sender: TObject);
-    procedure Button7Click(Sender: TObject);
   private
     { private declarations }
   public
@@ -158,34 +146,8 @@ procedure TSingleSystem.Button4Click(Sender: TObject);
 var
   i: integer;
 begin
-       if (ExitComboBox1.ItemIndex >= 0) and (ExitComboBox2.ItemIndex >= 0) then
-       begin
-            ExitRulesList.Items.Add('Exit long (exit short opposite) ' + ExitComboBox1.Items[ExitComboBox1.ItemIndex] + '[' +ExitEdit1.Text+ ']' + ' < ' + ExitComboBox2.Items[ExitComboBox2.ItemIndex] + '[' +ExitEdit2.Text+ ']' );
-
-            SetLength(closingPatternToUse.tradingRules, Length(closingPatternToUse.tradingRules)+1) ;
-
-            i := Length(closingPatternToUse.tradingRules)-1 ;
-
-            SetLength(closingPatternToUse.tradingRules[i], INDICATOR_RULES_TOTAL);
-
-            closingPatternToUse.tradingRules[i][IDX_SIZE_COMPARISON]  := 0;
-            closingPatternToUse.tradingRules[i][IDX_LOGIC_TYPE]  := LOGIC_AND;
-
-            closingPatternToUse.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT]    := StrToInt(ExitEdit1.Text)-1;
-            closingPatternToUse.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT]    := StrToInt(ExitEdit2.Text)-1;
-
-            closingPatternToUse.tradingRules[i][IDX_FIRST_INDICATOR]  := ExitComboBox1.ItemIndex;
-            closingPatternToUse.tradingRules[i][IDX_SECOND_INDICATOR] := ExitComboBox2.ItemIndex;
-
-       end;
 
 
-end;
-
-procedure TSingleSystem.Button5Click(Sender: TObject);
-begin
-     ExitRulesList.Clear;
-     SetLength(closingPatternToUse.tradingRules, 0);
 end;
 
 procedure TSingleSystem.Button6Click(Sender: TObject);
@@ -257,74 +219,6 @@ begin
 
 end;
 
-procedure TSingleSystem.Button7Click(Sender: TObject);
-var
-  i,j: integer;
-  selectedForDelete: integer;
-  patternTempCopy: TIndicatorPattern;
-begin
-
-     for i:= 0 to ExitRulesList.Count-1 do
-     begin
-
-       if ExitRulesList.Selected[i] then
-       selectedForDelete := i;
-
-     end;
-
-
-
-     j := 0;
-
-     SetLength(patternTempCopy.tradingRules, 0);
-
-     for i:= 0 to Length(closingPatternToUse.tradingRules)-1 do
-     begin
-            if i <> selectedForDelete then
-            begin
-
-                 SetLength(patternTempCopy.tradingRules, Length(patternTempCopy.tradingRules)+1);
-
-                 j :=  Length(patternTempCopy.tradingRules)-1 ;
-
-                 SetLength(patternTempCopy.tradingRules[j], INDICATOR_RULES_TOTAL);
-
-                 patternTempCopy.tradingRules[j][IDX_SIZE_COMPARISON]  := closingPatternToUse.tradingRules[i][IDX_SIZE_COMPARISON];
-                 patternTempCopy.tradingRules[j][IDX_LOGIC_TYPE]  :=closingPatternToUse.tradingRules[i][IDX_LOGIC_TYPE];
-
-                 patternTempCopy.tradingRules[j][IDX_FIRST_INDICATOR_SHIFT]    := closingPatternToUse.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT];
-                 patternTempCopy.tradingRules[j][IDX_SECOND_INDICATOR_SHIFT]    := closingPatternToUse.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT];
-
-                 patternTempCopy.tradingRules[j][IDX_FIRST_INDICATOR]  := closingPatternToUse.tradingRules[i][IDX_FIRST_INDICATOR];
-                 patternTempCopy.tradingRules[j][IDX_SECOND_INDICATOR] := closingPatternToUse.tradingRules[i][IDX_SECOND_INDICATOR];
-
-            end;
-     end;
-
-     SetLength(closingPatternToUse.tradingRules, 0);
-     SetLength(closingPatternToUse.tradingRules, Length(patternTempCopy.tradingRules));
-
-     for i:= 0 to Length(closingPatternToUse.tradingRules)-1 do
-     begin
-          SetLength(closingPatternToUse.tradingRules[i], INDICATOR_RULES_TOTAL);
-
-          closingPatternToUse.tradingRules[i][IDX_SIZE_COMPARISON]  := patternTempCopy.tradingRules[i][IDX_SIZE_COMPARISON];
-          closingPatternToUse.tradingRules[i][IDX_LOGIC_TYPE]  :=patternTempCopy.tradingRules[i][IDX_LOGIC_TYPE];
-
-          closingPatternToUse.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT]    := patternTempCopy.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT];
-          closingPatternToUse.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT]    := patternTempCopy.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT];
-
-          closingPatternToUse.tradingRules[i][IDX_FIRST_INDICATOR]  := patternTempCopy.tradingRules[i][IDX_FIRST_INDICATOR];
-          closingPatternToUse.tradingRules[i][IDX_SECOND_INDICATOR] := patternTempCopy.tradingRules[i][IDX_SECOND_INDICATOR];
-     end;
-
-
-
-     ExitRulesList.Items.Delete(selectedForDelete);
-
-
-
-end;
 
 
 

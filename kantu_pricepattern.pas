@@ -57,8 +57,6 @@ begin
   Memo1.Lines.Add('Trade only on hour = ' + FloatToStr(indicatorPattern.hourFilter));
   if (SimulationForm.UseDayFilter.Checked) then
   Memo1.Lines.Add('Trade only on day = ' + FloatToStr(indicatorPattern.dayFilter));
-  if (SimulationForm.UseTimeExit.Checked) then
-  Memo1.Lines.Add('Time exit = ' + FloatToStr(indicatorPattern.timeExit));
   end;
 
     Memo1.Lines.Add('------------------------------------');
@@ -83,9 +81,6 @@ begin
        1 : typeString1 := 'High';
        2 : typeString1 := 'Low';
        3 : typeString1 := 'Close';
-       4 : typeString1 := 'Body';
-       5 : typeString1 := 'Range';
-       else typeString1 := 'Input'+ IntToStr(StrToInt(firstIndicator)-2);
        end;
 
        Case indicatorPattern.tradingRules[i][IDX_SECOND_INDICATOR] of
@@ -93,9 +88,6 @@ begin
        1 : typeString2 := 'High';
        2 : typeString2 := 'Low';
        3 : typeString2 := 'Close';
-       4 : typeString2 := 'Body';
-       5 : typeString2 := 'Range';
-       else typeString2 := 'Input'+ IntToStr(StrToInt(firstIndicator)-2);
        end;
 
        if indicatorPattern.tradingRules[i][IDX_SIZE_COMPARISON] <> 0 then

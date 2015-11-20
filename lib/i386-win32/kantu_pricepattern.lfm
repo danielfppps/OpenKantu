@@ -1,0 +1,30 @@
+object PricePatternForm: TPricePatternForm
+  Left = 527
+  Height = 345
+  Top = 218
+  Width = 536
+  BorderStyle = bsToolWindow
+  Caption = 'Price Pattern Decomposition'
+  ClientHeight = 345
+  ClientWidth = 536
+  FormStyle = fsStayOnTop
+  Position = poMainFormCenter
+  LCLVersion = '1.0.14.0'
+  object Memo1: TMemo
+    Left = 32
+    Height = 296
+    Top = 8
+    Width = 488
+    ScrollBars = ssAutoVertical
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 445
+    Height = 25
+    Top = 312
+    Width = 75
+    Caption = 'Close'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+end

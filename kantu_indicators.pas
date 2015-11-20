@@ -1320,8 +1320,7 @@ begin
           // look for exits related with entry/exit pattern signals
               if  (
                   ((activeOrder.orderType = SELL) and (entryPatternResult = BUY)) or
-                  ((activeOrder.orderType = BUY) and (entryPatternResult = SELL)) or
-                  ((activeOrder.orderType <> NONE) and (SimulationForm.UseTimeExit.Checked) and (tradeAgeInBars >= usedEntryPattern.timeExit))
+                  ((activeOrder.orderType = BUY) and (entryPatternResult = SELL))
                   ) then
                   begin
 
@@ -1802,17 +1801,15 @@ Begin
   temp.Clear ;
   MainForm.ParseDelimited(temp, Ts[0], ',') ;
 
-  SetLength( LoadedIndicatorData[n], temp.Count - 1+2);
+  SetLength( LoadedIndicatorData[n], 4);
 
   SimulationForm.UsedInputsList.Clear;
   SimulationForm2.UsedInputsList.Clear;
 
   SingleSystem.ComboBox1.Clear;
   SingleSystem.ComboBox2.Clear;
-  SingleSystem.ExitComboBox1.Clear;
-  SingleSystem.ExitComboBox2.Clear;
 
-  for j:= 0 to Length(LoadedIndicatorData[n])-1 do
+  for j:= 0 to 3 do
   begin
 
        Case j of
@@ -1820,9 +1817,6 @@ Begin
        1 : typeString1 := 'High';
        2 : typeString1 := 'Low';
        3 : typeString1 := 'Close';
-       4 : typeString1 := 'Body';
-       5 : typeString1 := 'Range';
-       else typeString1 := 'Input'+ IntToStr(j-2);
        end;
 
          SetLength( LoadedIndicatorData[n][j].data, Ts.Count);
@@ -1830,8 +1824,6 @@ Begin
          SimulationForm2.UsedInputsList.Items.Add(typeString1);
          SingleSystem.ComboBox1.Items.Add(typeString1);
          SingleSystem.ComboBox2.Items.Add(typeString1);
-         SingleSystem.ExitComboBox1.Items.Add(typeString1);
-         SingleSystem.ExitComboBox2.Items.Add(typeString1);
          SimulationForm.UsedInputsList.Checked[SimulationForm.UsedInputsList.Count-1] := true;
          SimulationForm2.UsedInputsList.Checked[SimulationForm2.UsedInputsList.Count-1] := true;
   end;
@@ -1850,28 +1842,21 @@ Begin
 
    MainForm.ParseDelimited(temp, Ts[i], ',') ;
 
-   LoadedIndiHistoryData[n].Time[i] := StrToDateTime(temp[0]) ;
+   LoadedIndiHistoryData[n].Time[i] := StrToDateTime(temp[0]+' '+temp[1]) ;
 
-   LoadedIndiHistoryData[n].OHLC[i].Open := StrToFloat(temp[1]) ;
-   LoadedIndiHistoryData[n].OHLC[i].High := StrToFloat(temp[2]) ;
-   LoadedIndiHistoryData[n].OHLC[i].Low := StrToFloat(temp[3]) ;
-   LoadedIndiHistoryData[n].OHLC[i].Close := StrToFloat(temp[4]) ;
+   LoadedIndiHistoryData[n].OHLC[i].Open := StrToFloat(temp[2]) ;
+   LoadedIndiHistoryData[n].OHLC[i].High := StrToFloat(temp[3]) ;
+   LoadedIndiHistoryData[n].OHLC[i].Low := StrToFloat(temp[4]) ;
+   LoadedIndiHistoryData[n].OHLC[i].Close := StrToFloat(temp[5]) ;
 
    if LoadedIndiHistoryData[n].isVolume then
-   LoadedIndiHistoryData[n].OHLC[i].Volume := StrToFloat(temp[5]) else
+   LoadedIndiHistoryData[n].OHLC[i].Volume := StrToFloat(temp[6]) else
    LoadedIndiHistoryData[n].OHLC[i].Volume := 0    ;
 
-   for j:= 1 to temp.Count - 1 do
+   for j:= 2 to 5 do
    begin
-         if j<5 then
-         LoadedIndicatorData[n][j-1].data[i] := StrToFloat(temp[j]);
-
-         if j>=5 then
-         LoadedIndicatorData[n][j-1+2].data[i] := StrToFloat(temp[j]);
+         LoadedIndicatorData[n][j-2].data[i] := StrToFloat(temp[j]);
    end;
-
-   LoadedIndicatorData[n][4].data[i] := Abs(StrToFloat(temp[1])-StrToFloat(temp[4]));
-   LoadedIndicatorData[n][5].data[i] := Abs(StrToFloat(temp[2])-StrToFloat(temp[3]));
 
   end;
 
@@ -2164,7 +2149,6 @@ begin
       PricePatternForm.Memo1.Lines.Clear;
 
       PricePatternForm.decomposeIndicatorPattern( indicatorEntryPatterns[selectedPattern], ENTRY_PATTERN);
-      PricePatternForm.decomposeIndicatorPattern( indicatorClosePatterns[selectedPattern], EXIT_PATTERN);
 
       PricePatternForm.Visible := true;
 

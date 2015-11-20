@@ -1,0 +1,272 @@
+object Form1: TForm1
+  Left = 257
+  Height = 468
+  Top = 48
+  Width = 725
+  Caption = 'Form1'
+  ClientHeight = 468
+  ClientWidth = 725
+  OnShow = FormShow
+  LCLVersion = '0.9.30'
+  object DBGrid1: TDBGrid
+    Left = 8
+    Height = 120
+    Top = 72
+    Width = 704
+    Anchors = [akTop, akLeft, akRight]
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'Product'
+        Width = 335
+        FieldName = 'Product'
+      end    
+      item
+        Title.Caption = 'ProductDescription'
+        Width = 336
+        FieldName = 'ProductDescription'
+      end>
+    DataSource = Datasource1
+    TabOrder = 0
+  end
+  object DBGrid2: TDBGrid
+    Left = 8
+    Height = 144
+    Top = 232
+    Width = 704
+    Anchors = [akTop, akLeft, akRight]
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <    
+      item
+        Title.Caption = 'ProductionOrder'
+        Width = 172
+        FieldName = 'ProductionOrder'
+      end    
+      item
+        Title.Caption = 'Product'
+        Width = 172
+        FieldName = 'Product'
+      end    
+      item
+        Title.Caption = 'ProductDescription'
+        Width = 172
+        FieldName = 'ProductDescription'
+      end    
+      item
+        Title.Caption = 'Quantity'
+        Width = 172
+        FieldName = 'Quantity'
+        DisplayFormat = '#,##0.00'
+      end>
+    DataSource = Datasource2
+    TabOrder = 1
+  end
+  object Button1: TButton
+    Left = 8
+    Height = 25
+    Top = 8
+    Width = 317
+    AutoSize = True
+    Caption = '1. Products and Orders (Master/Detail example)'
+    OnClick = Button1Click
+    TabOrder = 2
+  end
+  object Button2: TButton
+    Left = 392
+    Height = 25
+    Top = 8
+    Width = 323
+    AutoSize = True
+    Caption = '2. Requirements (Parameterized query example)'
+    OnClick = Button2Click
+    TabOrder = 3
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 320
+    Height = 25
+    Top = 40
+    Width = 241
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    DataSource = Datasource1
+    TabOrder = 4
+  end
+  object DBNavigator2: TDBNavigator
+    Left = 320
+    Height = 25
+    Top = 200
+    Width = 241
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    DataSource = Datasource2
+    TabOrder = 5
+  end
+  object DBGrid3: TDBGrid
+    Left = 8
+    Height = 100
+    Top = 392
+    Width = 704
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    AutoFillColumns = True
+    Color = clWindow
+    Columns = <>
+    DataSource = Datasource3
+    TabOrder = 6
+  end
+  object ZMConnection1: TZMConnection
+    DatabasePath = 'DemoProject1'
+    Connected = False
+    left = 176
+    top = 104
+  end
+  object ZMQueryDataSet1: TZMQueryDataSet
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'Product'
+        DataType = ftString
+        Precision = -1
+        Size = 10
+      end    
+      item
+        Name = 'ProductDescription'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end>
+    ZMConnection = ZMConnection1
+    SQL.Strings = (
+      'SELECT Max(prdcts.prdct) AS Product,'
+      'Max(prdcts.prdct_dscr) AS ProductDescription'
+      'FROM prdcts, ordrs'
+      'WHERE prdcts.prdct=ordrs.prdct'
+      'AND ordrs.ORDR_TYPE=''LA'''
+      'GROUP BY Product, ProductDescription'
+      'ORDER BY Product    '
+    )
+    QueryExecuted = False
+    TableLoaded = False
+    TableSaved = False
+    PersistentSave = False
+    Parameters = <>
+    left = 304
+    top = 104
+  end
+  object ZMQueryDataSet2: TZMQueryDataSet
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <    
+      item
+        Name = 'ProductionOrder'
+        DataType = ftString
+        Precision = -1
+        Size = 7
+      end    
+      item
+        Name = 'Product'
+        DataType = ftString
+        Precision = -1
+        Size = 10
+      end    
+      item
+        Name = 'ProductDescription'
+        DataType = ftString
+        Precision = -1
+        Size = 20
+      end    
+      item
+        Name = 'Quantity'
+        DataType = ftFloat
+        Precision = -1
+        Size = 0
+      end>
+    ZMConnection = ZMConnection1
+    SQL.Strings = (
+      'SELECT ordr AS ProductionOrder,'
+      'prdct AS Product, prdct_dscr AS ProductDescription,'
+      'prdct_targ_qty AS Quantity'
+      'FROM ordrs'
+      'WHERE ORDR_TYPE=''LA'''
+    )
+    QueryExecuted = False
+    TableLoaded = False
+    TableSaved = False
+    PersistentSave = False
+    Parameters = <>
+    MasterFields.Strings = (
+      'Product'
+    )
+    MasterSource = Datasource1
+    Filtered = True
+    left = 152
+    top = 264
+  end
+  object Datasource1: TDatasource
+    DataSet = ZMQueryDataSet1
+    left = 56
+    top = 104
+  end
+  object Datasource2: TDatasource
+    DataSet = ZMQueryDataSet2
+    left = 48
+    top = 256
+  end
+  object Datasource3: TDatasource
+    DataSet = ZMQueryDataSet3
+    left = 40
+    top = 416
+  end
+  object ZMQueryDataSet3: TZMQueryDataSet
+    IndexName = 'DEFAULT_ORDER'
+    FieldDefs = <>
+    ZMConnection = ZMConnection1
+    SQL.Strings = (
+      'SELECT CMPNT AS Component,'
+      'CMPNT_DSCR AS ComponentDescription,'
+      'CMPNT_RQRD AS Required,'
+      'CMPNT_TOT_AVLB AS AvailableTotal,'
+      'CMPNT_RQRD_UNT AS Units'
+      'FROM rqrmts'
+      'WHERE ORDR=:Order   '
+    )
+    QueryExecuted = False
+    TableLoaded = False
+    TableSaved = False
+    PersistentSave = False
+    Parameters = <    
+      item
+        DataType = ftString
+        Name = 'Order'
+        ParamType = ptInput
+      end>
+    left = 144
+    top = 416
+  end
+  object ZMReferentialKey1: TZMReferentialKey
+    MasterDataSet = ZMQueryDataSet1
+    SlaveDataSet = ZMQueryDataSet2
+    ReferentialKind = [rkInsert, rkUpdate, rkDelete]
+    JoinedFields.Strings = (
+      'Product=Product'
+      'ProductDescription=ProductDescription'
+    )
+    Enabled = True
+    left = 288
+    top = 264
+  end
+end

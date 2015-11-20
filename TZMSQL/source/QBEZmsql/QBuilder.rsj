@@ -1,0 +1,4 @@
+{"version":1,"strings":[
+{"hash":163590034,"name":"qbuilder.smaincaption","value":"QBuilder"},
+{"hash":84665806,"name":"qbuilder.snotvalidtableparent","value":"Parent must be TScrollBox or its descendant."}
+]}

@@ -381,7 +381,7 @@ const
 
   // program version
 
-  KANTU_VERSION         = '2.00';
+  KANTU_VERSION         = '2.10';
 
 implementation
 
