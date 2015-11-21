@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 197
+  Left = 277
   Height = 730
-  Top = 151
+  Top = 491
   Width = 879
   Caption = 'Kantu - Price pattern parameterless system generator. By Daniel Fernandez @ Asirikuy.com 2013'
   ClientHeight = 700

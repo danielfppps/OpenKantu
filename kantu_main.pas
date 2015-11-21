@@ -178,6 +178,7 @@ type
     procedure  addPricePatternLogic(var F4_Code: TStringList; pricePattern: TIndicatorPattern; logic: integer; useLibrary: boolean; strategyNumber: integer);
     function   findSymbol(symbolString: string): integer;
     procedure  pricePatternToMQL4(var Code_MQL4: TStringList; pricePattern: TIndicatorPattern; logic: integer);
+    procedure  parseConfig;
   end;
 
 var
@@ -189,6 +190,110 @@ implementation
 
 uses kantu_indicators, kantu_regular_simulation, kantu_simulation_show;
 
+procedure TMainForm.parseConfig;
+var
+  configFile: TStringList;
+  i, j: integer;
+begin
+
+DefaultFormatSettings.ShortDateFormat 	 := 'yyyy.mm.dd' ;
+  DefaultFormatSettings.DateSeparator 	         := '.' ;
+  DefaultFormatSettings.DecimalSeparator 	 := '.' ;
+
+SetCurrentDir(mainProgramFolder);
+j := 0;
+
+  configFile := TStringList.Create;
+
+  configFile.LoadFromFile('config.ini');
+
+   for i := 1 to SimulationForm2.OptionsGrid.RowCount-1 do
+   begin
+        SimulationForm2.OptionsGrid.Cells[1,i] := configFile[j] ;
+        j := j+1;
+   end;
+
+   for i := 1 to FiltersForm.FiltersGrid.RowCount-1  do
+   begin
+   FiltersForm.FiltersGrid.Cells[1,i] := configFile[j];
+   j := j+1;
+   FiltersForm.FiltersGrid.Cells[2,i] := configFile[j];
+   j := j+1;
+   FiltersForm.FiltersGrid.Cells[3,i] := configFile[j];
+   j := j+1;
+   FiltersForm.FiltersGrid.Cells[4,i] := configFile[j];
+   j := j+1;
+   end;
+
+   CustomFilterForm.CustomFormulaEdit.Text := configFile[j];
+   j := j+1;
+   SimulationForm2.BeginInSampleCalendar.Date:= StrToDateTime(configFile[j]) ;
+   SimulationForm2.BeginInSampleEdit.Text := configFile[j];
+   SimulationForm.BeginInSampleCalendar.Date:= StrToDateTime(configFile[j]) ;
+   SimulationForm.BeginInSampleEdit.Text := configFile[j];
+   j := j+1;
+   SimulationForm2.EndInSampleCalendar.Date:= StrToDateTime(configFile[j]) ;
+   SimulationForm2.EndInSampleEdit.Text := configFile[j];
+   SimulationForm.EndInSampleCalendar.Date:= StrToDateTime(configFile[j]) ;
+   SimulationForm.EndInSampleEdit.Text := configFile[j];
+   j := j+1;
+   SimulationForm2.EndOutOfSampleCalendar.Date:= StrToDateTime(configFile[j]) ;
+   SimulationForm2.EndOutOfSampleEdit.Text := configFile[j];
+   SimulationForm.EndOutOfSampleCalendar.Date:= StrToDateTime(configFile[j]) ;
+   SimulationForm.EndOutOfSampleEdit.Text := configFile[j];
+   j := j+1;
+   SimulationForm2.OptTargetComboBox.ItemIndex:= StrToInt(configFile[j]) ;
+   SimulationForm.OptTargetComboBox.ItemIndex:= StrToInt(configFile[j]) ;
+   j := j+1;
+   SimulationForm2.UseSLCheck.Checked:= StrToBool(configFile[j]) ;
+   SimulationForm.UseSLCheck.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm2.UseTPCheck.Checked:= StrToBool(configFile[j]) ;
+   SimulationForm.UseTPCheck.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm2.UseHourFilter.Checked:= StrToBool(configFile[j]) ;
+   SimulationForm.UseHourFilter.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm2.UseDayFilter.Checked:= StrToBool(configFile[j]) ;
+   SimulationForm.UseDayFilter.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm2.FixComplexityCheck.Checked:= StrToBool(configFile[j]) ;
+   SimulationForm.FixComplexityCheck.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm2.LROriginCheck.Checked:= StrToBool(configFile[j]) ;
+   SimulationForm.LROriginCheck.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm.autoSaveGraphsOnWFACheck.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm.SaveAllResults.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm.SaveSummaryCheck.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm2.AsymmetryCheck.Checked:= StrToBool(configFile[j]) ;
+   SimulationForm.AsymmetryCheck.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm2.UseFixedSLTP.Checked:= StrToBool(configFile[j]) ;
+   SimulationForm.UseFixedSLTP.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm2.UseFixedHour.Checked:= StrToBool(configFile[j]) ;
+   SimulationForm.UseFixedHour.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+   SimulationForm2.UseAlwaysUpTLCheck.Checked := StrToBool(configFile[j]) ;
+   SimulationForm.UseAlwaysUpTLCheck.Checked := StrToBool(configFile[j]) ;
+   j := j+1;
+
+   for i:= 0 to ResultsGrid.ColCount-1 do
+   begin
+        ResultsGrid.Columns.Items[i].Visible:= StrToBool(configFile[j]) ;
+        j := j+1;
+   end;
+
+   FiltersForm.isLastYearProfitCheck.Checked:= StrToBool(configFile[j]) ;
+   j := j+1;
+
+   configFile.Free;
+
+end;
 
 
 procedure TMainForm.ParseDelimited(const sl : TStrings; const value : string; const delimiter : string) ;
@@ -795,13 +900,17 @@ var
   i: integer;
 begin
 
+  DefaultFormatSettings.ShortDateFormat 	 := 'yyyy.mm.dd' ;
+  DefaultFormatSettings.DateSeparator 	         := '.' ;
+  DefaultFormatSettings.DecimalSeparator 	 := '.' ;
+
   SetCurrentDir(mainProgramFolder);
 
   configFile := TStringList.Create;
 
 
-   for i := 1 to SimulationForm.OptionsGrid.RowCount-1 do
-   configFile.Add(SimulationForm.OptionsGrid.Cells[1,i]);
+   for i := 1 to SimulationForm2.OptionsGrid.RowCount-1 do
+   configFile.Add(SimulationForm2.OptionsGrid.Cells[1,i]);
 
    for i := 1 to FiltersForm.FiltersGrid.RowCount-1  do
    begin
@@ -812,23 +921,23 @@ begin
    end;
 
    configFile.Add(CustomFilterForm.CustomFormulaEdit.Text);
-   configFile.Add(DateTimeToStr(SimulationForm.BeginInSampleCalendar.Date));
-   configFile.Add(DateTimeToStr(SimulationForm.EndInSampleCalendar.Date));
-   configFile.Add(DateTimeToStr(SimulationForm.EndOutOfSampleCalendar.Date));
-   configFile.Add(IntToStr(SimulationForm.OptTargetComboBox.ItemIndex));
-   configFile.Add(BoolToStr(SimulationForm.UseSLCheck.Checked));
-   configFile.Add(BoolToStr(SimulationForm.UseTPCheck.Checked));
-   configFile.Add(BoolToStr(SimulationForm.UseHourFilter.Checked));
-   configFile.Add(BoolToStr(SimulationForm.UseDayFilter.Checked));
-   configFile.Add(BoolToStr(SimulationForm.FixComplexityCheck.Checked));
-   configFile.Add(BoolToStr(SimulationForm.LROriginCheck.Checked));
+   configFile.Add(DateTimeToStr(SimulationForm2.BeginInSampleCalendar.Date));
+   configFile.Add(DateTimeToStr(SimulationForm2.EndInSampleCalendar.Date));
+   configFile.Add(DateTimeToStr(SimulationForm2.EndOutOfSampleCalendar.Date));
+   configFile.Add(IntToStr(SimulationForm2.OptTargetComboBox.ItemIndex));
+   configFile.Add(BoolToStr(SimulationForm2.UseSLCheck.Checked));
+   configFile.Add(BoolToStr(SimulationForm2.UseTPCheck.Checked));
+   configFile.Add(BoolToStr(SimulationForm2.UseHourFilter.Checked));
+   configFile.Add(BoolToStr(SimulationForm2.UseDayFilter.Checked));
+   configFile.Add(BoolToStr(SimulationForm2.FixComplexityCheck.Checked));
+   configFile.Add(BoolToStr(SimulationForm2.LROriginCheck.Checked));
    configFile.Add(BoolToStr(SimulationForm.autoSaveGraphsOnWFACheck.Checked));
    configFile.Add(BoolToStr(SimulationForm.SaveAllResults.Checked));
    configFile.Add(BoolToStr(SimulationForm.SaveSummaryCheck.Checked));
-   configFile.Add(BoolToStr(SimulationForm.AsymmetryCheck.Checked));
-   configFile.Add(BoolToStr(SimulationForm.UseFixedSLTP.Checked));
-   configFile.Add(BoolToStr(SimulationForm.UseFixedHour.Checked));
-   configFile.Add(BoolToStr(SimulationForm.UseAlwaysUpTLCheck.Checked ));
+   configFile.Add(BoolToStr(SimulationForm2.AsymmetryCheck.Checked));
+   configFile.Add(BoolToStr(SimulationForm2.UseFixedSLTP.Checked));
+   configFile.Add(BoolToStr(SimulationForm2.UseFixedHour.Checked));
+   configFile.Add(BoolToStr(SimulationForm2.UseAlwaysUpTLCheck.Checked ));
 
    for i:= 0 to ResultsGrid.ColCount-1 do
    configFile.Add(BoolToStr(ResultsGrid.Columns.Items[i].Visible));

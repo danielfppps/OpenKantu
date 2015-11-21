@@ -11,7 +11,7 @@ object SimulationForm2: TSimulationForm2
   LCLVersion = '1.2.6.0'
   object OptTargetComboBox: TComboBox
     Left = 321
-    Height = 33
+    Height = 23
     Top = 96
     Width = 183
     Font.Height = -12
@@ -357,7 +357,7 @@ object SimulationForm2: TSimulationForm2
     )
   end
   object EndInSampleCalendar: TCalendarDialog
-    Date = 39814
+    Date = 41640
     OnDayChanged = EndInSampleCalendarDayChanged
     OnMonthChanged = EndInSampleCalendarDayChanged
     OnYearChanged = EndInSampleCalendarDayChanged
@@ -367,7 +367,7 @@ object SimulationForm2: TSimulationForm2
     top = 168
   end
   object BeginInSampleCalendar: TCalendarDialog
-    Date = 31048
+    Date = 29221
     OnDayChanged = BeginInSampleCalendarDayChanged
     OnMonthChanged = BeginInSampleCalendarDayChanged
     OnYearChanged = BeginInSampleCalendarDayChanged
@@ -377,7 +377,7 @@ object SimulationForm2: TSimulationForm2
     top = 368
   end
   object EndOutOfSampleCalendar: TCalendarDialog
-    Date = 41326
+    Date = 43831
     OnDayChanged = EndOutOfSampleCalendarDayChanged
     OnMonthChanged = EndOutOfSampleCalendarDayChanged
     OnYearChanged = EndOutOfSampleCalendarDayChanged

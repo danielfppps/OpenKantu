@@ -1762,6 +1762,9 @@ typeString1: string;
 Begin
 
   Result := true;
+  DefaultFormatSettings.ShortDateFormat 	 := 'yyyy.mm.dd' ;
+  DefaultFormatSettings.DateSeparator 	         := '.' ;
+  DefaultFormatSettings.DecimalSeparator 	 := '.' ;
 
   // open progress bar form
   MainForm.StatusLabel.Caption := 'Symbol data loading progress...';

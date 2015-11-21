@@ -20,7 +20,7 @@ uses
 
 procedure assignMainCaption();
 begin
-  MainForm.Caption := 'OpenKantu v' + KANTU_VERSION + '- Parameterless system generator. by Daniel Fernandez, Copyright Asirikuy.com 2013-2014. This version is licensed under the GPL v2.';
+  MainForm.Caption := 'OpenKantu v' + KANTU_VERSION + '- Parameterless system generator. by Daniel Fernandez, Copyright Asirikuy.com 2013-2015. This version is licensed under the GPL v2.';
 end;
 
 function slash(value:string):string;
@@ -75,6 +75,7 @@ begin
   DefaultFormatSettings.DecimalSeparator 	 := '.' ;
   MainForm.Enabled := true;
 
+
   Application.CreateForm(TPortfolioResultForm, PortfolioResultForm);
   Application.CreateForm(TSimulationForm2, SimulationForm2);
   Application.CreateForm(TSingleSystem, SingleSystem);
@@ -84,6 +85,7 @@ begin
   //
 
   setMainFolder;
+  MainForm.parseConfig;
   Application.Run;
 end.
 

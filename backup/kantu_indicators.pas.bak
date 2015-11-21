@@ -1824,8 +1824,6 @@ Begin
          SimulationForm2.UsedInputsList.Items.Add(typeString1);
          SingleSystem.ComboBox1.Items.Add(typeString1);
          SingleSystem.ComboBox2.Items.Add(typeString1);
-         SingleSystem.ExitComboBox1.Items.Add(typeString1);
-         SingleSystem.ExitComboBox2.Items.Add(typeString1);
          SimulationForm.UsedInputsList.Checked[SimulationForm.UsedInputsList.Count-1] := true;
          SimulationForm2.UsedInputsList.Checked[SimulationForm2.UsedInputsList.Count-1] := true;
   end;

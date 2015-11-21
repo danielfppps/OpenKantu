@@ -42,7 +42,6 @@ type
     UseFixedSLTP: TCheckBox;
     UseHourFilter: TCheckBox;
     UseSLCheck: TCheckBox;
-    UseTimeExit: TCheckBox;
     UseTPCheck: TCheckBox;
     procedure BeginInSampleCalendarDayChanged(Sender: TObject);
     procedure BeginInSampleEditChange(Sender: TObject);
