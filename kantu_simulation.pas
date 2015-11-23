@@ -15,7 +15,6 @@ type
 
   TSimulationForm = class(TForm)
     AsymmetryCheck: TCheckBox;
-    autoSaveGraphsOnWFACheck: TCheckBox;
     BeginInSampleCalendar: TCalendarDialog;
     BeginInSampleEdit: TEdit;
     Button1: TButton;
@@ -33,9 +32,6 @@ type
     OptionsGrid: TStringGrid;
     OptionsPanel: TPanel;
     OptTargetComboBox: TComboBox;
-    SaveAllResults: TCheckBox;
-    SaveSummaryCheck: TCheckBox;
-    UseAlwaysUpTLCheck: TCheckBox;
     UseDayFilter: TCheckBox;
     UsedInputsList: TCheckListBox;
     UseFixedHour: TCheckBox;

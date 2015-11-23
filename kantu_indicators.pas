@@ -1278,6 +1278,9 @@ begin
 
           ATR := LoadedIndiHistoryData[symbol].ATR[currentCandle];
 
+          //ShowMessage(DateTimeToStr(currentTime));
+          //ShowMessage(FloatToStr(ATR));
+
           isBuySignal := evaluateIndicatorPattern(i, usedEntryPattern, currentCandle-1, BUY, EVAL_TYPE_ENTRY );
           isSellSignal:= evaluateIndicatorPattern(i, usedEntryPattern, currentCandle-1, SELL, EVAL_TYPE_ENTRY ) ;
 
@@ -1426,19 +1429,6 @@ begin
         if (useTP) then activeOrder.TP  := currentOpen - ATR*usedEntryPattern.TP;
         tradeAgeInBars  := 0;
         activeOrder.lastSignalOpenPrice := currentOpen;
-       end;
-
-       if (SimulationForm.UseAlwaysUpTLCheck.Checked) and (entryPatternResult = NONE) then
-       begin
-
-            if (activeOrder.orderType = SELL) and
-            (currentOpen +spread + ATR*usedEntryPattern.SL < activeOrder.SL)then
-            activeOrder.SL  := currentOpen + spread +ATR*usedEntryPattern.SL;
-
-            if (activeOrder.orderType = BUY) and
-            (currentOpen - ATR*usedEntryPattern.SL > activeOrder.SL) then
-            activeOrder.SL  := currentOpen  - ATR*usedEntryPattern.SL;
-
        end;
 
        if ((((entryPatternResult = BUY) and (usedEntryPattern.allowLongSignals))  or (((entryPatternResult = SELL))and (usedEntryPattern.allowShortSignals))) and (activeOrder.orderType = NONE)) then
@@ -1693,16 +1683,6 @@ begin
            MainForm.ResultsGrid.Cells[IDX_GRID_OS_TOTAL_ME , MainForm.ResultsGrid.RowCount-1] := FloatToStr(Round(outOfSampleResults.total_ME*10000)/10000) ;
            MainForm.ResultsGrid.Cells[IDX_GRID_OS_DAYS_OUT, MainForm.ResultsGrid.RowCount-1] := IntToStr(outOfSampleResults.daysOut) ;
            MainForm.ResultsGrid.Cells[IDX_GRID_OS_CUSTOM_CRITERIA, MainForm.ResultsGrid.RowCount-1] := FloatToStr(outOfSampleResults.customFilter);
-      end;
-
-
-      // if required, save result into text file
-      if SimulationForm.SaveAllResults.Checked then
-      begin
-
-           saveIndicatorResultsToFile(IntToStr(SimNumber)+'_IS.csv',simulationResults);
-           saveIndicatorResultsToFile(IntToStr(SimNumber)+'_OS.csv',outOfSampleResults);
-
       end;
 
 end;

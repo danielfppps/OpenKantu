@@ -143,17 +143,17 @@ begin
   database := TStringList.Create;
 
   {$IFDEF DARWIN}
-  database.LoadFromFile(GetCurrentDir + '/kantu.app/Contents/MacOS/symbols/symbols.txt');
+  database.LoadFromFile(GetCurrentDir + '/kantu.app/Contents/MacOS/symbols/symbols.csv');
   {$ELSE}
-  database.LoadFromFile(GetCurrentDir + '/symbols/symbols.txt');
+  database.LoadFromFile(GetCurrentDir + '/symbols/symbols.csv');
   {$ENDIF}
 
   database.Add(symbol+';'+datafile+';'+timeframe+';'+slippage+';'+spread+';'+contractSize+';'+commission+';'+isVolume+';'+pointConversion+';'+roundLots);
 
   {$IFDEF DARWIN}
-  database.SaveToFile(GetCurrentDir + '/kantu.app/Contents/MacOS/symbols/symbols.txt');
+  database.SaveToFile(GetCurrentDir + '/kantu.app/Contents/MacOS/symbols/symbols.csv');
   {$ELSE}
-  database.SaveToFile(GetCurrentDir + '/symbols/symbols.txt');
+  database.SaveToFile(GetCurrentDir + '/symbols/symbols.csv');
   {$ENDIF}
 
   database.Free;

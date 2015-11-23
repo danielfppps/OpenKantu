@@ -1,7 +1,7 @@
 object MainForm: TMainForm
-  Left = 277
+  Left = 740
   Height = 730
-  Top = 491
+  Top = 473
   Width = 879
   Caption = 'Kantu - Price pattern parameterless system generator. By Daniel Fernandez @ Asirikuy.com 2013'
   ClientHeight = 700
@@ -684,11 +684,11 @@ object MainForm: TMainForm
     end
     object TabSheet2: TTabSheet
       Caption = 'Trade Analysis'
-      ClientHeight = 679
+      ClientHeight = 659
       ClientWidth = 868
       object TradeGrid: TStringGrid
         Left = 4
-        Height = 673
+        Height = 653
         Top = 4
         Width = 861
         Anchors = [akTop, akLeft, akRight, akBottom]

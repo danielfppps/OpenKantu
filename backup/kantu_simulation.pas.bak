@@ -35,7 +35,6 @@ type
     OptTargetComboBox: TComboBox;
     SaveAllResults: TCheckBox;
     SaveSummaryCheck: TCheckBox;
-    UseAlwaysUpTLCheck: TCheckBox;
     UseDayFilter: TCheckBox;
     UsedInputsList: TCheckListBox;
     UseFixedHour: TCheckBox;

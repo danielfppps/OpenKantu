@@ -16,7 +16,7 @@
 #define EPSILON 0.0000001
 
 #define COMPONENT_NAME        "KANTU_GENERATED_SYSTEM"
-#define COMPONENT_VERSION     "KT_v2.10"
+#define COMPONENT_VERSION     "KT_v2.20"
 
 #define OP_DEPOSITORWITHDRAWAL         6
 
@@ -93,12 +93,11 @@ extern string Kantu = "This is a trading strategy created using Kantu";
 extern int    OPERATIONAL_MODE    = OPERATIONAL_MODE_TRADING;
 extern int    INSTANCE_ID         = -1  ;
 extern double SLIPPAGE            = 5   ;
-extern bool   DISABLE_COMPOUNDING = false;
+extern bool   DISABLE_COMPOUNDING = true;
 extern int    ATR_PERIOD          = 20;
 extern double RISK                = 1;
 extern double TAKE_PROFIT         = 0;
 extern double STOP_LOSS           = 0;
-extern bool   AFM_TL              = false;
 extern string TRADE_COMMENT       = "input trade comment";
 
 // EA global variables
@@ -128,13 +127,14 @@ double g_maxTradeSize,
        g_adjustedSlippage,
        g_instanceBalance,
 		 g_tradeSize;
+		 
+double g_stopLossPIPs,
+	   g_takeProfitPIPs;
 
 int g_minimalStopPIPs;
 int g_contractSize,
 	 g_brokerDigits,
 	 g_period,
-	 g_stopLossPIPs,
-	 g_takeProfitPIPs,
 	 g_tradingSignal;
 
 //--------------------------------------------------------- Equity track begin -------------------------
@@ -580,8 +580,9 @@ void openBuyOrder()
 	
 	SetBuyOrderSLAndTP( tradeTicket, tradeOpenPrice );
 	
-	string orderGlobalString = StringConcatenate(INSTANCE_ID, "_", tradeTicket, "_LAST_OP");
-	string orderTimeGlobalString = StringConcatenate(INSTANCE_ID, "_", tradeTicket, "_LAST_OP_TIME");
+	string orderGlobalString = StringConcatenate(INSTANCE_ID,  "_LAST_OP");
+	string orderTimeGlobalString = StringConcatenate(INSTANCE_ID, "_LAST_OP_TIME");
+	GlobalVariableSet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD"), iTime(g_symbol, g_period, 0));
 	GlobalVariableSet(orderGlobalString, tradeOpenPrice);
 	GlobalVariableSet(orderTimeGlobalString, iTime(Symbol(),0,0));
 	
@@ -660,8 +661,9 @@ void openSellOrder()
 
 	SetSellOrderSLAndTP( tradeTicket, tradeOpenPrice );
 	
-	string orderGlobalString = StringConcatenate(INSTANCE_ID, "_", tradeTicket, "_LAST_OP");
-	string orderTimeGlobalString = StringConcatenate(INSTANCE_ID, "_", tradeTicket, "_LAST_OP_TIME");
+	string orderGlobalString = StringConcatenate(INSTANCE_ID,  "_LAST_OP");
+	string orderTimeGlobalString = StringConcatenate(INSTANCE_ID, "_LAST_OP_TIME");
+	GlobalVariableSet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD"), iTime(g_symbol, g_period, 0));
 	GlobalVariableSet(orderGlobalString, tradeOpenPrice);
 	GlobalVariableSet(orderTimeGlobalString, iTime(Symbol(),0,0));
 
@@ -683,7 +685,7 @@ void handleBuyTrade()
 {
 
 int tradeTicket = OrderTicket() ; 
-string orderGlobalString = StringConcatenate(INSTANCE_ID, "_", tradeTicket, "_LAST_OP");
+string orderGlobalString = StringConcatenate(INSTANCE_ID, "_LAST_OP");
 double tradeOpenPrice = GlobalVariableGet(orderGlobalString);
 double stopLossPrice = OrderStopLoss() ;
 
@@ -712,12 +714,12 @@ double stopLossPrice = OrderStopLoss() ;
 		}
 	}
 	
-	if( SIGNAL_UPDATE_BUY == g_tradingSignal && MathAbs(GlobalVariableGet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD"))-TimeCurrent() > g_period*60)) 
+	if( SIGNAL_UPDATE_BUY == g_tradingSignal && TimeCurrent()-GlobalVariableGet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD")) > g_period*60-1) 
 	{
 	  if(OrderMagicNumber() == INSTANCE_ID)
 	  {
 	  
-	  	     if (SetBuyOrderSLAndTP( tradeTicket, tradeOpenPrice ))
+	  	     if (SetBuyOrderSLAndTP( tradeTicket, Ask ))
 		     {
             GlobalVariableSet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD"), iTime(g_symbol, g_period, 0));
             GlobalVariableSet(orderGlobalString, Ask);
@@ -725,18 +727,13 @@ double stopLossPrice = OrderStopLoss() ;
 		}
 	}
 	
-	if( AFM_TL == TRUE && calculateStopLossPrice( OP_BUY, Ask ) > OrderStopLoss()) 
-	{
-	  if(OrderMagicNumber() == INSTANCE_ID)
-	  SetBuyOrderSLAndTP( tradeTicket, tradeOpenPrice );
-	}
 }
 
 void handleSellTrade()
 {
 
 int tradeTicket = OrderTicket();
-string orderGlobalString = StringConcatenate(INSTANCE_ID, "_", tradeTicket, "_LAST_OP");
+string orderGlobalString = StringConcatenate(INSTANCE_ID, "_LAST_OP");
 double tradeOpenPrice = GlobalVariableGet(orderGlobalString);
 double stopLossPrice = OrderStopLoss() ;
 
@@ -765,12 +762,12 @@ double stopLossPrice = OrderStopLoss() ;
 	  }
 	}
 	
-	if( SIGNAL_UPDATE_SELL == g_tradingSignal && MathAbs(GlobalVariableGet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD"))-TimeCurrent() > g_period*60)) 
+	if( SIGNAL_UPDATE_SELL == g_tradingSignal && TimeCurrent()-GlobalVariableGet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD")) > g_period*60-1) 
 	{
 	  if(OrderMagicNumber() == INSTANCE_ID)
 	  {
 	  
-		   if (SetSellOrderSLAndTP( tradeTicket, tradeOpenPrice ))
+		   if (SetSellOrderSLAndTP( tradeTicket, Bid))
 		   {
             GlobalVariableSet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD"), iTime(g_symbol, g_period, 0));
             GlobalVariableSet(orderGlobalString, Bid);
@@ -778,12 +775,6 @@ double stopLossPrice = OrderStopLoss() ;
 		}
 	}
 
-	
-	if( AFM_TL == TRUE && calculateStopLossPrice( OP_SELL, Bid ) < OrderStopLoss()) 
-	{
-	  if(OrderMagicNumber() == INSTANCE_ID)
-	  SetSellOrderSLAndTP( tradeTicket, tradeOpenPrice );
-	}
 }
 
 int checkTradingSignal()
@@ -963,7 +954,10 @@ void calculateTradeSize()
       if (STOP_LOSS == 0) 
 		g_tradeSize = ( RISK * 0.01 * AccountBalance() ) / ( g_contractSize * 2 * atrForCalculation );
 		
-		if(DISABLE_COMPOUNDING)
+		if(DISABLE_COMPOUNDING && STOP_LOSS != 0)
+		g_tradeSize = ( RISK * 0.01 * g_initialBalance ) / ( g_contractSize * STOP_LOSS * atrForCalculation );
+		
+		if(DISABLE_COMPOUNDING && STOP_LOSS == 0)
 		g_tradeSize = ( RISK * 0.01 * g_initialBalance ) / ( g_contractSize * 2 * atrForCalculation );
 
 
@@ -1040,7 +1034,7 @@ void calculateSpreadPIPS()
 
 void calculateStopLossPIPs()
 {
-	g_stopLossPIPs = 100 * TAKE_PROFIT * g_ATR;
+	g_stopLossPIPs = 10000 * STOP_LOSS * g_ATR;
 	if( g_stopLossPIPs < g_minimalStopPIPs )
 	{
 		g_stopLossPIPs = g_minimalStopPIPs;
@@ -1068,16 +1062,16 @@ void adjustSlippage()
 
 void calculateTakeProfitPIPs()
 {
-	g_takeProfitPIPs = 100 * STOP_LOSS * g_ATR;
+	g_takeProfitPIPs = 10000 * TAKE_PROFIT * g_ATR;
 	if( isInstrumentJPY() )
 	{
 		g_takeProfitPIPs /= 100;
 	}
 }
 
-double pipsToPrice( int pips )
+double pipsToPrice( double pips )
 {
-	int calculationPIPs = pips;
+	double calculationPIPs = pips;
 	
 	// Support 5 digit brokers
 	if( ( 3 == g_brokerDigits ) ||

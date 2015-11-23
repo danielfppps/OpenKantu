@@ -22,7 +22,6 @@ type
     Label3: TLabel;
     OptionsGrid: TStringGrid;
     OptionsPanel: TPanel;
-    UseAlwaysUpTLCheck: TCheckBox;
     UseDayFilter: TCheckBox;
     UsedInputsList: TCheckListBox;
     EndInSampleCalendar: TCalendarDialog;
@@ -44,7 +43,6 @@ type
     procedure BeginInSampleEditChange(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure EndOutOfSampleEditChange(Sender: TObject);
-    procedure UseAlwaysUpTLCheckChange(Sender: TObject);
     procedure UsedInputsListClickCheck(Sender: TObject);
     procedure UseFixedHourChange(Sender: TObject);
     procedure UseFixedSLTPChange(Sender: TObject);
@@ -251,12 +249,6 @@ end;
 
 procedure TSimulationForm2.EndOutOfSampleEditChange(Sender: TObject);
 begin
-
-end;
-
-procedure TSimulationForm2.UseAlwaysUpTLCheckChange(Sender: TObject);
-begin
-      SimulationForm.UseAlwaysUpTLCheck.Checked := SimulationForm2.UseAlwaysUpTLCheck.Checked   ;
 
 end;
 

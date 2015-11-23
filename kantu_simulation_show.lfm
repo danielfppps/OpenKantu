@@ -1,7 +1,7 @@
 object SimulationForm2: TSimulationForm2
-  Left = 315
+  Left = 975
   Height = 522
-  Top = 430
+  Top = 61
   Width = 661
   Caption = 'Simulation Options'
   ClientHeight = 522
@@ -183,7 +183,7 @@ object SimulationForm2: TSimulationForm2
     object FixComplexityCheck: TCheckBox
       Left = 22
       Height = 29
-      Top = 219
+      Top = 188
       Width = 105
       Caption = 'Fix complexity'
       OnChange = FixComplexityCheckChange
@@ -192,7 +192,7 @@ object SimulationForm2: TSimulationForm2
     object UseHourFilter: TCheckBox
       Left = 22
       Height = 29
-      Top = 161
+      Top = 130
       Width = 108
       Caption = 'Use Hour Filter'
       OnChange = UseHourFilterChange
@@ -201,7 +201,7 @@ object SimulationForm2: TSimulationForm2
     object UseDayFilter: TCheckBox
       Left = 22
       Height = 29
-      Top = 190
+      Top = 159
       Width = 101
       Caption = 'Use Day Filter'
       OnChange = UseDayFilterChange
@@ -210,7 +210,7 @@ object SimulationForm2: TSimulationForm2
     object LROriginCheck: TCheckBox
       Left = 22
       Height = 29
-      Top = 248
+      Top = 217
       Width = 123
       Caption = 'LR through origin'
       OnChange = LROriginCheckChange
@@ -219,7 +219,7 @@ object SimulationForm2: TSimulationForm2
     object AsymmetryCheck: TCheckBox
       Left = 22
       Height = 29
-      Top = 277
+      Top = 246
       Width = 91
       Caption = 'Asymmetry'
       OnChange = AsymmetryCheckChange
@@ -228,7 +228,7 @@ object SimulationForm2: TSimulationForm2
     object UseFixedSLTP: TCheckBox
       Left = 22
       Height = 29
-      Top = 103
+      Top = 72
       Width = 113
       Caption = 'Use Fixed SL/TP'
       OnChange = UseFixedSLTPChange
@@ -237,20 +237,11 @@ object SimulationForm2: TSimulationForm2
     object UseFixedHour: TCheckBox
       Left = 22
       Height = 29
-      Top = 132
+      Top = 101
       Width = 109
       Caption = 'Use Fixed Hour'
       OnChange = UseFixedHourChange
       TabOrder = 8
-    end
-    object UseAlwaysUpTLCheck: TCheckBox
-      Left = 22
-      Height = 29
-      Top = 74
-      Width = 95
-      Caption = 'Use AFM-TL'
-      OnChange = UseAlwaysUpTLCheckChange
-      TabOrder = 9
     end
   end
   object OptionsGrid: TStringGrid
