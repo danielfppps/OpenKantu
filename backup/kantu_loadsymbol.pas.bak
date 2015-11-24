@@ -28,6 +28,8 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure DBNavigator1BeforeAction(Sender: TObject; Button: TDBNavButtonType
+      );
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   private
     { private declarations }
@@ -143,17 +145,17 @@ begin
   database := TStringList.Create;
 
   {$IFDEF DARWIN}
-  database.LoadFromFile(GetCurrentDir + '/kantu.app/Contents/MacOS/symbols/symbols.txt');
+  database.LoadFromFile(GetCurrentDir + '/kantu.app/Contents/MacOS/symbols/symbols.csv');
   {$ELSE}
-  database.LoadFromFile(GetCurrentDir + '/symbols/symbols.txt');
+  database.LoadFromFile(GetCurrentDir + '/symbols/symbols.csv');
   {$ENDIF}
 
   database.Add(symbol+';'+datafile+';'+timeframe+';'+slippage+';'+spread+';'+contractSize+';'+commission+';'+isVolume+';'+pointConversion+';'+roundLots);
 
   {$IFDEF DARWIN}
-  database.SaveToFile(GetCurrentDir + '/kantu.app/Contents/MacOS/symbols/symbols.txt');
+  database.SaveToFile(GetCurrentDir + '/kantu.app/Contents/MacOS/symbols/symbols.csv');
   {$ELSE}
-  database.SaveToFile(GetCurrentDir + '/symbols/symbols.txt');
+  database.SaveToFile(GetCurrentDir + '/symbols/symbols.csv');
   {$ENDIF}
 
   database.Free;
@@ -186,6 +188,12 @@ begin
   MainForm.simulationTime := 0;
   MainForm.simulationRuns := 0;
   MainForm.simulationType := SIMULATION_TYPE_INDICATORS;
+
+end;
+
+procedure TloadSymbol.DBNavigator1BeforeAction(Sender: TObject;
+  Button: TDBNavButtonType);
+begin
 
 end;
 

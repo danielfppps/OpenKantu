@@ -34,6 +34,7 @@ object loadSymbol: TloadSymbol
     Height = 25
     Top = 8
     Width = 241
+    BeforeAction = DBNavigator1BeforeAction
     BevelOuter = bvNone
     ChildSizing.EnlargeHorizontal = crsScaleChilds
     ChildSizing.EnlargeVertical = crsScaleChilds

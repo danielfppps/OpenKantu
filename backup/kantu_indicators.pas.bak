@@ -1278,8 +1278,8 @@ begin
 
           ATR := LoadedIndiHistoryData[symbol].ATR[currentCandle];
 
-          ShowMessage(DateTimeToStr(currentTime));
-          ShowMessage(FloatToStr(ATR));
+          //ShowMessage(DateTimeToStr(currentTime));
+          //ShowMessage(FloatToStr(ATR));
 
           isBuySignal := evaluateIndicatorPattern(i, usedEntryPattern, currentCandle-1, BUY, EVAL_TYPE_ENTRY );
           isSellSignal:= evaluateIndicatorPattern(i, usedEntryPattern, currentCandle-1, SELL, EVAL_TYPE_ENTRY ) ;

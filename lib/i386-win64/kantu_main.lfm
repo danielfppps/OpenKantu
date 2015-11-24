@@ -1,0 +1,1667 @@
+object MainForm: TMainForm
+  Left = 740
+  Height = 730
+  Top = 473
+  Width = 879
+  Caption = 'Kantu - Price pattern parameterless system generator. By Daniel Fernandez @ Asirikuy.com 2013'
+  ClientHeight = 700
+  ClientWidth = 879
+  Menu = MainMenu1
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnShow = FormShow
+  Position = poDesktopCenter
+  LCLVersion = '1.2.6.0'
+  Visible = True
+  WindowState = wsMaximized
+  object selectedPatternLabel: TLabel
+    Left = 313
+    Height = 25
+    Top = 433
+    Width = 10
+    Caption = '0'
+    ParentColor = False
+    Visible = False
+  end
+  object PageControl1: TPageControl
+    Left = 3
+    Height = 697
+    Top = 3
+    Width = 876
+    ActivePage = TabSheet1
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 0
+    TabOrder = 0
+    object TabSheet1: TTabSheet
+      Caption = 'Simulation Results'
+      ClientHeight = 659
+      ClientWidth = 868
+      OnExit = TabSheet1Exit
+      OnShow = TabSheet1Show
+      object ResultsGrid: TStringGrid
+        Left = 21
+        Height = 336
+        Top = 48
+        Width = 831
+        Anchors = [akTop, akLeft, akRight]
+        ColCount = 57
+        ColumnClickSorts = True
+        Columns = <        
+          item
+            ButtonStyle = cbsCheckboxColumn
+            Title.Alignment = taCenter
+            Title.Caption = 'P'
+            Width = 20
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'No.'
+            Width = 60
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Symbol'
+            Width = 120
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Abs. Profit'
+            Width = 108
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Profit/trade'
+            Width = 105
+          end        
+          item
+            Alignment = taCenter
+            Title.Caption = 'Profit Longs'
+            Width = 80
+          end        
+          item
+            Alignment = taCenter
+            Title.Caption = 'Profit Shorts'
+            Width = 80
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'No. Longs'
+            Width = 65
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'No. Shorts'
+            Width = 65
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Total Trades'
+            Width = 75
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Max DD'
+            Width = 60
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Ideal R'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'R^2'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Ulcer Index'
+            Width = 80
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Max DD Length'
+            Width = 100
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Cons.Loss'
+            Width = 65
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Cons.Wins'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Profit:Max DD'
+            Width = 100
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Win %'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Reward:Risk'
+            Width = 100
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Skewness'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Kurtosis'
+            Width = 100
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'PF'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Std.Dev'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Std.Dev Breach'
+            Width = 100
+          end        
+          item
+            Alignment = taCenter
+            Title.Caption = 'Total ME'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'SQN'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Mod. Sharpe Ratio'
+            Width = 100
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Custom Criteria'
+            Width = 120
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Bars out'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'OSP'
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'OSP/trade'
+            Width = 100
+          end        
+          item
+            Title.Caption = 'OS_ProfitLongs'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_ProfitShorts'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_TotalLongs'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_TotalShorts'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_TotalTrades'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_MaxDD'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_UlcerIndex'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_MaxDDLength'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_Cons.Loss'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_Cons.Wins'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_ProfitToMaxDD'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_WinningPercentage'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_RewardToRisk'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_Skewness'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_Kurtosis'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_PF'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_StdDev'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_StdDevBreach'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_TotalME'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_R2'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_SQN'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_ModifiedSharpeRatio'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_CustomCriteria'
+            Visible = False
+          end        
+          item
+            Title.Caption = 'OS_BarsOut'
+            Visible = False
+          end        
+          item
+            Alignment = taCenter
+            Title.Alignment = taCenter
+            Title.Caption = 'Lowest Lag'
+            Width = 100
+          end>
+        FixedCols = 0
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goSmoothScroll, goCellHints]
+        ParentShowHint = False
+        PopupMenu = PopupMenu1
+        RowCount = 1
+        ShowHint = True
+        TabOrder = 0
+        OnClick = ResultsGridClick
+        OnCompareCells = ResultsGridCompareCells
+        OnGetCellHint = ResultsGridGetCellHint
+        ColWidths = (
+          20
+          60
+          120
+          108
+          105
+          80
+          80
+          65
+          65
+          75
+          60
+          64
+          64
+          80
+          100
+          65
+          64
+          100
+          64
+          100
+          64
+          100
+          64
+          64
+          100
+          64
+          64
+          100
+          120
+          64
+          64
+          100
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          0
+          100
+        )
+      end
+      object OutOfSampleAnalysisLabel: TLabel
+        Left = 21
+        Height = 1
+        Top = 296
+        Width = 1
+        ParentColor = False
+      end
+      object ProgressBar1: TProgressBar
+        Left = 21
+        Height = 18
+        Top = 24
+        Width = 831
+        Anchors = [akTop, akLeft, akRight]
+        TabOrder = 1
+      end
+      object StatusLabel: TLabel
+        Left = 108
+        Height = 16
+        Top = 5
+        Width = 549
+        AutoSize = False
+        ParentColor = False
+      end
+      object extraLabel: TLabel
+        Left = 657
+        Height = 19
+        Top = 2
+        Width = 214
+        AutoSize = False
+        ParentColor = False
+      end
+      object Button1: TButton
+        Left = 20
+        Height = 18
+        Top = 3
+        Width = 75
+        Caption = 'Cancel'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -11
+        Font.Name = 'Times New Roman'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        OnClick = Button1Click
+        ParentFont = False
+        TabOrder = 2
+      end
+      object PageControl2: TPageControl
+        Left = 20
+        Height = 258
+        Top = 392
+        Width = 832
+        ActivePage = TabSheet4
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        TabIndex = 0
+        TabOrder = 3
+        object TabSheet4: TTabSheet
+          Caption = 'Balance Curve'
+          ClientHeight = 220
+          ClientWidth = 824
+          object Chart1: TChart
+            Left = -7
+            Height = 217
+            Top = 5
+            Width = 822
+            AxisList = <            
+              item
+                Grid.Visible = False
+                Minors = <>
+                Title.LabelFont.Orientation = 900
+                Title.Visible = True
+                Title.Caption = 'Balance (USD)'
+              end            
+              item
+                Grid.Visible = False
+                Alignment = calBottom
+                Marks.LabelFont.CharSet = ANSI_CHARSET
+                Marks.LabelFont.Height = -8
+                Marks.LabelFont.Name = 'Arial'
+                Marks.LabelFont.Pitch = fpVariable
+                Marks.LabelFont.Quality = fqDraft
+                Marks.Format = '%2:s'
+                Marks.OverlapPolicy = opHideNeighbour
+                Marks.Style = smsLabel
+                Minors = <>
+                Title.Visible = True
+                Title.Caption = 'Date (mm/yyyy)'
+              end            
+              item
+                Grid.Visible = False
+                Visible = False
+                Alignment = calBottom
+                Minors = <>
+              end>
+            BackColor = clWhite
+            Depth = 2
+            Foot.Brush.Color = clBtnFace
+            Foot.Font.Color = clBlue
+            Title.Brush.Color = clBtnFace
+            Title.Font.Color = clBlue
+            Title.Text.Strings = (
+              'TAChart'
+            )
+            Anchors = [akTop, akLeft, akRight, akBottom]
+            Color = clWhite
+            ParentColor = False
+            PopupMenu = PopupMenu5
+            object BalanceCurve: TLineSeries
+              LinePen.Color = 6568253
+              LinePen.Width = 2
+            end
+            object zeroLine: TConstantLine
+              Pen.Style = psDot
+              Position = 0
+            end
+            object inSampleEndLine: TConstantLine
+              LineStyle = lsVertical
+              Pen.Color = clGreen
+              Pen.Style = psDot
+              Pen.Width = 2
+              Position = 0
+            end
+            object BalanceCurvePortfolio: TLineSeries
+              LinePen.Color = clGreen
+              LinePen.Width = 2
+            end
+            object upperStdDev: TLineSeries
+              LinePen.Color = 234
+              LinePen.Style = psDot
+            end
+            object lowerStdDev: TLineSeries
+              LinePen.Color = 234
+              LinePen.Style = psDot
+            end
+            object BalanceCurveFit: TLineSeries
+              LinePen.Color = 10485760
+              LinePen.Width = 2
+            end
+            object BalanceCurveFitPortfolio: TLineSeries
+              LinePen.Color = clGreen
+              LinePen.Width = 2
+            end
+            object OutOfSampleEndLine: TConstantLine
+              LineStyle = lsVertical
+              Pen.Color = clGreen
+              Pen.Style = psDot
+              Position = 0
+            end
+          end
+        end
+        object TabSheet5: TTabSheet
+          Caption = 'Mathematical Expectancy'
+          ClientHeight = 196
+          ClientWidth = 727
+          object Chart2: TChart
+            Left = -4
+            Height = 189
+            Top = 8
+            Width = 719
+            AxisList = <            
+              item
+                Grid.Visible = False
+                Minors = <>
+                Title.LabelFont.Orientation = 900
+                Title.Visible = True
+                Title.Caption = 'Total ME (MFE-MAE)'
+              end            
+              item
+                Grid.Visible = False
+                Alignment = calBottom
+                Minors = <>
+                Title.Visible = True
+                Title.Caption = 'Bars from entry'
+              end>
+            BackColor = clWhite
+            Foot.Brush.Color = clBtnFace
+            Foot.Font.Color = clBlue
+            Title.Brush.Color = clBtnFace
+            Title.Font.Color = clBlue
+            Title.Text.Strings = (
+              'TAChart'
+            )
+            Anchors = [akTop, akLeft, akRight, akBottom]
+            Color = clWhite
+            ParentColor = False
+            object ME_Longs: TBarSeries
+              BarBrush.Color = 13279082
+              BarOffsetPercent = 50
+              BarWidthPercent = 50
+              MarkPositions = lmpInside
+            end
+            object ME_Shorts: TBarSeries
+              BarBrush.Color = 2266860
+              BarWidthPercent = 50
+            end
+          end
+        end
+      end
+      object ChartOHLC: TChart
+        Left = 17
+        Height = 336
+        Top = 48
+        Width = 835
+        AxisList = <        
+          item
+            Grid.Visible = False
+            Minors = <>
+            Title.LabelFont.Orientation = 900
+          end        
+          item
+            Grid.Visible = False
+            Visible = False
+            Alignment = calBottom
+            Marks.OverlapPolicy = opHideNeighbour
+            Minors = <>
+          end>
+        BackColor = clWhite
+        Foot.Brush.Color = clBtnFace
+        Foot.Font.Color = clBlue
+        Title.Brush.Color = clBtnFace
+        Title.Font.Color = clBlue
+        Title.Text.Strings = (
+          'TAChart'
+        )
+        Anchors = [akTop, akLeft, akRight]
+        ParentColor = False
+        Visible = False
+        object GraphOHLC_Up: TBoxAndWhiskerSeries
+          Active = False
+          BoxBrush.Color = 7335076
+          BoxWidth = 100
+          MedianPen.Color = clActiveBorder
+          WhiskersWidth = 5
+        end
+        object GraphOHLC_Down: TBoxAndWhiskerSeries
+          Active = False
+          BoxBrush.Color = 5809141
+          BoxWidth = 100
+          MedianPen.Color = clActiveBorder
+          WhiskersWidth = 5
+        end
+        object GraphOpenTrades: TBubbleSeries
+          Marks.Visible = False
+          Marks.Format = '%2:s'
+          Marks.LinkPen.Color = clMenuHighlight
+          Marks.Style = smsLabel
+          BubbleBrush.Color = clLime
+        end
+        object GraphCloseTrades: TBubbleSeries
+          Marks.Visible = False
+          Marks.Format = '%2:s'
+          Marks.Style = smsLabel
+          BubbleBrush.Color = clRed
+        end
+      end
+      object Button2: TButton
+        Left = 73
+        Height = 25
+        Top = 69
+        Width = 75
+        Caption = 'Hide graph'
+        OnClick = Button2Click
+        TabOrder = 5
+        Visible = False
+      end
+      object LabelCheck: TCheckBox
+        Left = 73
+        Height = 29
+        Top = 101
+        Width = 177
+        Caption = 'Show Trade Labels'
+        OnChange = LabelCheckChange
+        TabOrder = 6
+        Visible = False
+      end
+      object ohlcCheck: TCheckBox
+        Left = 73
+        Height = 29
+        Top = 117
+        Width = 125
+        Caption = 'Show OHLC'
+        OnChange = ohlcCheckChange
+        TabOrder = 7
+        Visible = False
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Trade Analysis'
+      ClientHeight = 659
+      ClientWidth = 868
+      object TradeGrid: TStringGrid
+        Left = 4
+        Height = 653
+        Top = 4
+        Width = 861
+        Anchors = [akTop, akLeft, akRight, akBottom]
+        ColCount = 10
+        Columns = <        
+          item
+            Title.Caption = 'Trade Number'
+            Width = 129
+          end        
+          item
+            Title.Caption = 'Open Time'
+            Width = 125
+          end        
+          item
+            Title.Caption = 'Close Time'
+            Width = 139
+          end        
+          item
+            Title.Caption = 'Open price'
+            Width = 139
+          end        
+          item
+            Title.Caption = 'Close Price'
+            Width = 138
+          end        
+          item
+            Title.Caption = 'SL'
+            Width = 133
+          end        
+          item
+            Title.Caption = 'TP'
+            Width = 140
+          end        
+          item
+            Title.Caption = 'Profit'
+            Width = 170
+          end        
+          item
+            Title.Caption = 'Type'
+          end        
+          item
+            Title.Caption = 'Volume'
+          end>
+        FixedCols = 0
+        Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goColSizing, goSmoothScroll]
+        PopupMenu = PopupMenu2
+        RowCount = 1
+        TabOrder = 0
+        ColWidths = (
+          129
+          125
+          139
+          139
+          138
+          133
+          140
+          170
+          64
+          64
+        )
+      end
+    end
+  end
+  object MainMenu1: TMainMenu
+    left = 528
+    top = 56
+    object MenuItem1: TMenuItem
+      Caption = 'Simulation'
+      object MenuItem3: TMenuItem
+        Caption = 'Options'
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          200000000000000400006400000064000000000000000000000000000000B1AF
+          AE04B2AFAE09ADABAA10B1AEAD16ADAAA91CAAA7A620A8A6A422A8A6A422AAA7
+          A520ACAAA81CB0AEAC17AFACAC10B5B3B20AB6B4B40400000000B5B3B10AB8B5
+          B419AFACAB27A7A4A334A09D9C3E9B9997459996944A9895934B9895934B9996
+          944A9B989646A09D9B3EA6A4A234AEACAA28B7B5B41ABEBCBB0B000000007D7B
+          7A788E8C8BFF959391FF8F8C8DFF8C95D5FF929BD6FF99A1D7FF9FA7D8FFA6AD
+          D9FFACB2DAFFB1B6DBFF9A9FC1D9B3B2BA08B2B1B60300000000000000007876
+          757F888684FF93908EFF8B8887FF7F8DE1FF8894E2FF919CE4FF9AA4E5FFA3AC
+          E7FFACB4E8FFB3BBEAFFA5ACD8FF00000000000000000000000000000000706E
+          6C7F858280FF8D8A89FF83807FFF7E8CE1FF8793E2FF8F9BE4FF98A2E5FFA0AA
+          E6FFA8B1E8FFADB5E9FF9FA7D7FFDAD7D0FDB6B2B25700000000000000006A68
+          677F7E7B7AFF848180FF797775FF7C8AE0FF8591E2FF8D98E3FF949FE4FF9CA6
+          E6FFA2ABE7FFA5AEE7FF98A0D6FFEDEAE2FFC4C0BE7F00000000000000006563
+          627F757371FF7A7776FF6F6D6CFF7987E0FF818EE1FF8995E2FF909BE4FF96A1
+          E5FF9AA5E5FF9DA7E6FF909AD5FFD3CDC3FFBDB9B47D0000000000000000615F
+          5E7F747170FF706D6CFF666462FF7684DFFF7D8BE0FF8490E2FF8A96E3FF8F9A
+          E3FF939EE4FF95A0E4FF8993D3FFF2F0EBFFC1BDBB7D00000000000000005F5D
+          5C7F898786FF838080FF6B6968FF7483DFFF7886E0FF7E8BE1FF8390E2FF8894
+          E2FF8B97E3FF8C98E3FF828DD2FFE7E2D8FFC3BFBC7F00000000000000005F5E
+          5D7F8E8B8BFF8F8D8CFF898786FF9DA7E8FF9BA4E7FF9BA5E8FF9FA8E8FFA2AB
+          E9FFA6AEE9FFAAB2EAFF8E97D5FFDBD7D1FFB9B5B27B00000000000000006361
+          607F989695FF989695FF939190FFA7B0EBFFA7B0EBFFA8B1EBFFAAB3EBFFACB4
+          EBFFAEB6ECFFAFB6ECFF8C96D5FFEDEAE2FFC2BEBD7F00000000000000006261
+          607FA4A2A1FFA4A2A1FF9F9D9CFFB1B8EDFFB1B8EDFFB1B8EDFFB1B9EDFFB2B9
+          EDFFB3BAEDFFB3BAEDFF8B95D5FFE2DCD0FFB8B4B37D00000000000000005F5E
+          5D7FAFADACFFAFADACFFAAA8A8FFBAC1EFFFBAC1EFFFBAC1EFFFBAC1EFFFBAC1
+          EFFFBAC1EFFFBAC1EFFF8892D1FDAAA8B57DA9A7B31900000000000000005B59
+          5966636160FF7F7D7CFF828081FF9399BFFF979DC3FF9BA1C7FF9FA5CBFFA3A9
+          CFFFA7ADD3FF9CA3D4FF6B75B497000000000000000000000000000000000000
+          00005A5858665A585B7F5E5F697F7078AE7F737CB87F757FBF7F7680C07F7782
+          C17F7580C17F717CBD7D7D86BF19000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        OnClick = MenuItem3Click
+      end
+      object MenuItem5: TMenuItem
+        Caption = 'Filters'
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          200000000000000400006400000064000000000000000000000000000000BDB9
+          B504BAB7B309B6B3B010B3B1AE16B0ADAB1CADAAA820ACA9A722ACA9A722ADAA
+          A820B0ADAB1CB3B0AE17B4B1AF10B8B5B30AB8B5B30400000000C0BEBA0AB2AD
+          A768B8B3AC93B4B0A999B2ADA79FB0ACA6A2B0ABA6A4B0ACA7A5B1ADA8A5B2AE
+          A9A5B4B0ABA2B6B3AE9FAAA5A07AAEACAA28B7B5B41ABEBCBB0B00000000CFC9
+          BEFDE7E3D9FFEAE6DDFFEDE9E1FFEFECE5FFF1EEE9FFF4F2EDFFF7F5F2FFF9F8
+          F6FFFBFBFAFFFDFCFCFFDFDCD7FDC4C2C008BCB9B6030000000000000000D0C9
+          BDFFDFD9CDFFDDD8CDFFDFDBD1FFE2DED6FFDBD8D1FFA6A7A6FFC6CCCDFFEBE9
+          E6FFEFEEEBFFF7F6F5FFE4E1DDFF00000000000000000000000000000000D0C9
+          BDFFDED9CDFFDCD7CCFFDFDAD1FFE2DED5FFE4E1D9FFBBCCD4FFBDD8E6FFA2B7
+          C1FFDAD8C9FFF4F3F0FFE2DFDBFF00000000000000000000000000000000D0C9
+          BCFFE1DCD0FFE4DFD5FFE7E3D9FFEAE6DEFFEDEAE3FFDCE0DFFFACCDDFFFAFAF
+          7BFF9B8F26FFDFDDC8FFE0DDD7FF00000000000000000000000000000000D0C9
+          BCFFDDD7CAFFDBD5CAFFDDD8CEFFE0DBD1FFE2DED5FFE4E0D9FFBEBA8FFFBA9D
+          15FFBBA42EFF9B8E26FFC7C3ABFF00000000000000000000000000000000D1CB
+          BEFFDDD7CAFFDAD4C8FFDCD7CCFFDED9CFFFE0DCD3FFE2DED6FFE4E0D8FFBCAC
+          63FFBA9D15FFBBA42EFF95881FFF9992572C000000000000000000000000D4CE
+          C3FFE7E3D9FFE6E1D7FFE6E1D6FFE6E1D7FFE7E3D9FFE9E5DCFFEBE7DFFFECE9
+          E1FFC2B26AFFBA9D15FFBAAA58FFA4A29EEA9395962C0000000000000000D5CF
+          C5FFE7E3DBFFE4E0D8FFE5E1D9FFE6E2DBFFE7E3DBFFE7E2DBFFE7E3DDFFE8E4
+          DEFFE9E6DFFFC6BA87FFD0CECAFFC9CAD1FF8293C4EA8894B91B00000000D6D0
+          C6FFECE8E0FFECE8E0FFECE8E0FFEDE9E2FFEEEAE3FFEFECE5FFEFECE6FFF0ED
+          E7FFF0EEE8FFF1EEE8FFC8C6C5FFA4B1DCFF99A8D7EA8C99C01500000000D7D2
+          C8FFD5D1C9FFC7C1B8FFE2DED8FFC7C1B8FFD5D1CAFFD5D2CAFFC7C3BAFFE3E1
+          DBFFC8C3BBFFD7D3CCFFD9D4CBFFA5ACC4589FA8C4230000000000000000D8D3
+          C9FFCBC7BDFFCEC8BBFFD9D7D1FFCEC8BBFFCBC6BDFFCBC7BDFFCEC8BBFFDAD8
+          D2FFCEC8BBFFCBC7BDFFD8D4CAFF000000000000000000000000C9C4BA01D4CF
+          C6FDD9D4CCFFD6D1C7FFEFEDE7FFD6D1C7FFD9D5CDFFD9D4CCFFD6D1C7FFEFED
+          E7FFD6D1C7FFD9D5CDFFD4CFC6FD00000000000000000000000000000000BDB6
+          AB57C1BBB0BFD7D2CAFFC3BCB17FD7D2C9FFC2BCB1BFC2BBB0BFD7D2CAFFC3BC
+          B17FD7D2C9FFC2BBB1BFBEB7AC57000000000000000000000000000000000000
+          0000BDB7AC28B9B2A76800000000BAB3A868C1BBB028C0BAB028B9B2A7680000
+          0000BAB3A868BEB8AD2800000000000000000000000000000000
+        }
+        OnClick = MenuItem5Click
+        object MenuItem18: TMenuItem
+          Caption = 'Define filters'
+          Bitmap.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000000000000000
+            0000000000000000000000000000000000000000000000000000000000006A68
+            6923B0ADAE330000000000000000000000000000000000000000000000004445
+            4601ADBAC4C8AAB6BE98979EA366727576355456570700000000000000007E7B
+            7CC9DBD7D9FC7A77780600000000000000000000000000000000000000004648
+            4907C6DBEAFED5EEFFFFD6EFFFFFD6EEFDFFC9DEE9F9BECFD8CFAEBBC19E8584
+            86E5DBD7D8FE918F901200000000000000000000000000000000000000004C4E
+            500ECADFEDFECADEEBFFD3E9F7FFD8F1FFFFD9F2FFFFDAF3FFFFD3E9F3FF8C8C
+            8EFFB2AEB0FFA7AAAC8000000000000000000000000000000000000000004E50
+            5116CDE4F1FFC8DBE6FFCCDFEAFFC2D2D9FFC2D2DAFFC2D2DAFF8D9092FF908D
+            8EFFA8A5A6FFBAB6B8EEB2AEB032000000000000000000000000000000005758
+            591ED1E8F5FFC7DAE3FFD0E5EFFFD7EEF9FFD7EEF8FF8D9093FF888586FFA19D
+            9FFFBCB8BAFFCECACCFFCECBCCEBB2AFB02D0000000000000000000000005C5E
+            5F26D5EDF9FFCCDFE9FFD3E8F2FFC6D7DEFF919294FFA8A4A6FFCCC8CAFFDCD9
+            DBFFAEAAACFF898688FF989596FFC4C0C1E8B1ADAF1C00000000000000006061
+            622FD9F1FDFF9EBDAFFFC8DDE2FFC0CED4FFAEAAABFFDFDADCFFE6E3E4FFEAE7
+            E8FFB6B2B4FF858283FF757374FF8E8B8CFFABA7A95900000000000000006768
+            6936DBF3FEFFC8D9E0FFCCE6E8FFDDF4FCFFBABEC1FFD3CFD1FFEAE7E8FFE9E6
+            E7FFBBB7B8FF8E8B8CFF817E7FFF9E9A9CDB8E8B8D1800000000000000006C6E
+            6F3FDCF4FEFFC8D9DEFFCEE1E7FFC4D3D8FFC5D4D7FFB6BDBFFFB6B8B9FFC6C8
+            CAFFC0C4C6FFACADAFD3A5A1A35A7A7778080000000000000000000000007578
+            7946DEF6FFFFC5D9DBFFDAF0F7FFE1F8FFFFE2F9FFFFE2F9FDFFDCF1F3FFDDF1
+            F3FFE6FDFEFFBCCACAA50000000000000000000000000000000000000000797D
+            7E4FDFF7FFFFA8C8BAFFC8E0DEFFC5D4D7FFC6D5D7FFC7D6D8FFD4E4E6FED5E1
+            E2FFD1E0E0FFA4ADAEAA00000000000000000000000000000000000000008388
+            8956E0F8FFFFE1F9FFFFE0F8FCFEE3FBFFFFE4FCFFFFE5FDFFFFD7E3E4FEEEED
+            EDFFD1D0CFF08A8A89340000000000000000000000000000000000000000878C
+            8D5FE1F9FFFFE2FAFFFFE3FBFFFFE4FCFFFFE5FDFFFFE6FDFEFFD4E0E0FFD4D3
+            D2F49191913D0000000000000000000000000000000000000000000000007D80
+            8034ACB7B994B6C2C4A9BECDCEBEC5D5D6D3CBDCDDE7CEE0E1FAB4BEBFF79494
+            9347000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000000000000505353015455550B0000
+            0000000000000000000000000000000000000000000000000000
+          }
+          OnClick = MenuItem18Click
+        end
+        object MenuItem19: TMenuItem
+          Caption = 'Define Custom Filter'
+          Bitmap.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000000000000000
+            00000000000000000000000000000000000000000000000000000000002F0000
+            00330000001B0000003300000033000000330000001E00000000BB874700BB87
+            4700BB874700BB874700BB874700BB874700BB87470000000021BD8345EFD484
+            44FF007B44A0008D4CFF008B4AFF008C4CFF007E45AC0000001EBB874700BB87
+            4700BB874700BB874700BB874700BB87470000000022A7763CB8D89953FF4C89
+            49FF00995CFF00BB86FF77E0C6FF00BB86FF00995CFF007E45ACBB874700BB87
+            4700BB874700BB874700BB874700BA864600A7763BBDEBC590FFECAA60FF008A
+            4AFF00C18DFF00BC83FFFFFFFFFF00BC83FF00C18DFF008C4CFFBB874700BA86
+            4600BA864600BA864700BA864700B9854500B57F3DFFFFF1D0FFEAA65BFF0087
+            46FF71E6CDFFFFFFFFFFFFFFFFFFFFFFFFFF74E7CDFF008A49FFBA864600C896
+            5500C18D4C00C28E4C00C18D4C0000000021B37C3AFFFFFFFAFFE7A358FF0086
+            45FF0BD3A4FF30DAB0FFFFFFFFFF31DAB1FF12D4A5FF008B4AFFBA864600C895
+            5400C18D4C00C18D4C0000000021AA7A3EB6DEAE69FFFAD394FFF7C17DFF5A9D
+            5CFF009F62FF00D29CFFA2F7E6FF00D39DFF00A366FF008E4E97BA864600C895
+            5400C08C4B0000000021A9793DB9EDC182FFF9D293FFF4CD8DFFF2C684FFFCC1
+            80FF5CA062FF008644FF0BA168FF008A49FF008E4E9600905100BA864600C794
+            530000000021A9783CB9EEC78FFFF8D6A0FFF6CF8FFFEFC986FFEAC07DFFE8B8
+            73FFF2C189FFEFB37BFF8B7B3CC9000000210091520000925300B98545000000
+            0021A9773AB9EFCF9FFFFBDBAEFFF5CC89FFF2CB8AFFECC280FFE6BB76FFE0B3
+            6BFFDBAA63FFE8C494FFE4B786FFB47337B500000021CE85450000000022AE7D
+            40B9F1D6AFFFFDE8C6FFF6CC89FFF3CA87FFEDC37EFFE7BC76FFE1B56CFFDCAD
+            63FFD7A55AFFD2A055FFE8CCA6FFDFBF94FFAA7535B900000022A67437BDFFED
+            CCFFFFF2DDFFFADAA7FFFDE8C7FFFFF3E0FFFDF3E3FFF7E7CCFFF5E4CAFFF6EA
+            D7FFF3E2CBFFE8CEA5FFD9B37BFFEFDEC6FFE4CDA9FFA77639BDB57E3AFFFFFE
+            F2FFF5E3C6FFE8CEA4FFDEBB85FFD3A55EFFD19B49FFD7A24FFFDBA654FFD29A
+            45FFD3A65FFFD6AF73FFD7B47DFFDDC096FFEEDEC6FFB7803DFFB57E3AFFFFFF
+            FFFFA06200FFAF7212FFB98023FFC58C32FFCF9742FFD8A451FFDDA856FFD39C
+            48FFC99139FFBF872BFFB57A1CFFA96B07FFF7EDE0FFB7813EFFB67F3CFFFFF6
+            DCFFE8C284FFF0D2A2FFF5E0C0FFF6E2C2FFF6E3C1FFF5E0C0FFF4DFBCFFF0DA
+            B7FFECD5B2FFE9D2ADFFDBBA86FFCEA360FFE0C399FFB88241FFB7814025DDB6
+            8382CB9753CEC89653F4C69452FFC69351FFC4914DFFC6975EFFC2904FFFC08B
+            48FFBF8B47FFBE8946FFBE8945F4BE8843CEC89B6082B9844425
+          }
+          OnClick = MenuItem19Click
+        end
+      end
+      object MenuItem8: TMenuItem
+        Caption = 'Find Systems'
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          200000000000000400006400000064000000000000000000000000000000B8B6
+          B404B5B3B109AFACA610B0ADA616ACA89D1CAAA59520A9A49122AAA49122ABA5
+          9520ADA99D1CB0ADA617AFACA510B5B3B00AB7B5B30400000000BEBBBA0AB8B5
+          B419AFACAB27A7A4A33497927E588E8138B199820BE6A58900FFA98D08FFA58D
+          1BE69B8B47B19B968359A6A4A234AEACAA28B7B5B41ABEBCBB0B00000000AAA6
+          8D02A9A486078E864B748F7D01F8A58E00FFAF9300FFB79801FFBB9C0AFFBEA0
+          15FFC1A420FFB39A28F8A4986475B4AC8D08B4AD920300000000000000000000
+          00007B731F688C7E00FF9B8800FF9B890DFFB7AD65FFC9C399FFCCC79DFFC1B8
+          72FFB19C23FFC3A728FFBDA32FFFA28F3D68000000000000000000000000746C
+          07227C7300F7918200FF9B8E2DFFDBD7C3FFEAE6DEFFEEEBE4FFF2EFEAFFF5F4
+          F0FFEDEBDEFFB5A743FFC3A727FFB39925F7A58E242200000000000000006E67
+          0094867D00FF8A7F0CFFD7D1BDFFCFCAA6FFE7E3D8FFEDEAE3FFF1EEE8FFF4F2
+          EEFFF7F6F2FFEDEBDDFFB19B22FFC0A31EFF9F8716940000000000000000716A
+          00DD847C00FFA9A15DFFE1DCCFFFE2DDD0FFC1BB85FFE9E6DBFFEFECE5FFF2EF
+          EAFFF4F2EDFFF5F3EFFFC1B771FFBE9F13FFA3890EDD00000000000000008881
+          22FF9B942FFFC3BC94FFE0DACEFFE3DED2FFE4DFD2FFA8A16AFFC9C4B7FFDCD8
+          D0FFD8D4CDFFF1EFE9FFCBC69CFFBB9B08FFA88C06FF00000000000000008D87
+          2DFFB0AA5CFFD4CFB3FFEAE6DDFFE9E4DCFFE9E5DCFFCBC5BAFFC2BD9AFFD7D2
+          CAFFD7D3CBFFF0EDE7FFD2CDAAFFC4AA2EFFAB931AFF0000000000000000847E
+          26DDB9B46EFFCEC9A3FFEDE9E2FFEDE9E2FFEEEBE4FFE6E3DCFFE7E4DEFFF2EF
+          EAFFF3F0EBFFF3F0ECFFD6D0A8FFD1C06EFFA18D26DD00000000000000007C76
+          1E94C0BB7AFFC3BD86FFEAE7DCFFEFECE5FFEFECE5FFE7E4DEFFE8E5DFFFF2EF
+          EAFFF2F0EBFFEDEAE1FFCDC486FFD0C37AFF94831E9400000000000000008983
+          34229D974AF7CBC691FFD1CCA5FFEDEAE1FFF2EFE9FFE9E5E0FFE9E6E0FFF2EF
+          EAFFEEEBE2FFD4CFA5FFD4CC91FFAA9E49F79C8F382200000000000000000000
+          00007F792868B7B273FFD3D0A3FFD4D0A8FFE1DEC6FFE8E5D5FFE8E5D5FFE1DE
+          C6FFD6D1A8FFD8D2A3FFBBB46FFF8A802A680000000000000000000000000000
+          000000000000827C2D68A5A05BF7D9D6AEFFDCD9B5FFDCD9B5FFDCD9B5FFDCD9
+          B5FFD9D6AEFFA6A05BF787802F68000000000000000000000000000000000000
+          00000000000000000000948F492285802F94938E44DDA6A160FFA6A160FF938E
+          44DD8681319497924C2200000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        OnClick = MenuItem8Click
+        object MenuItem16: TMenuItem
+          Caption = 'Main Symbol'
+          Bitmap.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000000000000000
+            000000000000117BA7270F668A03000000000000000000000000000000000000
+            0000000000000B5C7E010E79A71C000000000000000000000000000000000000
+            00000E7AA72A7CDDFCFF6BD4FADB22B2EC4C0000000000000000000000000000
+            00001AAAE74D64CFF8D769D2FAFD0E77A3120000000000000000000000000000
+            00000D76A21E6ED9FCFF7FDFFFFF9CE4FEFE47C6F8A81693C71C1392C72343C3
+            F6AFA5E7FDFE83E1FFFF6FD5FBFB0E7099090000000000000000000000000000
+            00000000000061D1F9E384E0FFFF90E0FFFFACE7FFFF8EDEFCFC96E1FCFDBDEE
+            FFFF9BE5FFFF86DFFFFF4FCAF9CD000000000000000000000000000000000000
+            00000000000040C3F69D89E2FFFF96E1FFFF98DFFFFFA5E4FFFFB3EAFFFFA7E7
+            FFFF99E3FFFF8AE0FFFF2FBEF688000000000000000000000000000000000000
+            0000000000001DAEEA5D79E0FEFF8AE2FFFF92DFFFFF99E1FFFFA6E6FFFFA0E5
+            FFFF87DFFFFF74DCFEFF1CADE948000000000000000000000000000000000000
+            00000000000019B6F5934ED7FEFF65DCFFFF77DEFFFF7BDCFFFF87E1FFFF79DD
+            FFFF66D9FFFF56D8FEFF22BEF787000000000000000000000000000000000A5E
+            810113B6F5901BCAFDFF26CDFFFF38D1FFFF4AD7FFFF50D6FFFF54D8FFFF4BD5
+            FFFF42D6FFFF31D4FFFF22D1FEFF15BDF78900000000000000000000000013B8
+            F69911C9FEFF13CBFFFF16CCFFFF1ECDFFFF29CFFFFF30D2FFFF2FD3FFFF2AD3
+            FFFF23D2FFFF1CD1FFFF16D0FFFF13CFFEFF13BEF7960B678C0113B4F2671FCD
+            FEFF29D1FFFF31D4FFFF38D6FFFF3DD8FFFF3ED8FFFF3CD5FFFF3FD8FFFF3BD4
+            FFFF38D4FFFF33D4FFFF2ED3FFFF29D3FFFF23D2FEFF15BBF67D13ADEA3A1EC0
+            F7A62AC7F9CC34CCFBE63ED1FCFC4DD9FEFF54D9FFFF54DAFFFF5ADEFFFF59DD
+            FFFF3FD3FDFE2AC9FBF122C5FAD81DC0F8BF17BAF69C13B0F04C000000000000
+            000000000000000000000E7CA90917B8F5A36CDEFFFF76E1FFFF80E5FFFF78E4
+            FEFF1AB9F4610000000000000000000000000000000000000000000000000000
+            00000000000000000000000000001199D22D53D3FCFE9AE8FFFFA7EDFFFF65D9
+            FCEC107FAA070000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000020BDF7B9B8EFFFFFCCF4FFFF2FC3
+            F78C000000000000000000000000000000000000000000000000000000000000
+            00000000000000000000000000000000000012A3DF3386E0FDFB9EE6FCF5159C
+            D11C000000000000000000000000000000000000000000000000000000000000
+            0000000000000000000000000000000000000000000020B7F25529BBF44D0000
+            0000000000000000000000000000000000000000000000000000
+          }
+          OnClick = MenuItem16Click
+        end
+        object MenuItem28: TMenuItem
+          Caption = 'Multiple Symbol'
+          Bitmap.Data = {
+            36040000424D3604000000000000360000002800000010000000100000000100
+            2000000000000004000064000000640000000000000000000000000000000000
+            000000000000000000000000002F000000330000003300000033000000330000
+            0033000000330000003300000033000000330000003300000030BB871F00BB87
+            1F00BB871F00BB871E00B68219EFB67E0EFFB47B09FFB47A08FFB47B08FFB47B
+            08FFB47B08FFB47B08FFB47B08FFB47B09FFB67E0EFFB78219F2BB871F00BB87
+            1F000000002200000033B67E0EFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB67E0EFFBB871F00BB87
+            1E00A97919BCB88114FFB37905FFFFFFFFFFFFFFFFFFFFFFFFFFD7C0A5FFFFFF
+            FFFFD8C0A6FFFFFFFFFFD7BFA5FFFFFFFFFFFFFFFFFFB47B09FF0000002F0000
+            0033B88114FFFFFFFFFFB17500FFFFFFFFFFD5BA9BFFD6BC9EFFD8BFA2FFD8BF
+            A2FFD9C0A3FFD8BFA2FFD8BFA1FFD6BC9DFFFFFFFFFFB47B08FFB68219EFB780
+            12FFB57C0BFFFFFFFFFFB07300FFFFFFFFFFFFFFF5FFFFFFF9FFD9BE9DFFFFFF
+            FDFFD9BE9DFFFFFFFDFFD8BD9CFFFFFFF8FFFFFFFFFFB47B08FFB67F11FFFFFF
+            FFFFB27702FFFFFFFFFFB07300FFFFFFFFFFD5B691FFD7B995FFD9BC99FFD9BC
+            99FFD9BD99FFD9BC99FFD9BC98FFD7B893FFFFFFFFFFB47B09FFB57D0CFFFFFF
+            FFFFB17500FFFFFFFFFFB07300FFFFFFFFFFFFFAE2FFFFFDE7FFD9BA92FFFFFF
+            EBFFD9BA93FFFFFFEBFFD8B991FFFFFCE5FFFFFFFFFFB47B08FFB57C0BFFFFFF
+            FFFFB07400FFFFFFFFFFB07300FFFFFFFFFFDDB280FFDFB685FFDEB78AFFDEB7
+            8AFFDEB88BFFDEB78AFFDDB789FFDBB383FFFFFFFFFFB57B08FFB57C0BFFFFFF
+            FFFFB07400FFFFFFFFFFB17300FFFFFFFFFF44C4FFFF46C6FFFFE2B57FFF43C7
+            FFFFE1B680FF43C7FFFFE1B57EFF40C4FFFFFFFFFFFFB57C09FFB57C0BFFFFFF
+            FFFFB07400FFFFFFFFFFB27300FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFB67E0EFFB57C0BFFFFFF
+            FFFFB07200FFFFFFFFFF8E8E54FFB17100FFB07100FFB07100FFAF7100FFAF71
+            00FFAF7100FFB07100FFB17400FFB47903FFB67E0DFFB98419EEB57C0AFFFFFF
+            FFFFB17200FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFB77F11FFBA851B00BB871E00B57C0AFFFFFF
+            FFFF869265FFB17100FFAF7100FFAF7100FFAF7200FFAF7200FFAF7200FFAF72
+            00FFB17400FFB37A06FFB67F10FFB98419AEBB871E00BB871F00B67E0FFFFFFF
+            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+            FFFFFFFFFFFFB77F11FFBA851B00BB871E00BB871F00BB871F00B98419EFB67E
+            0FFFB57C0AFFB57C0AFFB57C0BFFB57C0BFFB57C0BFFB57C0BFFB57C0BFFB57D
+            0CFFB77F11FFB98419EEBB871E00BB871F00BB871F00BB871F00
+          }
+          OnClick = MenuItem28Click
+        end
+      end
+      object MenuItem35: TMenuItem
+        Caption = 'Run Single System'
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000023698404124153320E4256651244576C1332
+          3E461D4352120000000000000000000000000000000000000000000000000000
+          0000000000000000000022657F28197295C144AFD9FD42B0DAFF41AFD9FF47B0
+          D8FE408098D7122D375328627802000000000000000000000000000000000000
+          0000000000002D7C9A2A3BA6CFEA4CC2EBFF29BCEAFF25BFEAFF24BEE8FF23B8
+          E4FF49BDE5FF54A9CAF50D2E3A5B000000000000000000000000000000000000
+          000000000000369AC1C22FB9EDFF25BCF0FF2BC3F3FF51CCF3FF51D9F7FF34D1
+          F3FF24C1E9FF29B4E3FF1D789BDE124457180000000000000000000000000000
+          00003E9EC32E6CC9EDFE45C4F3FF33C1F4FF32C7F5FF48CAF7FF63D9FFFF6EDE
+          FDFF40D1F5FF1CBBE9FF25ACDEFE0E3645560000000000000000000000000000
+          000040AEDB5894DAF6FF82D8F8FF7DD7F8FF57CBF6FF59D6FFFF59D6FFFF4ECF
+          F9FF25C7F4FF1EBEF0FF1AAFE5FF0F526C770000000000000000000000000000
+          000057BFE95F9CDDF7FF86D9F8FF70CDF2FF4EC9F7FF59D6FFFF59D6FFFF65DA
+          FEFF1EC2F4FF19BBF2FF11ACE6FF0C5C7B6E0000000000000000000000000000
+          000058C0EB42A8E1F7FF89D9F7FF83D8F7FF47C0F0FF59D6FFFF59D6FFFF5BD6
+          FEFF17BBF2FF15B6F1FF10ABE6FF0E769E420000000000000000000000000000
+          00006CC8EE0985D1F1ED99DDF7FF7BD1F3FF3DB6EAFF56D3FDFF58D5FEFF49C8
+          F6FF12B6F1FF10B1EEFF15A9E4E71797C9050000000000000000000000000000
+          0000000000005BC0EB6AAFE2F6FF97DCF7FF7BD0F3FF54B9E7FF53BBE9FF6FCE
+          F4FF5FCBF4FF3FBCEDFF29B0E65E000000000000000000000000000000000000
+          000000000000000000005BBFEB799FDAF4FBAAE1F7FF96DBF6FF8DD8F6FF8BD7
+          F5FF81D1F2FA49BBEB6E00000000000000000000000000000000000000000000
+          000000000000000000000000000063C3EC295EC0EB8878CBEFB777CBEFB665C5
+          ED8559C1ED240000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        OnClick = MenuItem35Click
+      end
+    end
+    object MenuItem9: TMenuItem
+      Caption = 'Selection'
+      object MenuItem23: TMenuItem
+        Caption = 'Export to MQL4'
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000E9BDBB31C42675E313131035252520F616161275D5D5D284747
+          4711282828020000000000000000000000000000000000000000000000000000
+          0000000000000E99D9AB2B3D4C7C3D3D3DA44C4C4CE1585858FC535353FC3E3E
+          3EE32A2A2AA31C1C1C360D0D0D02000000000000000000000000000000000000
+          000000000000298BAF90353A3EF3494949FF535353FF505050FF4D4D4DFF4343
+          43FF2D2D2DFF151515F307070749000000000000000000000000000000000000
+          0000000000002399C1A6364851FF3F3F3FFF4E4E4EFF656565FF545454FF3131
+          31FF1D1D1DFF0E0E0EFF02020285000000000000000000000000000000000000
+          00000000000014435F872E383CFF3E3E3EFF3D3D3DFF3B3B3BFF393939FF3838
+          38FF2C2C2CFF181818FF06060688000000000000000000000000000000000F0F
+          0F281E1E1E9A212C33F71A6077FF1B5764FF21404AFF2A2B2BFF2C2C2CFF2C2C
+          2CFF2C2C2CFF2C2C2CFF2C2C2CFA232323A31B1B1B30000000000C0C0C2C2F2F
+          2FF2424242FF4B4B4BFF4F4F4FFF486167FF3E7382FF324248FF383838FF5050
+          50FF505050FF505050FF505050FF4F4F4FFF3C3C3CF61B1B1B3A000000002A2A
+          2A114D4D4D79616161E6696969FF696969FF696969FF676767FF676767FF6969
+          69FF696969FF696969FF616161EB4F4F4F822E2E2E1600000000000000000000
+          0000000000002B2B2B0657575761727272D3818181FF828282FF828282FF8282
+          82FF737373DA595959692F2F2F0A000000000000000000000000000000000000
+          0000000000000000000000000000292929015B5B5B49828282BB838383C25F5F
+          5F512D2D2D020000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        OnClick = MenuItem23Click
+      end
+      object MenuItem11: TMenuItem
+        Caption = 'Show Pattern Composition'
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          200000000000000400006400000064000000000000000000000000000000B8B6
+          B404B7B4B209B3B1AE10B2B0AE16AFACAA1CADAAA820ACA9A622ACA9A622ADAA
+          A820B0ADAB1CB3B1AF17B7B4B210BAB8B60ABEBBB90400000000BEBBBA0AB8B5
+          B419AFACAB27A8A39E79B1ACA59FAFAAA4A2AEAAA4A4AFAAA5A5B0ABA6A5B1AD
+          A7A5B3AFAAA2B6B2AD9FB9B6B29AB8B4B092B4B0AD31C0BEBC0B00000000B9B6
+          B302BEBBB607CFC9BEFDE8E3DAFFEBE7DEFFEDEAE3FFF0EDE7FFF2F0EBFFF5F3
+          EFFFF8F6F3FFFAF9F7FFFCFCFBFFFCFCFBFFCAC6C07E00000000000000000000
+          000000000000D0CABDFFD7D2C6FFCCC6BBFFCEC8BEFFD0CBC2FFD2CDC5FFD4D0
+          C8FFD6D2CBFFD8D4CEFFDBD8D3FFFCFBFAFFD6D2CD7F00000000000000000000
+          000000000000D0CABDFFD7D1C6FFCCC6BBFFCEC8BEFFD0CAC1FFD1CDC4FFD3CF
+          C7FFD5D1CAFFD7D3CDFFD9D6D0FFF9F8F6FFDAD6D17F00000000000000000000
+          000000000000D0C9BDFFD7D1C5FFCBC5BAFFCDC7BDFFCFCAC0FFD1CCC3FFD2CE
+          C6FFD4D0C8FFD5D1CAFFD8D4CDFFF6F5F1FFD8D4CD7F00000000000000000000
+          000000000000D0C9BCFFD6D0C4FFCAC4B9FFCCC7BCFFCEC8BFFFD0CAC1FFD1CC
+          C4FFD2CEC6FFD4CFC8FFD6D1CAFFF3F1ECFFD6D1CA7F00000000000000006E79
+          BD197B83BF7D9EA0BEFFADAFC8FFB4B6CBFFBCBDCEFFC7C6CCFFDDD8CFFFD0CB
+          C1FFD1CCC3FFD2CDC4FFD4CFC7FFF0EDE7FFD4CFC77F00000000000000006975
+          C27D7381DFFF7F8CE1FF8E99E3FF9DA7E6FFAAB3E8FF9FA6D4FFDBD6CCFFCEC9
+          BFFFCFCAC0FFD0CBC1FFD1CCC3FFEDE9E2FFD3CEC57F0000000000000000717D
+          C97F919CE5FF8390E2FF8995E2FF95A0E4FF9FA8E6FF979FD6FFE0DBD3FFD0CB
+          C2FFD0CBC3FFD1CCC3FFD3CEC6FFF0EEE8FFD1CCC37F00000000000000007682
+          CB7FBAC1EFFFBCC2EFFFBBC1EEFFBBC1EEFFC5CAF0FFA3AAD9FFEEEAE3FFEFEB
+          E5FFEFECE6FFF0EDE7FFF0EDE7FFF0EDE7FFD0CBC27F00000000000000007782
+          C57DD1D5F4FFD4D8F4FFD6D9F5FFD8DBF5FFDADDF5FFA0A7D6FFCFCAC0FFBEB7
+          ACFFC6C1B8FFC2BDB3FFB7B0A4FFF0EDE7FFD0CBC17F00000000000000008C93
+          C419858CC17D9A9DBFFFA6ABCEFFA8ACCEFFA9ADCEFFBDBFD2FFF0EDE7FFF0ED
+          E7FFF0EDE7FFF1EDE7FFF1EDE7FFF1EDE7FFCEC8BE7F00000000000000000000
+          0000ACACC001D4CFC6FDF2EFEAFFF2EFEAFFF2EFEAFFF2EFEAFFF2EFEAFFF2EF
+          EAFFF2EFEAFFF2EFEAFFF2EFEAFFF1EFE9FFC8C2B77D00000000000000000000
+          000000000000C1BBB257C9C2B87FCCC6BC7FCDC7BD7FCDC7BD7FCDC7BD7FCDC7
+          BD7FCDC7BD7FCDC7BD7FCBC5BB7FC7C1B77DCDC7BE1900000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        OnClick = MenuItem11Click
+      end
+      object MenuItem29: TMenuItem
+        Caption = 'Show Trade Analysis on Click'
+        OnClick = MenuItem29Click
+      end
+      object MenuItem30: TMenuItem
+        Caption = 'Show Portfolio Result'
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          2000000000000004000064000000640000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          000000000000000000000000000000000000000000000000000089898907A4A3
+          A31DBAB8B628BCBAB733BCBAB73EBCB9B63EBAB9B64EBAB9B64FBAB9B64FBAB9
+          B64EBCB9B63EBCBAB73EBCBAB733BAB8B628A5A5A41D8B8B8B07B4B4B429AAA8
+          A77056667FEF455879FF465B7AFF485C7CFF475D7DFF475C7DFF475C7DFF475D
+          7CFF485C7BFF465B7AFF455879FF54657EF2A7A7A671B3B2B22900000000183A
+          6E7401265DFF072D66FF0A306BFF0B3371FF0C3574FF0B3575FF0B3575FF0C35
+          74FF0B3270FF0A306AFF072C65FF02265CFF13366B800000000000000000153A
+          759A0D2F65FF10356DFF123873FF133B78FF113C7CFF224A85FF1D4683FF103B
+          7CFF123B77FF113672FF0F346CFF0B2E64FF153A73A80000000000000000163C
+          77990C3068FF10346DFF103875FF113975FF093576FFBFC2C9FF9BA7BBFF0A36
+          75FF113874FF103772FF0E336DFF0C2F66FF163B75A60000000000000000163B
+          739710366FFF194486FF1C4A90FF20519AFF0F4494FFC5CBD4FFA0B1C9FF1246
+          94FF205199FF1C4B8FFF184384FF0E336AFF153B71A500000000000000001F53
+          A0BE1D519EFF1D509CFF1D509BFF1C4F9AFF1C4F9AFF0E4595FF114796FF1C4F
+          9AFF1C4F9AFF1D509BFF1D509CFF1E529FFF1D4F9AC300000000000000001F59
+          ADD31D53A1FF1D53A1FF1D53A1FF1D53A1FF1D53A1FF1D53A1FF1D53A1FF1D53
+          A1FF1D53A1FF1D53A1FF1D53A1FF1D53A1FF1F58ABDC0000000000000000215C
+          B3D32056A7FF2056A7FF2056A7FF2056A7FF2056A7FF2056A7FF2056A7FF2056
+          A7FF2056A7FF2056A7FF2056A7FF2056A7FF215AB1DC00000000000000002B67
+          C0BC1E57ABFF1F57ABFF1F57ACFF1F59ADFF1F57ACFF1F57ABFF1F57ABFF1F57
+          ACFF1F58ADFF1F57ACFF1F57ABFF1E57ABFF2C65BDC90000000000000000245F
+          B6193A74CAC13872C7D83770C5D42B5DAAFD356DBED5376EC1D5376FC1D5346A
+          BCDA2D5FADF83770C6D53871C7D83A73C9C42866C31F00000000000000000000
+          0000000000000000000000000000092C61F9143A7826173C740C173C740B1239
+          7543092E63D70000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000235499A0204B8EDE1F4B8EDD1F4B8EDD204C
+          8EDE24539A890000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        OnClick = MenuItem30Click
+      end
+    end
+    object MenuItem2: TMenuItem
+      Caption = 'History'
+      object MenuItem4: TMenuItem
+        Caption = 'Load Symbol'
+        Bitmap.Data = {
+          36040000424D3604000000000000360000002800000010000000100000000100
+          200000000000000400006400000064000000000000000000000000000000B3B4
+          B404B2B2B109ADADAC10B1AEAD16AAAAA91CA1A7A8206598A352679AA55087A4
+          AB2A9DABAD1CA3ADB0179AABB010A5B1B30AA2B1B40400000000BEBBBA0AB8B5
+          B419AFACAB27A7A4A334A09D9C3E9B9997459996944A1E9FC0FD31B1D5FF30A8
+          CAFD39A0BDE14E9BAFB86296A28C7E9CA257B7B5B41AB3BABB0B000000008BAC
+          B302549AA85E0795B5FD109CBDFF19A0C1FF22A4C5FF20A3C5FF37B7DDFF45BD
+          E4FF52C3EAFF60C9F1FF6ECFF7FF67C7EDFF58A2B66000000000000000000000
+          0000309BB27F53BFD7FF4BBCD8FF2CACCDFF96B7BBFF1FA2C4FF35B7DCFF42BC
+          E2FF50C2E9FF5CC7EFFF67CCF4FF6BCEF6FF4CACCB7F00000000000000000000
+          0000229BB67F6BC7DDFF64C0D6FFA8BCBAFFE8E9E0FF1CA1C3FF31B5DAFF3DBA
+          E0FF49BFE6FF53C4EBFF5BC7EEFF5EC8F0FF3FADCF7F00000000000000000000
+          0000349FB57F67C1D4FFBDC2BCFFD7E1D1FF54BE83FF189FC0FF2AB2D7FF36B7
+          DCFF40BBE1FF48BFE5FF4EC1E8FF50C2E9FF37A9CC7F00000000000000000000
+          000056A1AC7FA1B7B3FFE7E0D3FFE0D8BDFF4DBD80FF1DA0C0FF22AED3FF2CB3
+          D8FF35B6DCFF3CBADFFF41BCE2FF42BCE2FF2EA5C77F0000000000000000A0AF
+          A714BAB5A9D3E3D9C8FFEACFACFFEFD6BAFFA4CDA3FF33A8C3FF4ABCD9FF24AF
+          D3FF29B1D6FF2FB4D9FF33B6DBFF34B6DCFF29A3C47F0000000000000000B3AC
+          A0B7DFD8CAFFE4BF8DFFECD0AAFFF6E9D8FFEED5B8FF36A9C2FF6DC8DEFF66C6
+          DEFF40B9D8FF2BB1D5FF2CB2D6FF3BB8D9FF2AA3C17F0000000000000000B8B0
+          A241CCC5B9F5E1CDAFFFE5BF8AFFEBCCA3FFEBCDA6FF3DABC4FF79CCDFFF7CCD
+          E1FF7FCFE2FF82D0E4FF83D1E4FF84D1E5FF2EA4C07F00000000000000000000
+          0000BCB19F41CCC5B9F5E1CEB0FFE4BC85FFE8C495FF46AFC6FF89D2E3FF89D2
+          E3FF8AD2E3FF8BD3E4FF8CD3E4FF8CD3E5FF34A5BF7F00000000000000000000
+          000000000000B3AFA041CCC5B9F5E1CEB0FFE4BC85FF4EB2C8FF9BD9E7FF9BD9
+          E7FF9BD9E7FF9BD9E7FF9BD9E7FF9BD9E7FF3AA7BF7F00000000000000000000
+          000000000000000000007DA4A485CDC8BCFFDFCDAFFF55B3C7FFABDFEAFFABDF
+          EAFFABDFEAFFABDFEAFFABDFEAFFABDFEAFF3CA8BF7F00000000000000000000
+          000000000000000000003E9CAD80B5D2D6FFCDC8BDFF82B5B9FF60AFBEFF65B9
+          CBFF88CEDDFFAFE0EBFFBCE5EEFFBCE5EEFF35A3BA7F00000000000000000000
+          000000000000000000003694A7585EB3C6FD60A5B2FFBDBBB0FF6BA4ABFF5CB2
+          C5FF379CB2FF0D88A2FF1B8EA6FF3FA1B5FD389CB25700000000000000000000
+          0000000000000000000000000000000000000000000089ACAE07000000000000
+          0000000000000000000000000000000000000000000000000000
+        }
+        OnClick = MenuItem4Click
+      end
+    end
+    object MenuItem20: TMenuItem
+      Caption = 'More information...'
+      OnClick = MenuItem20Click
+    end
+  end
+  object OpenSymbolHistoryDialog: TOpenDialog
+    DefaultExt = '.csv'
+    Filter = 'History data file|*.csv'
+    left = 528
+    top = 128
+  end
+  object SaveDialog1: TSaveDialog
+    left = 696
+    top = 384
+  end
+  object PopupMenu1: TPopupMenu
+    left = 632
+    top = 240
+    object MenuItem13: TMenuItem
+      Caption = 'Save contents to CSV'
+      Bitmap.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000A4A4A422A4A4
+        A463A4A4A47EA4A4A48FA4A4A49AA4A4A4A2A4A4A4A6A4A4A4A9A4A4A4A9A4A4
+        A4A7A4A4A4A2A4A4A49BA4A4A48FA4A4A47FA4A4A464A4A4A425948F840AA085
+        49C7828A6AFA808A6DFC808A6DFD808A6DFD808B6DFD808B6DFE808B6DFE808B
+        6DFD808A6DFD6C965DFD6D965DFC808A6CFA9A844AE099917E13000000009F7B
+        29F7C3DFEDFFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4
+        F7FFA9D9E1FF35B069FF36B06AFFABDAE3FFA58D4CFF634D191F00000000A37E
+        2CF7FAF8F5FFE8E2DDFFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFDDD7
+        CFFF56B779FF33B366FF33B366FF64C68BFFB1944FFF654E1B1F00000000A782
+        31F7FAF9F5FFE8E2DDFFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FF8CCD
+        A5FF2FBA6EFF2FBA6EFF2FBA6EFF2FBA6EFF6F9C4DFF66521F1F00000000AC86
+        35F7FBF9F5FFF1EEEBFFEDE9E5FFEDE9E5FFEDE9E5FFEDE9E5FFC9E6D4FF2EC1
+        77FF2BC075FF2BC075FF2BC075FF2BC075FF2EBE73FF3BA6613A00000000B08A
+        39F7FAF7F2FFF6F3F1FFF3EFEDFFF3EFEDFFF3EFEDFFF1EFECFF44C989FF27C6
+        7BFF27C67BFF27C67BFF27C67BFF27C67BFF27C67BFF27C67BCF00000000B48E
+        3DF7C4A565FFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB1
+        7AFF26CB81FF24CB81FF24CB81FF24CB81FFA09646FF6386461F00000000B991
+        41F7B99141FFB99141FFB99141FFB99141FFB99141FFB99141FFB99141FFB991
+        41FF23CE85FF21D086FF21D086FF21D086FFA39A4BFF735A281F00000000BD95
+        45F7BD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD95
+        45FF21D289FF1ED38BFF1ED38BFF1ED38BFFA79E4FFF765D2B1F00000000C299
+        49F7C7A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A2
+        56FF1FD58DFF1CD68EFF1CD68EFF1CD68EFFAAA253FF795F2D1F00000000C9A0
+        51F7A68434FFA07D2CFFA27F2FFFA27F2FFFA27F2FFFA27F2FFFA27F2FFFA27F
+        2FFF1DD78FFF1BD891FF1BD891FF1BD891FFAFA556FF7C62301F00000000CDA4
+        56F7A8873BFFFBF9F6FFE4DBC4FFE9E1CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFF6FDFA8FF5ECF87FF65D38CFF64D28BFFBEA556F47B61300800000000D2A8
+        5AF7AF8F48FFFFFFFFFFA58232FFB69A5AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFDFD2B6FFB79344FFD0A555FFD0A555FFCFA4547C0000000000000000D6AB
+        5EF7BA9951FFFFFFFFFFB18C3DFFC0A263FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFE3D6BAFFC09A4DFFD4A859FFD4A858A1000000000000000000000000D9AD
+        5FA4C5A25CDFFEFDFCDFDBC79EDFE2D1B0DFFEFEFEDFFFFFFFDFFFFFFFDFFFFF
+        FFDFE7DABEDFC8A052DBD8AC5C8C997941050000000000000000
+      }
+      OnClick = MenuItem13Click
+    end
+    object MenuItem37: TMenuItem
+      Caption = 'Hide/Show Columns'
+      object MenuItem38: TMenuItem
+        Caption = 'Abs. Profit'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem39: TMenuItem
+        Caption = 'Profit/trade'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem40: TMenuItem
+        Caption = 'Profit Longs'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem41: TMenuItem
+        Caption = 'Profit Shorts'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem42: TMenuItem
+        Caption = 'No. Longs'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem43: TMenuItem
+        Caption = 'No. Shorts'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem44: TMenuItem
+        Caption = 'Total Trades'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem45: TMenuItem
+        Caption = 'Max DD'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem46: TMenuItem
+        Caption = 'Ideal R'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem47: TMenuItem
+        Caption = 'R^2'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem48: TMenuItem
+        Caption = 'Ulcer Index'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem49: TMenuItem
+        Caption = 'Max DD Length'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem50: TMenuItem
+        Caption = 'Cons.Loss'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem52: TMenuItem
+        Caption = 'Cons.Wins'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem53: TMenuItem
+        Caption = 'Profit:MaxDD'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem54: TMenuItem
+        Caption = 'Win %'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem51: TMenuItem
+        Caption = 'Reward:Risk'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem56: TMenuItem
+        Caption = 'Skewness'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem57: TMenuItem
+        Caption = 'Kurtosis'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem58: TMenuItem
+        Caption = 'PF'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem55: TMenuItem
+        Caption = 'Std. Dev'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem60: TMenuItem
+        Caption = 'Std.Dev.Breach'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem59: TMenuItem
+        Caption = 'Total ME'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem62: TMenuItem
+        Caption = 'SQN'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem63: TMenuItem
+        Caption = 'Mod. Sharpe Ratio'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem61: TMenuItem
+        Caption = 'Custom Criteria'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem64: TMenuItem
+        Caption = 'Bars out'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem65: TMenuItem
+        Caption = 'OSP'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem66: TMenuItem
+        Caption = 'OSP/trade'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+      object MenuItem67: TMenuItem
+        Caption = 'Lowest Lag'
+        Checked = True
+        OnClick = showOrHideColumn
+      end
+    end
+  end
+  object OpenKantuLibraryDialog: TOpenDialog
+    left = 688
+    top = 304
+  end
+  object SaveDialogMQL4: TSaveDialog
+    DefaultExt = '.mq4'
+    Filter = '*.mq4'
+    left = 568
+    top = 168
+  end
+  object PopupMenu2: TPopupMenu
+    left = 600
+    top = 344
+    object MenuItem24: TMenuItem
+      Caption = 'Save contents to CSV'
+      Bitmap.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000A4A4A422A4A4
+        A463A4A4A47EA4A4A48FA4A4A49AA4A4A4A2A4A4A4A6A4A4A4A9A4A4A4A9A4A4
+        A4A7A4A4A4A2A4A4A49BA4A4A48FA4A4A47FA4A4A464A4A4A425948F840AA085
+        49C7828A6AFA808A6DFC808A6DFD808A6DFD808B6DFD808B6DFE808B6DFE808B
+        6DFD808A6DFD6C965DFD6D965DFC808A6CFA9A844AE099917E13000000009F7B
+        29F7C3DFEDFFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4
+        F7FFA9D9E1FF35B069FF36B06AFFABDAE3FFA58D4CFF634D191F00000000A37E
+        2CF7FAF8F5FFE8E2DDFFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFDDD7
+        CFFF56B779FF33B366FF33B366FF64C68BFFB1944FFF654E1B1F00000000A782
+        31F7FAF9F5FFE8E2DDFFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FF8CCD
+        A5FF2FBA6EFF2FBA6EFF2FBA6EFF2FBA6EFF6F9C4DFF66521F1F00000000AC86
+        35F7FBF9F5FFF1EEEBFFEDE9E5FFEDE9E5FFEDE9E5FFEDE9E5FFC9E6D4FF2EC1
+        77FF2BC075FF2BC075FF2BC075FF2BC075FF2EBE73FF3BA6613A00000000B08A
+        39F7FAF7F2FFF6F3F1FFF3EFEDFFF3EFEDFFF3EFEDFFF1EFECFF44C989FF27C6
+        7BFF27C67BFF27C67BFF27C67BFF27C67BFF27C67BFF27C67BCF00000000B48E
+        3DF7C4A565FFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB1
+        7AFF26CB81FF24CB81FF24CB81FF24CB81FFA09646FF6386461F00000000B991
+        41F7B99141FFB99141FFB99141FFB99141FFB99141FFB99141FFB99141FFB991
+        41FF23CE85FF21D086FF21D086FF21D086FFA39A4BFF735A281F00000000BD95
+        45F7BD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD95
+        45FF21D289FF1ED38BFF1ED38BFF1ED38BFFA79E4FFF765D2B1F00000000C299
+        49F7C7A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A2
+        56FF1FD58DFF1CD68EFF1CD68EFF1CD68EFFAAA253FF795F2D1F00000000C9A0
+        51F7A68434FFA07D2CFFA27F2FFFA27F2FFFA27F2FFFA27F2FFFA27F2FFFA27F
+        2FFF1DD78FFF1BD891FF1BD891FF1BD891FFAFA556FF7C62301F00000000CDA4
+        56F7A8873BFFFBF9F6FFE4DBC4FFE9E1CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFF6FDFA8FF5ECF87FF65D38CFF64D28BFFBEA556F47B61300800000000D2A8
+        5AF7AF8F48FFFFFFFFFFA58232FFB69A5AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFDFD2B6FFB79344FFD0A555FFD0A555FFCFA4547C0000000000000000D6AB
+        5EF7BA9951FFFFFFFFFFB18C3DFFC0A263FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFE3D6BAFFC09A4DFFD4A859FFD4A858A1000000000000000000000000D9AD
+        5FA4C5A25CDFFEFDFCDFDBC79EDFE2D1B0DFFEFEFEDFFFFFFFDFFFFFFFDFFFFF
+        FFDFE7DABEDFC8A052DBD8AC5C8C997941050000000000000000
+      }
+      OnClick = MenuItem24Click
+    end
+  end
+  object PopupMenu3: TPopupMenu
+    left = 688
+    top = 184
+    object MenuItem25: TMenuItem
+      Caption = 'Save contents to CSV'
+      Bitmap.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000A4A4A422A4A4
+        A463A4A4A47EA4A4A48FA4A4A49AA4A4A4A2A4A4A4A6A4A4A4A9A4A4A4A9A4A4
+        A4A7A4A4A4A2A4A4A49BA4A4A48FA4A4A47FA4A4A464A4A4A425948F840AA085
+        49C7828A6AFA808A6DFC808A6DFD808A6DFD808B6DFD808B6DFE808B6DFE808B
+        6DFD808A6DFD6C965DFD6D965DFC808A6CFA9A844AE099917E13000000009F7B
+        29F7C3DFEDFFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4
+        F7FFA9D9E1FF35B069FF36B06AFFABDAE3FFA58D4CFF634D191F00000000A37E
+        2CF7FAF8F5FFE8E2DDFFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFDDD7
+        CFFF56B779FF33B366FF33B366FF64C68BFFB1944FFF654E1B1F00000000A782
+        31F7FAF9F5FFE8E2DDFFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FF8CCD
+        A5FF2FBA6EFF2FBA6EFF2FBA6EFF2FBA6EFF6F9C4DFF66521F1F00000000AC86
+        35F7FBF9F5FFF1EEEBFFEDE9E5FFEDE9E5FFEDE9E5FFEDE9E5FFC9E6D4FF2EC1
+        77FF2BC075FF2BC075FF2BC075FF2BC075FF2EBE73FF3BA6613A00000000B08A
+        39F7FAF7F2FFF6F3F1FFF3EFEDFFF3EFEDFFF3EFEDFFF1EFECFF44C989FF27C6
+        7BFF27C67BFF27C67BFF27C67BFF27C67BFF27C67BFF27C67BCF00000000B48E
+        3DF7C4A565FFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB1
+        7AFF26CB81FF24CB81FF24CB81FF24CB81FFA09646FF6386461F00000000B991
+        41F7B99141FFB99141FFB99141FFB99141FFB99141FFB99141FFB99141FFB991
+        41FF23CE85FF21D086FF21D086FF21D086FFA39A4BFF735A281F00000000BD95
+        45F7BD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD95
+        45FF21D289FF1ED38BFF1ED38BFF1ED38BFFA79E4FFF765D2B1F00000000C299
+        49F7C7A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A2
+        56FF1FD58DFF1CD68EFF1CD68EFF1CD68EFFAAA253FF795F2D1F00000000C9A0
+        51F7A68434FFA07D2CFFA27F2FFFA27F2FFFA27F2FFFA27F2FFFA27F2FFFA27F
+        2FFF1DD78FFF1BD891FF1BD891FF1BD891FFAFA556FF7C62301F00000000CDA4
+        56F7A8873BFFFBF9F6FFE4DBC4FFE9E1CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFF6FDFA8FF5ECF87FF65D38CFF64D28BFFBEA556F47B61300800000000D2A8
+        5AF7AF8F48FFFFFFFFFFA58232FFB69A5AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFDFD2B6FFB79344FFD0A555FFD0A555FFCFA4547C0000000000000000D6AB
+        5EF7BA9951FFFFFFFFFFB18C3DFFC0A263FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFE3D6BAFFC09A4DFFD4A859FFD4A858A1000000000000000000000000D9AD
+        5FA4C5A25CDFFEFDFCDFDBC79EDFE2D1B0DFFEFEFEDFFFFFFFDFFFFFFFDFFFFF
+        FFDFE7DABEDFC8A052DBD8AC5C8C997941050000000000000000
+      }
+    end
+  end
+  object PopupMenu4: TPopupMenu
+    left = 560
+    top = 392
+    object MenuItem26: TMenuItem
+      Caption = 'Save contents to CSV'
+      Bitmap.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000A4A4A422A4A4
+        A463A4A4A47EA4A4A48FA4A4A49AA4A4A4A2A4A4A4A6A4A4A4A9A4A4A4A9A4A4
+        A4A7A4A4A4A2A4A4A49BA4A4A48FA4A4A47FA4A4A464A4A4A425948F840AA085
+        49C7828A6AFA808A6DFC808A6DFD808A6DFD808B6DFD808B6DFE808B6DFE808B
+        6DFD808A6DFD6C965DFD6D965DFC808A6CFA9A844AE099917E13000000009F7B
+        29F7C3DFEDFFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4
+        F7FFA9D9E1FF35B069FF36B06AFFABDAE3FFA58D4CFF634D191F00000000A37E
+        2CF7FAF8F5FFE8E2DDFFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFDDD7
+        CFFF56B779FF33B366FF33B366FF64C68BFFB1944FFF654E1B1F00000000A782
+        31F7FAF9F5FFE8E2DDFFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FF8CCD
+        A5FF2FBA6EFF2FBA6EFF2FBA6EFF2FBA6EFF6F9C4DFF66521F1F00000000AC86
+        35F7FBF9F5FFF1EEEBFFEDE9E5FFEDE9E5FFEDE9E5FFEDE9E5FFC9E6D4FF2EC1
+        77FF2BC075FF2BC075FF2BC075FF2BC075FF2EBE73FF3BA6613A00000000B08A
+        39F7FAF7F2FFF6F3F1FFF3EFEDFFF3EFEDFFF3EFEDFFF1EFECFF44C989FF27C6
+        7BFF27C67BFF27C67BFF27C67BFF27C67BFF27C67BFF27C67BCF00000000B48E
+        3DF7C4A565FFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB1
+        7AFF26CB81FF24CB81FF24CB81FF24CB81FFA09646FF6386461F00000000B991
+        41F7B99141FFB99141FFB99141FFB99141FFB99141FFB99141FFB99141FFB991
+        41FF23CE85FF21D086FF21D086FF21D086FFA39A4BFF735A281F00000000BD95
+        45F7BD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD95
+        45FF21D289FF1ED38BFF1ED38BFF1ED38BFFA79E4FFF765D2B1F00000000C299
+        49F7C7A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A2
+        56FF1FD58DFF1CD68EFF1CD68EFF1CD68EFFAAA253FF795F2D1F00000000C9A0
+        51F7A68434FFA07D2CFFA27F2FFFA27F2FFFA27F2FFFA27F2FFFA27F2FFFA27F
+        2FFF1DD78FFF1BD891FF1BD891FF1BD891FFAFA556FF7C62301F00000000CDA4
+        56F7A8873BFFFBF9F6FFE4DBC4FFE9E1CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFF6FDFA8FF5ECF87FF65D38CFF64D28BFFBEA556F47B61300800000000D2A8
+        5AF7AF8F48FFFFFFFFFFA58232FFB69A5AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFDFD2B6FFB79344FFD0A555FFD0A555FFCFA4547C0000000000000000D6AB
+        5EF7BA9951FFFFFFFFFFB18C3DFFC0A263FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFE3D6BAFFC09A4DFFD4A859FFD4A858A1000000000000000000000000D9AD
+        5FA4C5A25CDFFEFDFCDFDBC79EDFE2D1B0DFFEFEFEDFFFFFFFDFFFFFFFDFFFFF
+        FFDFE7DABEDFC8A052DBD8AC5C8C997941050000000000000000
+      }
+    end
+  end
+  object PopupMenu5: TPopupMenu
+    left = 568
+    top = 280
+    object MenuItem27: TMenuItem
+      Caption = 'Save graph to BMP'
+      Bitmap.Data = {
+        36040000424D3604000000000000360000002800000010000000100000000100
+        2000000000000004000064000000640000000000000000000000A4A4A422A4A4
+        A463A4A4A47EA4A4A48FA4A4A49AA4A4A4A2A4A4A4A6A4A4A4A9A4A4A4A9A4A4
+        A4A7A4A4A4A2A4A4A49BA4A4A48FA4A4A47FA4A4A464A4A4A425948F840AA085
+        49C7828A6AFA808A6DFC808A6DFD808A6DFD808B6DFD808B6DFE808B6DFE808B
+        6DFD808A6DFD6C965DFD6D965DFC808A6CFA9A844AE099917E13000000009F7B
+        29F7C3DFEDFFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4F7FFC5E4
+        F7FFA9D9E1FF35B069FF36B06AFFABDAE3FFA58D4CFF634D191F00000000A37E
+        2CF7FAF8F5FFE8E2DDFFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFDDD7
+        CFFF56B779FF33B366FF33B366FF64C68BFFB1944FFF654E1B1F00000000A782
+        31F7FAF9F5FFE8E2DDFFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FFE0D8D2FF8CCD
+        A5FF2FBA6EFF2FBA6EFF2FBA6EFF2FBA6EFF6F9C4DFF66521F1F00000000AC86
+        35F7FBF9F5FFF1EEEBFFEDE9E5FFEDE9E5FFEDE9E5FFEDE9E5FFC9E6D4FF2EC1
+        77FF2BC075FF2BC075FF2BC075FF2BC075FF2EBE73FF3BA6613A00000000B08A
+        39F7FAF7F2FFF6F3F1FFF3EFEDFFF3EFEDFFF3EFEDFFF1EFECFF44C989FF27C6
+        7BFF27C67BFF27C67BFF27C67BFF27C67BFF27C67BFF27C67BCF00000000B48E
+        3DF7C4A565FFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB17AFFCCB1
+        7AFF26CB81FF24CB81FF24CB81FF24CB81FFA09646FF6386461F00000000B991
+        41F7B99141FFB99141FFB99141FFB99141FFB99141FFB99141FFB99141FFB991
+        41FF23CE85FF21D086FF21D086FF21D086FFA39A4BFF735A281F00000000BD95
+        45F7BD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD9545FFBD95
+        45FF21D289FF1ED38BFF1ED38BFF1ED38BFFA79E4FFF765D2B1F00000000C299
+        49F7C7A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A256FFC6A2
+        56FF1FD58DFF1CD68EFF1CD68EFF1CD68EFFAAA253FF795F2D1F00000000C9A0
+        51F7A68434FFA07D2CFFA27F2FFFA27F2FFFA27F2FFFA27F2FFFA27F2FFFA27F
+        2FFF1DD78FFF1BD891FF1BD891FF1BD891FFAFA556FF7C62301F00000000CDA4
+        56F7A8873BFFFBF9F6FFE4DBC4FFE9E1CFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFF6FDFA8FF5ECF87FF65D38CFF64D28BFFBEA556F47B61300800000000D2A8
+        5AF7AF8F48FFFFFFFFFFA58232FFB69A5AFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFDFD2B6FFB79344FFD0A555FFD0A555FFCFA4547C0000000000000000D6AB
+        5EF7BA9951FFFFFFFFFFB18C3DFFC0A263FFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFE3D6BAFFC09A4DFFD4A859FFD4A858A1000000000000000000000000D9AD
+        5FA4C5A25CDFFEFDFCDFDBC79EDFE2D1B0DFFEFEFEDFFFFFFFDFFFFFFFDFFFFF
+        FFDFE7DABEDFC8A052DBD8AC5C8C997941050000000000000000
+      }
+      OnClick = MenuItem27Click
+    end
+  end
+  object PopupMenu6: TPopupMenu
+    left = 326
+    top = 365
+    object MenuItem34: TMenuItem
+      Caption = 'Save contents to CSV'
+    end
+  end
+  object PopupMenu7: TPopupMenu
+    left = 319
+    top = 157
+    object MenuItem33: TMenuItem
+      Caption = 'Save graph to BMP'
+    end
+  end
+  object SaveDialog2: TSaveDialog
+    DefaultExt = '.csv'
+    Filter = 'csv|*.csv'
+    left = 446
+    top = 302
+  end
+end

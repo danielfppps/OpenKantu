@@ -1,0 +1,200 @@
+object loadSymbol: TloadSymbol
+  Left = 205
+  Height = 420
+  Top = 193
+  Width = 867
+  Caption = 'loadSymbol'
+  ClientHeight = 420
+  ClientWidth = 867
+  OnClose = FormClose
+  Position = poMainFormCenter
+  LCLVersion = '1.2.6.0'
+  object SymbolsList: TCheckListBox
+    Left = 24
+    Height = 336
+    Top = 40
+    Width = 184
+    Font.Height = -12
+    ItemHeight = 0
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 24
+    Height = 15
+    Top = 16
+    Width = 122
+    Caption = 'Symbols for simulation'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 600
+    Height = 25
+    Top = 8
+    Width = 241
+    BeforeAction = DBNavigator1BeforeAction
+    BevelOuter = bvNone
+    ChildSizing.EnlargeHorizontal = crsScaleChilds
+    ChildSizing.EnlargeVertical = crsScaleChilds
+    ChildSizing.ShrinkHorizontal = crsScaleChilds
+    ChildSizing.ShrinkVertical = crsScaleChilds
+    ChildSizing.Layout = cclLeftToRightThenTopToBottom
+    ChildSizing.ControlsPerLine = 100
+    ClientHeight = 25
+    ClientWidth = 241
+    DataSource = Datasource1
+    Options = []
+    TabOrder = 1
+  end
+  object SymbolsGrid: TDBGrid
+    Left = 216
+    Height = 336
+    Top = 40
+    Width = 625
+    Color = clWindow
+    Columns = <>
+    DataSource = Datasource1
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 2
+    TitleFont.Height = -12
+  end
+  object Button1: TButton
+    Left = 710
+    Height = 25
+    Top = 384
+    Width = 131
+    Caption = 'Save Database'
+    Font.Height = -12
+    OnClick = Button1Click
+    ParentFont = False
+    TabOrder = 3
+  end
+  object Button2: TButton
+    Left = 560
+    Height = 25
+    Top = 384
+    Width = 131
+    Caption = 'Add new entry to DB'
+    Font.Height = -12
+    OnClick = Button2Click
+    ParentFont = False
+    TabOrder = 4
+  end
+  object Button3: TButton
+    Left = 432
+    Height = 25
+    Top = 384
+    Width = 120
+    Caption = 'Load Inputs'
+    Font.Height = -12
+    OnClick = Button3Click
+    ParentFont = False
+    TabOrder = 5
+  end
+  object Datasource1: TDataSource
+    DataSet = ZMQueryDataSet1
+    left = 280
+    top = 248
+  end
+  object ZMConnection1: TZMConnection
+    DatabasePath = 'symbols'
+    Connected = True
+    FloatPrecision = 0
+    left = 408
+    top = 168
+  end
+  object ZMQueryDataSet1: TZMQueryDataSet
+    PacketRecords = 11
+    MaxIndexesCount = 7
+    FieldDefs = <    
+      item
+        Name = 'Symbol'
+        Attributes = [faFixed]
+        DataType = ftString
+        Precision = -1
+        Size = 200
+      end    
+      item
+        Name = 'Datafile'
+        DataType = ftString
+        Precision = 0
+        Size = 200
+      end    
+      item
+        Name = 'Timeframe'
+        DataType = ftInteger
+        Precision = 0
+        Size = 20
+      end    
+      item
+        Name = 'Slippage'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Spread'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'ContractSize'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'Comission'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'isVolume'
+        DataType = ftBoolean
+        Precision = -1
+        Size = 0
+      end    
+      item
+        Name = 'pointConversion'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'roundLots'
+        DataType = ftInteger
+        Precision = 0
+        Size = 0
+      end    
+      item
+        Name = 'MinStop'
+        DataType = ftFloat
+        Precision = 0
+        Size = 0
+      end>
+    AutoCalcFields = False
+    Filtered = True
+    ZMConnection = ZMConnection1
+    QueryExecuted = False
+    TableLoaded = False
+    TableSaved = False
+    DynamicFieldsCreated = False
+    PeristentFieldsCreated = False
+    MemoryDataSetOpened = False
+    PersistentSave = False
+    Parameters = <>
+    MasterDetailFiltration = False
+    FilterOptions = []
+    left = 512
+    top = 152
+  end
+  object OpenDialog1: TOpenDialog
+    left = 347
+    top = 16
+  end
+end

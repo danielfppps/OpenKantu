@@ -2083,7 +2083,7 @@ begin
 
   if ( isIndicatorPositiveResult(simulationResults[k]))then isPositiveCount := isPositiveCount + 1;
 
-  MainForm.StatusLabel.Caption := 'Simulation progress: ' + FloatToStr(simulationsRan) + '  runs, valid ' + IntToStr(validResults) + '/' + SimulationForm.OptionsGrid.Cells[1, IDX_OPT_REQUESTED_SYSTEMS] + ' Avg time/sim : ' + FloatToStr(MainForm.simulationTime/1000) + ', searched: ' + FloatToStr(Round((100*(simulationsRan)/MainForm.totalSystems)*100000)/100000 ) + '%';
+  MainForm.StatusLabel.Caption := 'Simulation progress: ' + FloatToStr(simulationsRan) + '  runs, valid ' + IntToStr(validResults) + '/' + SimulationForm.OptionsGrid.Cells[1, IDX_OPT_REQUESTED_SYSTEMS] + ' Avg time/sim : ' + FloatToStr(MainForm.simulationTime/1000);
   MainForm.ProgressBar1.Position := validResults ;
   Application.ProcessMessages;
 

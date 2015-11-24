@@ -74,7 +74,7 @@ begin
   DefaultFormatSettings.DateSeparator 	         := '.' ;
   DefaultFormatSettings.DecimalSeparator 	 := '.' ;
   MainForm.Enabled := true;
-  MainForm.parseConfig;
+
 
   Application.CreateForm(TPortfolioResultForm, PortfolioResultForm);
   Application.CreateForm(TSimulationForm2, SimulationForm2);
@@ -85,6 +85,7 @@ begin
   //
 
   setMainFolder;
+  MainForm.parseConfig;
   Application.Run;
 end.
 

@@ -1,0 +1,205 @@
+object CustomFilterForm: TCustomFilterForm
+  Left = 619
+  Height = 294
+  Top = 353
+  Width = 360
+  BorderStyle = bsToolWindow
+  Caption = 'Custom Filter'
+  ClientHeight = 294
+  ClientWidth = 360
+  DefaultMonitor = dmDesktop
+  FormStyle = fsStayOnTop
+  Position = poMainFormCenter
+  LCLVersion = '1.0.12.0'
+  object CustomFilterGrid: TStringGrid
+    Left = 16
+    Height = 264
+    Top = 8
+    Width = 128
+    ColCount = 2
+    Columns = <    
+      item
+        Alignment = taCenter
+        Title.Alignment = taCenter
+        Title.Caption = 'Abbreviation'
+        Width = 50
+      end>
+    DefaultColWidth = 65
+    DefaultRowHeight = 12
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -8
+    Font.Name = 'Arial Narrow'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+    ParentFont = False
+    RowCount = 21
+    TabOrder = 0
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -8
+    TitleFont.Name = 'Arial Narrow'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+    Cells = (
+      41
+      0
+      1
+      'Absolute Profit'
+      0
+      2
+      'Profit/trades'
+      0
+      3
+      'Longs'
+      0
+      4
+      'Shorts'
+      0
+      5
+      'Total Trades'
+      0
+      6
+      'Max DD'
+      0
+      7
+      'Max DD Length'
+      0
+      8
+      'Cons. Loss'
+      0
+      9
+      'Cons. Wins'
+      0
+      10
+      'Profit: Max DD'
+      0
+      11
+      'Reward to Risk'
+      0
+      12
+      'Skewness'
+      0
+      13
+      'Kurtosis'
+      0
+      14
+      'Winning %'
+      0
+      15
+      'Profit Factor'
+      0
+      16
+      'R^2'
+      0
+      17
+      'SQN'
+      0
+      18
+      'Ulcer Index'
+      0
+      19
+      'Std.Dev'
+      0
+      20
+      'Mod. Sharpe Ratio'
+      1
+      0
+      'Abbreviation'
+      1
+      1
+      'AP'
+      1
+      2
+      'APT'
+      1
+      3
+      'TL'
+      1
+      4
+      'TS'
+      1
+      5
+      'TT'
+      1
+      6
+      'MD'
+      1
+      7
+      'MDL'
+      1
+      8
+      'CL'
+      1
+      9
+      'SW'
+      1
+      10
+      'PD'
+      1
+      11
+      'RR'
+      1
+      12
+      'SK'
+      1
+      13
+      'KR'
+      1
+      14
+      'WP'
+      1
+      15
+      'PF'
+      1
+      16
+      'R2'
+      1
+      17
+      'SQN'
+      1
+      18
+      'UI'
+      1
+      19
+      'STDDEV'
+      1
+      20
+      'MSR'
+    )
+  end
+  object Button1: TButton
+    Left = 272
+    Height = 25
+    Top = 256
+    Width = 75
+    Caption = 'Close'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object Label1: TLabel
+    Left = 160
+    Height = 16
+    Top = 184
+    Width = 119
+    Caption = 'Custom Filter Formula'
+    ParentColor = False
+  end
+  object CustomFormulaEdit: TEdit
+    Left = 160
+    Height = 23
+    Top = 208
+    Width = 187
+    TabOrder = 2
+    Text = '0'
+  end
+  object Label2: TLabel
+    Left = 152
+    Height = 160
+    Top = 8
+    Width = 195
+    AutoSize = False
+    Caption = 'Create a custom filter formula using any performance variables. Simply enter the equation you want to use on the edit box below. For example if you want to calculate the custom criteria as the absolute profit divided by the SQN you can enter AP/SQN. More complex formula, like SW*0.1+CL/MD*0.4-APT (only an example) are also possible.'
+    ParentColor = False
+    WordWrap = True
+  end
+end

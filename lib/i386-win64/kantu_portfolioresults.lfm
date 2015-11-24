@@ -1,0 +1,168 @@
+object PortfolioResultForm: TPortfolioResultForm
+  Left = 345
+  Height = 475
+  Top = 147
+  Width = 234
+  BorderStyle = bsToolWindow
+  Caption = 'PortfolioResultForm'
+  ClientHeight = 475
+  ClientWidth = 234
+  Position = poMainFormCenter
+  LCLVersion = '1.0.12.0'
+  object PortfolioResultsGrid: TStringGrid
+    Left = 16
+    Height = 456
+    Top = 8
+    Width = 208
+    ColCount = 2
+    Columns = <    
+      item
+        Alignment = taCenter
+        Title.Alignment = taCenter
+        Title.Caption = 'Value'
+        Width = 80
+      end>
+    DefaultColWidth = 100
+    DefaultRowHeight = 20
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -13
+    Font.Name = 'Arial Narrow'
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
+    ParentFont = False
+    RowCount = 21
+    TabOrder = 0
+    TitleFont.CharSet = ANSI_CHARSET
+    TitleFont.Height = -13
+    TitleFont.Name = 'Arial Narrow'
+    TitleFont.Pitch = fpVariable
+    TitleFont.Quality = fqDraft
+    Cells = (
+      41
+      0
+      1
+      'Absolute Profit'
+      0
+      2
+      'Profit/trades'
+      0
+      3
+      'Longs'
+      0
+      4
+      'Shorts'
+      0
+      5
+      'Total Trades'
+      0
+      6
+      'Max DD'
+      0
+      7
+      'Max DD Length'
+      0
+      8
+      'Cons. Loss'
+      0
+      9
+      'Cons. Wins'
+      0
+      10
+      'Profit: Max DD'
+      0
+      11
+      'Reward to Risk'
+      0
+      12
+      'Skewness'
+      0
+      13
+      'Kurtosis'
+      0
+      14
+      'Winning %'
+      0
+      15
+      'Profit Factor'
+      0
+      16
+      'R^2'
+      0
+      17
+      'SQN'
+      0
+      18
+      'Ulcer Index'
+      0
+      19
+      'Std.Dev'
+      0
+      20
+      'Mod. Sharpe Ratio'
+      1
+      0
+      'Abbreviation'
+      1
+      1
+      'AP'
+      1
+      2
+      'APT'
+      1
+      3
+      'TL'
+      1
+      4
+      'TS'
+      1
+      5
+      'TT'
+      1
+      6
+      'MD'
+      1
+      7
+      'MDL'
+      1
+      8
+      'CL'
+      1
+      9
+      'SW'
+      1
+      10
+      'PD'
+      1
+      11
+      'RR'
+      1
+      12
+      'SK'
+      1
+      13
+      'KR'
+      1
+      14
+      'WP'
+      1
+      15
+      'PF'
+      1
+      16
+      'R2'
+      1
+      17
+      'SQN'
+      1
+      18
+      'UI'
+      1
+      19
+      'STDDEV'
+      1
+      20
+      'MSR'
+    )
+  end
+end

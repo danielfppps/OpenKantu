@@ -1,0 +1,216 @@
+object SingleSystem: TSingleSystem
+  Left = 635
+  Height = 324
+  Top = 265
+  Width = 318
+  BorderStyle = bsToolWindow
+  Caption = 'Run a custom single system'
+  ClientHeight = 324
+  ClientWidth = 318
+  FormStyle = fsStayOnTop
+  Position = poMainFormCenter
+  LCLVersion = '1.2.6.0'
+  object RulesList: TListBox
+    Left = 24
+    Height = 88
+    Top = 24
+    Width = 280
+    Font.Height = -12
+    ItemHeight = 0
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 24
+    Height = 15
+    Top = 8
+    Width = 99
+    Caption = 'Entry pattern Rules'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object Button1: TButton
+    Left = 24
+    Height = 25
+    Top = 152
+    Width = 76
+    Caption = 'Add Rule'
+    Font.Height = -12
+    OnClick = Button1Click
+    ParentFont = False
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 176
+    Height = 26
+    Top = 151
+    Width = 131
+    Caption = 'Clear All Rules'
+    Font.Height = -12
+    OnClick = Button2Click
+    ParentFont = False
+    TabOrder = 2
+  end
+  object Button3: TButton
+    Left = 24
+    Height = 25
+    Top = 276
+    Width = 280
+    Caption = 'Run Single System'
+    Font.Height = -12
+    OnClick = Button3Click
+    ParentFont = False
+    TabOrder = 3
+  end
+  object ComboBox1: TComboBox
+    Left = 24
+    Height = 23
+    Top = 120
+    Width = 80
+    Font.Height = -12
+    ItemHeight = 15
+    ParentFont = False
+    Style = csDropDownList
+    TabOrder = 4
+  end
+  object ComboBox2: TComboBox
+    Left = 176
+    Height = 23
+    Top = 120
+    Width = 80
+    Font.Height = -12
+    ItemHeight = 15
+    ParentFont = False
+    Style = csDropDownList
+    TabOrder = 5
+  end
+  object Label2: TLabel
+    Left = 159
+    Height = 15
+    Top = 125
+    Width = 8
+    Caption = '>'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object Edit1: TEdit
+    Left = 112
+    Height = 23
+    Top = 120
+    Width = 40
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 6
+    Text = '1'
+  end
+  object Edit2: TEdit
+    Left = 264
+    Height = 23
+    Top = 120
+    Width = 40
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 7
+    Text = '1'
+  end
+  object EditSL: TEdit
+    Left = 104
+    Height = 23
+    Top = 184
+    Width = 56
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 8
+  end
+  object Label3: TLabel
+    Left = 32
+    Height = 15
+    Top = 191
+    Width = 50
+    Caption = 'Stop Loss'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object EditTP: TEdit
+    Left = 248
+    Height = 23
+    Top = 188
+    Width = 56
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 9
+  end
+  object Label4: TLabel
+    Left = 169
+    Height = 15
+    Top = 191
+    Width = 57
+    Caption = 'Take Profit'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 32
+    Height = 15
+    Top = 220
+    Width = 54
+    Caption = 'Hour filter'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object Label6: TLabel
+    Left = 169
+    Height = 15
+    Top = 220
+    Width = 47
+    Caption = 'Day filter'
+    Font.Height = -12
+    ParentColor = False
+    ParentFont = False
+  end
+  object EditHourFilter: TEdit
+    Left = 104
+    Height = 23
+    Top = 213
+    Width = 56
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 10
+  end
+  object EditDayFilter: TEdit
+    Left = 248
+    Height = 23
+    Top = 213
+    Width = 56
+    Font.Height = -12
+    ParentFont = False
+    TabOrder = 11
+  end
+  object SymbolsCombo: TComboBox
+    Left = 29
+    Height = 23
+    Top = 244
+    Width = 275
+    Font.Height = -12
+    ItemHeight = 15
+    ParentFont = False
+    Style = csDropDownList
+    TabOrder = 12
+  end
+  object Button6: TButton
+    Left = 104
+    Height = 25
+    Top = 152
+    Width = 67
+    Caption = 'Del Rule'
+    Font.Height = -12
+    OnClick = Button6Click
+    ParentFont = False
+    TabOrder = 13
+  end
+end

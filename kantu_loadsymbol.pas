@@ -28,6 +28,8 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button3Click(Sender: TObject);
+    procedure DBNavigator1BeforeAction(Sender: TObject; Button: TDBNavButtonType
+      );
     procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
   private
     { private declarations }
@@ -113,7 +115,7 @@ end;
 
 procedure TloadSymbol.Button2Click(Sender: TObject);
 var
-  symbol,datafile,timeframe,slippage,spread,contractSize,commission,isVolume,pointConversion,roundLots: string;
+  symbol,datafile,timeframe,minStop,slippage,spread,contractSize,commission,isVolume,pointConversion,roundLots: string;
   database: TStringList;
 begin
   symbol       :=  InputBox('Symbol', 'Please enter the desired symbol name', '') ;
@@ -139,6 +141,7 @@ begin
   isVolume     :=  InputBox('Volume', 'Does the data contain volume information ? (0=no, 1=yes))', '') ;
   pointConversion       :=  InputBox('Point Conversion', 'Please enter the multiplication factor to convert from absolute price value to pips', '') ;
   roundLots :=  InputBox('Lot size rounding', 'To how many decimal places do you want to round lot sizes?', '') ;
+  minStop :=  InputBox('Min stop size', 'How many price units do you want to have as a minimum SL/TP distance? (Should be number with decimal, if you want 0 type 0.0)', '') ;
 
   database := TStringList.Create;
 
@@ -148,7 +151,7 @@ begin
   database.LoadFromFile(GetCurrentDir + '/symbols/symbols.csv');
   {$ENDIF}
 
-  database.Add(symbol+';'+datafile+';'+timeframe+';'+slippage+';'+spread+';'+contractSize+';'+commission+';'+isVolume+';'+pointConversion+';'+roundLots);
+  database.Add(symbol+';'+datafile+';'+timeframe+';'+slippage+';'+spread+';'+contractSize+';'+commission+';'+isVolume+';'+pointConversion+';'+roundLots+';'+minStop);
 
   {$IFDEF DARWIN}
   database.SaveToFile(GetCurrentDir + '/kantu.app/Contents/MacOS/symbols/symbols.csv');
@@ -186,6 +189,12 @@ begin
   MainForm.simulationTime := 0;
   MainForm.simulationRuns := 0;
   MainForm.simulationType := SIMULATION_TYPE_INDICATORS;
+
+end;
+
+procedure TloadSymbol.DBNavigator1BeforeAction(Sender: TObject;
+  Button: TDBNavButtonType);
+begin
 
 end;
 

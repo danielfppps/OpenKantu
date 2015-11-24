@@ -56,7 +56,7 @@ end;
 
 
 begin
-  Application.Title:='OpenKantu - Price Pattern Parameter-lessTrading System '
+  Application.Title:='Kantu - Price Pattern Parameter-lessTrading System '
     +'Generator';
   Application.Initialize;
   Randomize;
