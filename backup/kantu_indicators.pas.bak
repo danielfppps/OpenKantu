@@ -419,7 +419,6 @@ var
   randomPattern: TIndicatorPattern;
   i: integer;
   numberOfIndicators: integer;
-  isShiftOne: boolean;
   maxSLTPTLSteps: integer;
   maxShiftSteps: integer;
   maxSLTPTL: double;
@@ -428,11 +427,9 @@ var
 begin
 
     numberOfIndicators := Length(LoadedIndicatorData[0]);
-    isShiftOne := false;
 
-    SetLength(randomPattern.tradingRules, Random(maxRules)+1);
+    SetLength(randomPattern.tradingRules, maxRules);
     maxSLTPTL := StrToFloat(SimulationForm.OptionsGrid.Cells[1,IDX_OPT_MAX_SLTPTL]);
-
 
     randomPattern.allowLongSignals := true;
     randomPattern.allowShortSignals := true;
@@ -448,16 +445,10 @@ begin
     maxShiftSteps := Round(maxCandleShift/stepShift) ;
     maxSLTPTLSteps :=   Round((maxSLTPTL-0.5)/stepSLTPTL) ;
 
-    if SimulationForm.FixComplexityCheck.Checked then SetLength(randomPattern.tradingRules, maxRules);
-
     for i := 0 to Length(randomPattern.tradingRules)-1 do
     begin
 
      SetLength(randomPattern.tradingRules[i], INDICATOR_RULES_TOTAL);
-
-     randomPattern.tradingRules[i][IDX_LOGIC_TYPE]  := LOGIC_AND;
-
-     randomPattern.tradingRules[i][IDX_SIZE_COMPARISON]  := 0;
 
      randomPattern.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT]    := stepShift*RandomRange(0, maxShiftSteps);
      randomPattern.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT]    := stepShift*RandomRange(0, maxShiftSteps);
@@ -467,47 +458,11 @@ begin
 
      while (checkedInList(randomPattern.tradingRules[i][IDX_FIRST_INDICATOR])=false) do randomPattern.tradingRules[i][IDX_FIRST_INDICATOR]  := RandomRange(0, numberOfIndicators);
 
-     if  (randomPattern.tradingRules[i][IDX_FIRST_INDICATOR] = 4) or (randomPattern.tradingRules[i][IDX_FIRST_INDICATOR] = 5) then
-     begin
-          if RandomRange(0, 100) < 50 then
-          randomPattern.tradingRules[i][IDX_SECOND_INDICATOR] := 4 else
-          randomPattern.tradingRules[i][IDX_SECOND_INDICATOR] := 5 ;
-     end;
-
-     if  (randomPattern.tradingRules[i][IDX_FIRST_INDICATOR] <> 4) and (randomPattern.tradingRules[i][IDX_FIRST_INDICATOR] <> 5) then
-     begin
-          while (randomPattern.tradingRules[i][IDX_SECOND_INDICATOR] = 4) or (randomPattern.tradingRules[i][IDX_SECOND_INDICATOR] = 5) do
-          randomPattern.tradingRules[i][IDX_SECOND_INDICATOR] := RandomRange(0, numberOfIndicators);
-     end;
-
-     while (randomPattern.tradingRules[i][IDX_FIRST_INDICATOR] = randomPattern.tradingRules[i][IDX_SECOND_INDICATOR]) and
-           (randomPattern.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT] = randomPattern.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT]) do
-     begin
-          randomPattern.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT]    := stepShift*RandomRange(0, maxShiftSteps);
-     end;
-
-     if randomPattern.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT] = 0 then isShiftOne := true;
-     if randomPattern.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT] = 0 then isShiftOne := true;
-
-     while (checkedInList(randomPattern.tradingRules[i][IDX_SECOND_INDICATOR])=false) do
-     begin
-          randomPattern.tradingRules[i][IDX_SECOND_INDICATOR]  := RandomRange(0, numberOfIndicators);
-
-          if  (randomPattern.tradingRules[i][IDX_FIRST_INDICATOR] = 4) or (randomPattern.tradingRules[i][IDX_FIRST_INDICATOR] = 5) then
-          begin
-               if RandomRange(0, 100) < 50 then
-               randomPattern.tradingRules[i][IDX_SECOND_INDICATOR] := 4 else
-               randomPattern.tradingRules[i][IDX_SECOND_INDICATOR] := 5 ;
-          end;
-
-          if  (randomPattern.tradingRules[i][IDX_FIRST_INDICATOR] <> 4) and (randomPattern.tradingRules[i][IDX_FIRST_INDICATOR] <> 5) then
-          begin
-               while (randomPattern.tradingRules[i][IDX_SECOND_INDICATOR] = 4) or (randomPattern.tradingRules[i][IDX_SECOND_INDICATOR] = 5) do
-               randomPattern.tradingRules[i][IDX_SECOND_INDICATOR] := RandomRange(0, numberOfIndicators);
-          end;
-     end;
+     while (checkedInList(randomPattern.tradingRules[i][IDX_SECOND_INDICATOR])=false) do  randomPattern.tradingRules[i][IDX_SECOND_INDICATOR] := RandomRange(0, numberOfIndicators);
 
     end;
+
+end;
 
 
    // while isIndicatorPatternPresent(randomPattern) do
@@ -665,18 +620,15 @@ var
   i: integer;
   firstIndicator, secondIndicator: integer;
   firstShift, secondShift: integer;
-  countAND: integer;
-  countOR, totalAND, totalOR: integer;
+  count, total: integer;
   currentTime: TDateTime;
   HH,MM,SS,MS: Word;
-  logicType: integer;
   firstIndicatorSell: integer;
   secondIndicatorSell: integer;
 begin
 
     Result := false;
-    countAND := 0;
-    countOR := 0;
+    count := 0;
 
     currentTime := LoadedIndiHistoryData[symbol].time[currentShift+1];
 
@@ -698,8 +650,7 @@ begin
 
     end;
 
-    totalAND := 0;
-    totalOR := 0;
+    total := 0;
 
     for i:=0 to Length(testPattern.tradingRules)-1 do
     begin
@@ -708,27 +659,14 @@ begin
      secondIndicator := testPattern.tradingRules[i][IDX_SECOND_INDICATOR];
      firstShift      := testPattern.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT];
      secondShift     := testPattern.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT];
-     logicType       := testPattern.tradingRules[i][IDX_LOGIC_TYPE];
 
-     if logicType = LOGIC_AND then totalAND := totalAND + 1;
-     if logicType = LOGIC_OR then totalOR := totalOR + 1;
-
-     if (testPattern.tradingRules[i][IDX_SIZE_COMPARISON] <> 0 ) and
-        (Abs(LoadedIndicatorData[symbol][3].data[currentShift-firstShift]-LoadedIndicatorData[symbol][0].data[currentShift-firstShift]) < testPattern.tradingRules[i][IDX_SIZE_COMPARISON]*0.01*LoadedIndiHistoryData[symbol].ATR[currentShift-firstShift])
-        then
-        continue;
+     total := total + 1;
 
        if
           (LoadedIndicatorData[symbol][firstIndicator].data[currentShift-firstShift] > LoadedIndicatorData[symbol][secondIndicator].data[currentShift-secondShift] ) and
-          (logic = BUY)
-          then
+          (logic = BUY) then
           begin
-
-               if logicType = LOGIC_AND then
-               countAND := countAND + 1;
-
-               if logicType = LOGIC_OR then
-               countOR := countOR + 1;
+               count := count + 1;
           end;
 
        firstIndicatorSell := firstIndicator;
@@ -748,34 +686,14 @@ begin
 
        if
           (LoadedIndicatorData[symbol][firstIndicatorSell].data[currentShift-firstShift] < LoadedIndicatorData[symbol][secondIndicatorSell].data[currentShift-secondShift] ) and
-          (logic = SELL) and
-          (firstIndicatorSell <> 4) and
-          (firstIndicatorSell <> 5)
-          then
+          (logic = SELL) then
           begin
-               if logicType = LOGIC_AND then
-               countAND := countAND + 1;
-
-               if logicType = LOGIC_OR then
-               countOR := countOR + 1;
-          end;
-
-       if
-          (LoadedIndicatorData[symbol][firstIndicatorSell].data[currentShift-firstShift] > LoadedIndicatorData[symbol][secondIndicatorSell].data[currentShift-secondShift] ) and
-          (logic = SELL) and
-          ((firstIndicatorSell = 4) or (firstIndicatorSell = 5))
-          then
-          begin
-               if logicType = LOGIC_AND then
-               countAND := countAND + 1;
-
-               if logicType = LOGIC_OR then
-               countOR := countOR + 1;
+               count := count + 1;
           end;
 
     end;
 
-    if (countAND = totalAND) and ((countOR > 0) or (totalOR = 0)) then
+    if (count = total) then
     Result := true ;
 
 end;
@@ -1283,6 +1201,12 @@ begin
 
           isBuySignal := evaluateIndicatorPattern(i, usedEntryPattern, currentCandle-1, BUY, EVAL_TYPE_ENTRY );
           isSellSignal:= evaluateIndicatorPattern(i, usedEntryPattern, currentCandle-1, SELL, EVAL_TYPE_ENTRY ) ;
+
+       //   if isBuySignal then
+        //  ShowMessage('BUY ' + DateTimeToStr(currentTime));
+
+          //if isSellSignal then
+          //ShowMessage('SELL ' + DateTimeToStr(currentTime));
 
     // if we are past the end of the back-testing date make sure any open trades are closed.
        if (currentTime > inSampleEndingDate) and (onlyInSample) and (activeOrder.orderType <> NONE) then
@@ -2083,7 +2007,7 @@ begin
 
   if ( isIndicatorPositiveResult(simulationResults[k]))then isPositiveCount := isPositiveCount + 1;
 
-  MainForm.StatusLabel.Caption := 'Simulation progress: ' + FloatToStr(simulationsRan) + '  runs, valid ' + IntToStr(validResults) + '/' + SimulationForm.OptionsGrid.Cells[1, IDX_OPT_REQUESTED_SYSTEMS] + ' Avg time/sim : ' + FloatToStr(MainForm.simulationTime/1000) + ', searched: ' + FloatToStr(Round((100*(simulationsRan)/MainForm.totalSystems)*100000)/100000 ) + '%';
+  MainForm.StatusLabel.Caption := 'Simulation progress: ' + FloatToStr(simulationsRan) + '  runs, valid ' + IntToStr(validResults) + '/' + SimulationForm.OptionsGrid.Cells[1, IDX_OPT_REQUESTED_SYSTEMS] + ' Avg time/sim : ' + FloatToStr(MainForm.simulationTime/1000);
   MainForm.ProgressBar1.Position := validResults ;
   Application.ProcessMessages;
 

@@ -260,9 +260,6 @@ j := 0;
    SimulationForm2.UseDayFilter.Checked:= StrToBool(configFile[j]) ;
    SimulationForm.UseDayFilter.Checked:= StrToBool(configFile[j]) ;
    j := j+1;
-   SimulationForm2.FixComplexityCheck.Checked:= StrToBool(configFile[j]) ;
-   SimulationForm.FixComplexityCheck.Checked:= StrToBool(configFile[j]) ;
-   j := j+1;
    SimulationForm2.LROriginCheck.Checked:= StrToBool(configFile[j]) ;
    SimulationForm.LROriginCheck.Checked:= StrToBool(configFile[j]) ;
    j := j+1;
@@ -645,10 +642,17 @@ begin
 
           end;
 
-          ChartOHLC.Visible := true;
-          LabelCheck.Visible := true;
-          Button2.Visible := true;
-          ohlcCheck.Visible := true;
+          Chart1.AxisList.BottomAxis.Range.Max:= indicatorSimulationResults.trades[Length(indicatorSimulationResults.trades)-1].closeTime;
+          Chart1.AxisList.BottomAxis.Range.Min:= indicatorSimulationResults.trades[0].closeTime ;
+
+          // only show this info on trade analysis on click
+          if MenuItem29.Checked then
+          begin
+               ChartOHLC.Visible := true;
+               LabelCheck.Visible := true;
+               Button2.Visible := true;
+               ohlcCheck.Visible := true;
+          end;
 
            end;
 
@@ -923,7 +927,6 @@ begin
    configFile.Add(BoolToStr(SimulationForm2.UseTPCheck.Checked));
    configFile.Add(BoolToStr(SimulationForm2.UseHourFilter.Checked));
    configFile.Add(BoolToStr(SimulationForm2.UseDayFilter.Checked));
-   configFile.Add(BoolToStr(SimulationForm2.FixComplexityCheck.Checked));
    configFile.Add(BoolToStr(SimulationForm2.LROriginCheck.Checked));
    configFile.Add(BoolToStr(SimulationForm2.AsymmetryCheck.Checked));
    configFile.Add(BoolToStr(SimulationForm2.UseFixedSLTP.Checked));
@@ -1204,17 +1207,12 @@ begin
          for j:= 0 to Length(pricePattern.tradingRules)-1 do
          begin
 
-         logicType       := pricePattern.tradingRules[j][IDX_LOGIC_TYPE];
          firstShift      := FloatToStr(pricePattern.tradingRules[j][IDX_FIRST_INDICATOR_SHIFT]+1);
          secondShift     := FloatToStr(pricePattern.tradingRules[j][IDX_SECOND_INDICATOR_SHIFT]+1);
 
          if (Code_MQL4.Strings[Code_MQL4.Count-1] <> '&&')  and (Code_MQL4.Strings[Code_MQL4.Count-1][1] <> '/') then
          begin
-            if logicType = LOGIC_AND then
             Code_MQL4.Add('&&');
-
-            if logicType = LOGIC_OR then
-            Code_MQL4.Add('||');
          end;
 
          if (logic = SHORT_EXIT) or (logic = LONG_ENTRY) then
@@ -1301,13 +1299,8 @@ begin
     secondIndicator := FloatToStr(pricePattern.tradingRules[j][IDX_SECOND_INDICATOR]);
     firstShift      := FloatToStr(pricePattern.tradingRules[j][IDX_FIRST_INDICATOR_SHIFT]+1);
     secondShift     := FloatToStr(pricePattern.tradingRules[j][IDX_SECOND_INDICATOR_SHIFT]+1);
-    logicType       := pricePattern.tradingRules[j][IDX_LOGIC_TYPE];
 
-    if (logicType = LOGIC_AND) then
     F4_Code.Add('&&');
-
-    if (logicType = LOGIC_OR) then
-    F4_Code.Add('||');
 
     if (logic = SHORT_EXIT) or (logic = LONG_ENTRY) then
     begin

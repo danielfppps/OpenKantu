@@ -44,7 +44,7 @@ object SimulationForm: TSimulationForm
     Left = 304
     Height = 25
     Top = 72
-    Width = 158
+    Width = 156
     Caption = 'Optimization Target'
     ParentColor = False
   end
@@ -70,7 +70,7 @@ object SimulationForm: TSimulationForm
     Left = 304
     Height = 25
     Top = 128
-    Width = 104
+    Width = 103
     Caption = 'Starting Date'
     ParentColor = False
   end
@@ -83,22 +83,6 @@ object SimulationForm: TSimulationForm
     OnClick = BeginInSampleEditClick
     TabOrder = 2
     Text = '01/01/1985'
-  end
-  object autoSaveGraphsOnWFACheck: TCheckBox
-    Left = 304
-    Height = 29
-    Top = 293
-    Width = 238
-    Caption = 'Autosave graphs on WFA '
-    TabOrder = 3
-  end
-  object SaveAllResults: TCheckBox
-    Left = 304
-    Height = 29
-    Top = 317
-    Width = 252
-    Caption = 'Save result file for every test'
-    TabOrder = 4
   end
   object Label2: TLabel
     Left = 304
@@ -115,16 +99,8 @@ object SimulationForm: TSimulationForm
     Width = 183
     OnClick = EndOutOfSampleEditClick
     ReadOnly = True
-    TabOrder = 5
+    TabOrder = 3
     Text = '01/01/2020'
-  end
-  object SaveSummaryCheck: TCheckBox
-    Left = 304
-    Height = 29
-    Top = 341
-    Width = 280
-    Caption = 'Save all WFA period summaries'
-    TabOrder = 6
   end
   object UsedInputsList: TCheckListBox
     Left = 504
@@ -132,13 +108,13 @@ object SimulationForm: TSimulationForm
     Top = 32
     Width = 120
     ItemHeight = 0
-    TabOrder = 7
+    TabOrder = 4
   end
   object Label3: TLabel
     Left = 504
     Height = 25
     Top = 8
-    Width = 123
+    Width = 122
     Caption = 'Input Variables '
     ParentColor = False
   end
@@ -148,16 +124,16 @@ object SimulationForm: TSimulationForm
     Top = 32
     Width = 183
     Caption = 'Show Options'
-    TabOrder = 8
+    TabOrder = 5
   end
   object OptionsPanel: TPanel
-    Left = 304
+    Left = 312
     Height = 512
     Top = 64
     Width = 183
     ClientHeight = 512
     ClientWidth = 183
-    TabOrder = 9
+    TabOrder = 6
     Visible = False
     object UseSLCheck: TCheckBox
       Left = 23
@@ -248,7 +224,7 @@ object SimulationForm: TSimulationForm
     Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goSmoothScroll]
     RowCount = 15
     ScrollBars = ssAutoVertical
-    TabOrder = 10
+    TabOrder = 7
     ColWidths = (
       180
       81
@@ -257,7 +233,7 @@ object SimulationForm: TSimulationForm
       25
       0
       1
-      'Max Rules '
+      'Rules'
       0
       2
       'Max Shift'

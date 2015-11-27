@@ -1,8 +1,9 @@
 object SimulationForm2: TSimulationForm2
-  Left = 315
+  Left = 975
   Height = 522
-  Top = 430
+  Top = 61
   Width = 661
+  BorderStyle = bsToolWindow
   Caption = 'Simulation Options'
   ClientHeight = 522
   ClientWidth = 661
@@ -46,7 +47,7 @@ object SimulationForm2: TSimulationForm2
     Left = 321
     Height = 15
     Top = 72
-    Width = 106
+    Width = 105
     Caption = 'Optimization Target'
     Font.Height = -12
     ParentColor = False
@@ -134,7 +135,7 @@ object SimulationForm2: TSimulationForm2
     Left = 521
     Height = 15
     Top = 8
-    Width = 81
+    Width = 80
     Caption = 'Input Variables '
     Font.Height = -12
     ParentColor = False
@@ -180,77 +181,59 @@ object SimulationForm2: TSimulationForm2
       OnChange = UseTPCheckChange
       TabOrder = 1
     end
-    object FixComplexityCheck: TCheckBox
-      Left = 22
-      Height = 29
-      Top = 219
-      Width = 105
-      Caption = 'Fix complexity'
-      OnChange = FixComplexityCheckChange
-      TabOrder = 2
-    end
     object UseHourFilter: TCheckBox
       Left = 22
       Height = 29
-      Top = 161
+      Top = 130
       Width = 108
       Caption = 'Use Hour Filter'
       OnChange = UseHourFilterChange
-      TabOrder = 3
+      TabOrder = 2
     end
     object UseDayFilter: TCheckBox
       Left = 22
       Height = 29
-      Top = 190
+      Top = 159
       Width = 101
       Caption = 'Use Day Filter'
       OnChange = UseDayFilterChange
-      TabOrder = 4
+      TabOrder = 3
     end
     object LROriginCheck: TCheckBox
       Left = 22
       Height = 29
-      Top = 248
+      Top = 192
       Width = 123
       Caption = 'LR through origin'
       OnChange = LROriginCheckChange
-      TabOrder = 5
+      TabOrder = 4
     end
     object AsymmetryCheck: TCheckBox
       Left = 22
       Height = 29
-      Top = 277
+      Top = 224
       Width = 91
       Caption = 'Asymmetry'
       OnChange = AsymmetryCheckChange
-      TabOrder = 6
+      TabOrder = 5
     end
     object UseFixedSLTP: TCheckBox
       Left = 22
       Height = 29
-      Top = 103
+      Top = 72
       Width = 113
       Caption = 'Use Fixed SL/TP'
       OnChange = UseFixedSLTPChange
-      TabOrder = 7
+      TabOrder = 6
     end
     object UseFixedHour: TCheckBox
       Left = 22
       Height = 29
-      Top = 132
+      Top = 101
       Width = 109
       Caption = 'Use Fixed Hour'
       OnChange = UseFixedHourChange
-      TabOrder = 8
-    end
-    object UseAlwaysUpTLCheck: TCheckBox
-      Left = 22
-      Height = 29
-      Top = 74
-      Width = 95
-      Caption = 'Use AFM-TL'
-      OnChange = UseAlwaysUpTLCheckChange
-      TabOrder = 9
+      TabOrder = 7
     end
   end
   object OptionsGrid: TStringGrid
@@ -281,7 +264,7 @@ object SimulationForm2: TSimulationForm2
       25
       0
       1
-      'Max Rules '
+      'Number of rules'
       0
       2
       'Max Shift'

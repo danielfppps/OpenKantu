@@ -147,7 +147,7 @@ object SingleSystem: TSingleSystem
     Left = 169
     Height = 15
     Top = 191
-    Width = 57
+    Width = 56
     Caption = 'Take Profit'
     Font.Height = -12
     ParentColor = False

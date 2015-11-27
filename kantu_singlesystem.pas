@@ -71,9 +71,6 @@ begin
 
             SetLength(patternToUse.tradingRules[i], INDICATOR_RULES_TOTAL);
 
-            patternToUse.tradingRules[i][IDX_SIZE_COMPARISON]  := 0;
-            patternToUse.tradingRules[i][IDX_LOGIC_TYPE]  := LOGIC_AND;
-
             patternToUse.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT]    := StrToInt(Edit1.Text)-1;
             patternToUse.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT]    := StrToInt(Edit2.Text)-1;
 
@@ -182,9 +179,6 @@ begin
 
                  SetLength(patternTempCopy.tradingRules[j], INDICATOR_RULES_TOTAL);
 
-                 patternTempCopy.tradingRules[j][IDX_SIZE_COMPARISON]  := patternToUse.tradingRules[i][IDX_SIZE_COMPARISON];
-                 patternTempCopy.tradingRules[j][IDX_LOGIC_TYPE]  :=patternToUse.tradingRules[i][IDX_LOGIC_TYPE];
-
                  patternTempCopy.tradingRules[j][IDX_FIRST_INDICATOR_SHIFT]    := patternToUse.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT];
                  patternTempCopy.tradingRules[j][IDX_SECOND_INDICATOR_SHIFT]    := patternToUse.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT];
 
@@ -200,9 +194,6 @@ begin
      for i:= 0 to Length(patternToUse.tradingRules)-1 do
      begin
           SetLength(patternToUse.tradingRules[i], INDICATOR_RULES_TOTAL);
-
-          patternToUse.tradingRules[i][IDX_SIZE_COMPARISON]  := patternTempCopy.tradingRules[i][IDX_SIZE_COMPARISON];
-          patternToUse.tradingRules[i][IDX_LOGIC_TYPE]  :=patternTempCopy.tradingRules[i][IDX_LOGIC_TYPE];
 
           patternToUse.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT]    := patternTempCopy.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT];
           patternToUse.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT]    := patternTempCopy.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT];

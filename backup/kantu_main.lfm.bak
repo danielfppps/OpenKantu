@@ -481,6 +481,8 @@ object MainForm: TMainForm
                 Marks.OverlapPolicy = opHideNeighbour
                 Marks.Style = smsLabel
                 Minors = <>
+                Range.UseMax = True
+                Range.UseMin = True
                 Title.Visible = True
                 Title.Caption = 'Date (mm/yyyy)'
               end            
@@ -1465,6 +1467,8 @@ object MainForm: TMainForm
     top = 304
   end
   object SaveDialogMQL4: TSaveDialog
+    DefaultExt = '.mq4'
+    Filter = '*.mq4'
     left = 568
     top = 168
   end

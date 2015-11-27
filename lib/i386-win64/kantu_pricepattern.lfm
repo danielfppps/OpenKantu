@@ -9,7 +9,7 @@ object PricePatternForm: TPricePatternForm
   ClientWidth = 536
   FormStyle = fsStayOnTop
   Position = poMainFormCenter
-  LCLVersion = '1.0.14.0'
+  LCLVersion = '1.2.6.0'
   object Memo1: TMemo
     Left = 32
     Height = 296

@@ -200,20 +200,13 @@ const
   SIMULATION_TYPE_PRICE_PATTERN = 0;
   SIMULATION_TYPE_INDICATORS    = 1;
 
-  // logic types
-
-  LOGIC_AND = 0;
-  LOGIC_OR = 1;
-
   // indicator pattern
 
   IDX_FIRST_INDICATOR           = 0;
   IDX_SECOND_INDICATOR          = 1;
   IDX_FIRST_INDICATOR_SHIFT     = 2;
   IDX_SECOND_INDICATOR_SHIFT    = 3;
-  IDX_LOGIC_TYPE                = 4;
-  IDX_SIZE_COMPARISON           = 5;
-  INDICATOR_RULES_TOTAL         = 6;
+  INDICATOR_RULES_TOTAL         = 4;
   LESS_THAN                     = 0;
   GREATER_THAN                  = 1;
 
@@ -381,7 +374,7 @@ const
 
   // program version
 
-  KANTU_VERSION         = '2.20';
+  KANTU_VERSION         = '2.22';
 
 implementation
 

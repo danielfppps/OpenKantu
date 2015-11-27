@@ -17,7 +17,6 @@ type
     BeginInSampleCalendar: TCalendarDialog;
     BeginInSampleEdit: TEdit;
     Button1: TButton;
-    FixComplexityCheck: TCheckBox;
     LROriginCheck: TCheckBox;
     Label3: TLabel;
     OptionsGrid: TStringGrid;
@@ -48,7 +47,6 @@ type
     procedure UseFixedSLTPChange(Sender: TObject);
     procedure EndInSampleCalendarDayChanged(Sender: TObject);
     procedure EndOutOfSampleCalendarDayChanged(Sender: TObject);
-    procedure FixComplexityCheckChange(Sender: TObject);
     procedure LROriginCheckChange(Sender: TObject);
     procedure OptionsGridEditingDone(Sender: TObject);
     procedure OptTargetComboBoxChange(Sender: TObject);
@@ -208,10 +206,6 @@ begin
      SimulationForm.OptTargetComboBox.ItemIndex := SimulationForm2.OptTargetComboBox.ItemIndex;
 end;
 
-procedure TSimulationForm2.FixComplexityCheckChange(Sender: TObject);
-begin
-    SimulationForm.FixComplexityCheck.Checked := SimulationForm2.FixComplexityCheck.Checked;
-end;
 
 procedure TSimulationForm2.EndOutOfSampleCalendarDayChanged(Sender: TObject);
 begin

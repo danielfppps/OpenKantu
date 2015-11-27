@@ -481,6 +481,8 @@ object MainForm: TMainForm
                 Marks.OverlapPolicy = opHideNeighbour
                 Marks.Style = smsLabel
                 Minors = <>
+                Range.UseMax = True
+                Range.UseMin = True
                 Title.Visible = True
                 Title.Caption = 'Date (mm/yyyy)'
               end            

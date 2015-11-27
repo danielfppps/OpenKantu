@@ -74,7 +74,6 @@ begin
          secondIndicator := FloatToStr(indicatorPattern.tradingRules[i][IDX_SECOND_INDICATOR]);
          firstShift      := FloatToStr(indicatorPattern.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT]+1);
          secondShift     := FloatToStr(indicatorPattern.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT]+1);
-         logicType       := indicatorPattern.tradingRules[i][IDX_LOGIC_TYPE];
 
          Case indicatorPattern.tradingRules[i][IDX_FIRST_INDICATOR] of
        0 : typeString1 := 'Open';
@@ -90,11 +89,7 @@ begin
        3 : typeString2 := 'Close';
        end;
 
-       if indicatorPattern.tradingRules[i][IDX_SIZE_COMPARISON] <> 0 then
-       Memo1.Lines.Add('AND Body' +'[' + firstShift + ']' + ' > ' + IntToStr(indicatorPattern.tradingRules[i][IDX_SIZE_COMPARISON]) +'% ATR');
-
-         if logicType = LOGIC_AND then  logicToken := 'AND ' ;
-         if logicType = LOGIC_OR then  logicToken := 'OR ' ;
+         logicToken := 'AND ' ;
 
          Memo1.Lines.Add(logicToken + typeString1 +'[' + firstShift + ']' + ' > ' + typeString2 +'[' + secondShift + ']');
 
@@ -113,7 +108,6 @@ begin
      secondIndicator := FloatToStr(indicatorPattern.tradingRules[i][IDX_SECOND_INDICATOR]);
      firstShift      := FloatToStr(indicatorPattern.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT]+1);
      secondShift     := FloatToStr(indicatorPattern.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT]+1);
-     logicType       := indicatorPattern.tradingRules[i][IDX_LOGIC_TYPE];
 
        Case indicatorPattern.tradingRules[i][IDX_FIRST_INDICATOR] of
        0 : typeString1 := 'Open';
@@ -135,11 +129,7 @@ begin
        else typeString2 := 'Input'+ IntToStr(StrToInt(secondIndicator)-2);
        end;
 
-       if logicType = LOGIC_AND then  logicToken := 'AND ' ;
-       if logicType = LOGIC_OR then  logicToken := 'OR ' ;
-
-       if indicatorPattern.tradingRules[i][IDX_SIZE_COMPARISON] <> 0 then
-       Memo1.Lines.Add('AND Body' +'[' + firstShift + ']' + ' > ' + IntToStr(indicatorPattern.tradingRules[i][IDX_SIZE_COMPARISON]) +'% ATR');
+       logicToken := 'AND ' ;
 
          if (indicatorPattern.tradingRules[i][IDX_FIRST_INDICATOR] <> 4) and (indicatorPattern.tradingRules[i][IDX_FIRST_INDICATOR] <> 5) then
          Memo1.Lines.Add(logicToken + typeString1 +'[' + firstShift + ']' + ' < ' + typeString2 +'[' + secondShift + ']') else
