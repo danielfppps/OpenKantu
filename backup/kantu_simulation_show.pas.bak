@@ -13,7 +13,6 @@ type
   { TSimulationForm2 }
 
   TSimulationForm2 = class(TForm)
-    AsymmetryCheck: TCheckBox;
     BeginInSampleCalendar: TCalendarDialog;
     BeginInSampleEdit: TEdit;
     Button1: TButton;
@@ -37,7 +36,6 @@ type
     UseHourFilter: TCheckBox;
     UseSLCheck: TCheckBox;
     UseTPCheck: TCheckBox;
-    procedure AsymmetryCheckChange(Sender: TObject);
     procedure BeginInSampleCalendarDayChanged(Sender: TObject);
     procedure BeginInSampleEditChange(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -262,34 +260,6 @@ end;
 procedure TSimulationForm2.UseFixedSLTPChange(Sender: TObject);
 begin
     SimulationForm.UseFixedSLTP.Checked := SimulationForm2.UseFixedSLTP.Checked
-end;
-
-procedure TSimulationForm2.AsymmetryCheckChange(Sender: TObject);
-var
-asymmetryString: string;
-begin
-  SimulationForm.AsymmetryCheck.Checked := SimulationForm2.AsymmetryCheck.Checked;
-
-  asymmetryString := '';
-
-  if SimulationForm.AsymmetryCheck.Checked then
-  begin
-       while (asymmetryString <> 'long') and (asymmetryString <> 'short') do
-       asymmetryString :=  InputBox('Asymmetry definition', 'Which type of positions do you want? (long = only longs or short = only shorts)', '');
-  end;
-
-  if asymmetryString = 'long' then
-  begin
-       globalAllowLongSignals := true ;
-       globalAllowShortSignals := false ;
-  end;
-
-  if asymmetryString = 'short' then
-  begin
-       globalAllowLongSignals := false ;
-       globalAllowShortSignals := true ;
-  end;
-
 end;
 
 procedure TSimulationForm2.LROriginCheckChange(Sender: TObject);

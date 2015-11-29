@@ -434,12 +434,6 @@ begin
     randomPattern.allowLongSignals := true;
     randomPattern.allowShortSignals := true;
 
-    if SimulationForm.AsymmetryCheck.Checked then
-    begin
-         randomPattern.allowLongSignals := globalAllowLongSignals;
-         randomPattern.allowShortSignals := globalAllowShortSignals;
-    end;
-
     stepShift :=StrToInt(SimulationForm.OptionsGrid.Cells[1,IDX_OPT_SHIFT_STEP ]);
     stepSLTPTL := StrToFloat(SimulationForm.OptionsGrid.Cells[1,IDX_OPT_SLTPTL_STEP]);
     maxShiftSteps := Round(maxCandleShift/stepShift) ;

@@ -263,9 +263,6 @@ j := 0;
    SimulationForm2.LROriginCheck.Checked:= StrToBool(configFile[j]) ;
    SimulationForm.LROriginCheck.Checked:= StrToBool(configFile[j]) ;
    j := j+1;
-   SimulationForm2.AsymmetryCheck.Checked:= StrToBool(configFile[j]) ;
-   SimulationForm.AsymmetryCheck.Checked:= StrToBool(configFile[j]) ;
-   j := j+1;
    SimulationForm2.UseFixedSLTP.Checked:= StrToBool(configFile[j]) ;
    SimulationForm.UseFixedSLTP.Checked:= StrToBool(configFile[j]) ;
    j := j+1;
@@ -928,7 +925,6 @@ begin
    configFile.Add(BoolToStr(SimulationForm2.UseHourFilter.Checked));
    configFile.Add(BoolToStr(SimulationForm2.UseDayFilter.Checked));
    configFile.Add(BoolToStr(SimulationForm2.LROriginCheck.Checked));
-   configFile.Add(BoolToStr(SimulationForm2.AsymmetryCheck.Checked));
    configFile.Add(BoolToStr(SimulationForm2.UseFixedSLTP.Checked));
    configFile.Add(BoolToStr(SimulationForm2.UseFixedHour.Checked));
 
@@ -1135,14 +1131,25 @@ var
   Code_MQL4: TStringList;
   template_MQL4: TStringList;
   selectedPattern: integer;
-  priceEntryPattern, priceExitPattern: TIndicatorPattern;
+  priceEntryPattern: TIndicatorPattern;
+  maxShiftUsed: integer;
 
   begin
 
      selectedPattern :=  StrToInt(selectedPatternLabel.Caption);
 
      priceEntryPattern := indicatorEntryPatterns[selectedPattern];
-     priceExitPattern  := indicatorClosePatterns[selectedPattern];
+
+     maxShiftUsed :=0;
+
+     for i:=0 to Length(priceEntryPattern.tradingRules)-1 do
+     begin
+          if priceEntryPattern.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT]+1 > maxShiftUsed then
+          maxShiftUsed := priceEntryPattern.tradingRules[i][IDX_FIRST_INDICATOR_SHIFT]+1;
+
+          if priceEntryPattern.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT]+1 > maxShiftUsed then
+          maxShiftUsed := priceEntryPattern.tradingRules[i][IDX_SECOND_INDICATOR_SHIFT]+1;
+     end;
 
      template_MQL4 := TStringList.Create;
      Code_MQL4     := TStringList.Create;
@@ -1156,10 +1163,18 @@ var
           for i := 0 to template_MQL4.Count - 1 do
           begin
 
-               if ((template_MQL4.Strings[i] <> 'extern double TAKE_PROFIT         = 0;') or (SimulationForm.UseTPCheck.Checked = False)) and
-                  ((template_MQL4.Strings[i] <> 'extern double STOP_LOSS           = 0;') or (SimulationForm.UseSLCheck.Checked = False))
-                  then
+               if (((template_MQL4.Strings[i] <> 'extern double TAKE_PROFIT         = 0;') or (SimulationForm.UseTPCheck.Checked = False)) and
+                   ((template_MQL4.Strings[i] <> 'extern double STOP_LOSS           = 0;') or (SimulationForm.UseSLCheck.Checked = False))) then
                Code_MQL4.Add(template_MQL4.Strings[i]);
+
+                if (template_MQL4.Strings[i] = '//addOpenKantuVersion') then
+                Code_MQL4.Add('#define COMPONENT_VERSION     "KT_v'+KANTU_VERSION+'"');
+
+                if (template_MQL4.Strings[i] = '//insertInstanceID') then
+                Code_MQL4.Add('extern int    INSTANCE_ID         = ' +IntToStr(RandomRange(12345, 12345+25000))+ ' ;');
+
+                if (template_MQL4.Strings[i] = '//defineMaxShiftNeeded') then
+               Code_MQL4.Add('int g_maxShift = '+IntToStr(maxShiftUsed) + ' ;');
 
                if (template_MQL4.Strings[i] = '// insertDayFilter') and (SimulationForm.UseDayFilter.Checked) then
                Code_MQL4.Add('if(DayOfWeek() != ' + IntToStr(priceEntryPattern.dayFilter) + '){return(PATTERN_NONE);}');
@@ -1181,8 +1196,6 @@ var
 
                if (template_MQL4.Strings[i] = '//noExitPatternInsertReturn') then
                Code_MQL4.Add('return(PATTERN_NONE);');
-
-
           end;
 
           Code_MQL4.SaveToFile(SaveDialogMQL4.FileName);

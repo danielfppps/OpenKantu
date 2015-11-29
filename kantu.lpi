@@ -73,8 +73,8 @@
         <UnitName Value="kantu_main"/>
         <EditorIndex Value="10"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="632"/>
-        <CursorPos X="60" Y="648"/>
+        <TopLine Value="910"/>
+        <CursorPos X="69" Y="927"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -83,11 +83,10 @@
         <Filename Value="kantu_definitions.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="kantu_definitions"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="6"/>
         <WindowIndex Value="0"/>
         <TopLine Value="344"/>
-        <CursorPos X="32" Y="377"/>
+        <CursorPos X="3" Y="377"/>
         <UsageCount Value="200"/>
         <Loaded Value="True"/>
       </Unit2>
@@ -100,11 +99,11 @@
         <UnitName Value="kantu_simulation"/>
         <EditorIndex Value="4"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="64"/>
-        <CursorPos X="143" Y="76"/>
+        <TopLine Value="63"/>
+        <CursorPos X="143" Y="75"/>
         <UsageCount Value="200"/>
         <Bookmarks Count="1">
-          <Item0 X="1" Y="60" ID="9"/>
+          <Item0 X="1" Y="59" ID="9"/>
         </Bookmarks>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -130,7 +129,7 @@
         <EditorIndex Value="1"/>
         <WindowIndex Value="0"/>
         <TopLine Value="92"/>
-        <CursorPos X="100" Y="110"/>
+        <CursorPos X="68" Y="109"/>
         <UsageCount Value="215"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -230,11 +229,11 @@
         <UnitName Value="kantu_indicators"/>
         <EditorIndex Value="0"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="461"/>
-        <CursorPos X="7" Y="463"/>
+        <TopLine Value="419"/>
+        <CursorPos X="45" Y="435"/>
         <UsageCount Value="237"/>
         <Bookmarks Count="1">
-          <Item0 X="1" Y="2046" ID="0"/>
+          <Item0 X="1" Y="2040" ID="0"/>
         </Bookmarks>
         <Loaded Value="True"/>
       </Unit13>
@@ -262,10 +261,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="kantu_simulation_show"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
         <WindowIndex Value="0"/>
-        <TopLine Value="32"/>
-        <CursorPos X="61" Y="41"/>
+        <TopLine Value="243"/>
+        <CursorPos X="5" Y="264"/>
         <UsageCount Value="219"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -342,124 +342,124 @@
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="kantu_indicators.pas"/>
-        <Caret Line="30" Column="37" TopLine="11"/>
+        <Filename Value="kantu_singlesystem.pas"/>
+        <Caret Line="73" Column="1" TopLine="55"/>
       </Position1>
       <Position2>
-        <Filename Value="kantu_indicators.pas"/>
-        <Caret Line="729" Column="49" TopLine="701"/>
+        <Filename Value="kantu_singlesystem.pas"/>
+        <Caret Line="181" Column="1" TopLine="164"/>
       </Position2>
       <Position3>
-        <Filename Value="kantu.lpr"/>
-        <Caret Line="73" Column="3" TopLine="51"/>
+        <Filename Value="kantu_indicators.pas"/>
+        <Caret Line="457" Column="1" TopLine="440"/>
       </Position3>
       <Position4>
-        <Filename Value="kantu_definitions.pas"/>
-        <Caret Line="193" Column="139" TopLine="173"/>
+        <Filename Value="kantu_indicators.pas"/>
+        <Caret Line="1250" Column="28" TopLine="1227"/>
       </Position4>
       <Position5>
-        <Filename Value="kantu_definitions.pas"/>
-        <Caret Line="202" Column="1" TopLine="173"/>
+        <Filename Value="kantu_simulation_show.pas"/>
+        <Caret Line="190" Column="58" TopLine="180"/>
       </Position5>
       <Position6>
-        <Filename Value="kantu_main.pas"/>
-        <Caret Line="1143" Column="58" TopLine="1137"/>
+        <Filename Value="kantu_simulation_show.pas"/>
+        <Caret Line="189" Column="58" TopLine="179"/>
       </Position6>
       <Position7>
         <Filename Value="kantu_main.pas"/>
-        <Caret Line="1212" Column="34" TopLine="1188"/>
+        <Caret Line="1301" Column="1" TopLine="1281"/>
       </Position7>
       <Position8>
-        <Filename Value="kantu_singlesystem.pas"/>
-        <Caret Line="39" Column="45" TopLine="21"/>
+        <Filename Value="kantu_main.pas"/>
+        <Caret Line="262" Column="13" TopLine="245"/>
       </Position8>
       <Position9>
-        <Filename Value="kantu_singlesystem.pas"/>
-        <Caret Line="74" Column="69" TopLine="56"/>
+        <Filename Value="kantu_indicators.pas"/>
+        <Caret Line="460" Column="85" TopLine="436"/>
       </Position9>
       <Position10>
-        <Filename Value="kantu_singlesystem.pas"/>
-        <Caret Line="183" Column="125" TopLine="166"/>
+        <Filename Value="kantu_simulation_show.pas"/>
+        <Caret Line="203" Column="105" TopLine="178"/>
       </Position10>
       <Position11>
-        <Filename Value="kantu_indicators.pas"/>
-        <Caret Line="698" Column="12" TopLine="680"/>
+        <Filename Value="kantu_simulation_show.pas"/>
+        <Caret Line="209" Column="1" TopLine="193"/>
       </Position11>
       <Position12>
-        <Filename Value="kantu_pricepattern.pas"/>
-        <Caret Line="104" Column="53" TopLine="81"/>
+        <Filename Value="kantu_simulation.pas"/>
+        <Caret Line="103" Column="106" TopLine="33"/>
       </Position12>
       <Position13>
-        <Filename Value="kantu_pricepattern.pas"/>
-        <Caret Line="91" Column="1" TopLine="74"/>
+        <Filename Value="kantu_simulation.pas"/>
+        <Caret Line="102" Column="106" TopLine="64"/>
       </Position13>
       <Position14>
-        <Filename Value="kantu_singlesystem.pas"/>
-        <Caret Line="201" Column="118" TopLine="183"/>
+        <Filename Value="kantu_main.pas"/>
+        <Caret Line="922" Column="68" TopLine="905"/>
       </Position14>
       <Position15>
-        <Filename Value="kantu_singlesystem.pas"/>
-        <Caret Line="73" Column="1" TopLine="55"/>
+        <Filename Value="kantu_main.pas"/>
+        <Caret Line="646" Column="11" TopLine="629"/>
       </Position15>
       <Position16>
-        <Filename Value="kantu_singlesystem.pas"/>
-        <Caret Line="181" Column="1" TopLine="164"/>
+        <Filename Value="kantu_main.pas"/>
+        <Caret Line="648" Column="11" TopLine="624"/>
       </Position16>
       <Position17>
-        <Filename Value="kantu_indicators.pas"/>
-        <Caret Line="457" Column="1" TopLine="440"/>
+        <Filename Value="kantu_main.pas"/>
+        <Caret Line="656" Column="181" TopLine="632"/>
       </Position17>
       <Position18>
-        <Filename Value="kantu_indicators.pas"/>
-        <Caret Line="1250" Column="28" TopLine="1227"/>
+        <Filename Value="kantu_main.pas"/>
+        <Caret Line="1055" Column="15" TopLine="1023"/>
       </Position18>
       <Position19>
-        <Filename Value="kantu_simulation_show.pas"/>
-        <Caret Line="190" Column="58" TopLine="180"/>
+        <Filename Value="kantu_main.pas"/>
+        <Caret Line="1158" Column="59" TopLine="1139"/>
       </Position19>
       <Position20>
-        <Filename Value="kantu_simulation_show.pas"/>
-        <Caret Line="189" Column="58" TopLine="179"/>
+        <Filename Value="kantu_main.pas"/>
+        <Caret Line="1175" Column="35" TopLine="1148"/>
       </Position20>
       <Position21>
         <Filename Value="kantu_main.pas"/>
-        <Caret Line="1301" Column="1" TopLine="1281"/>
+        <Caret Line="1171" Column="31" TopLine="1152"/>
       </Position21>
       <Position22>
         <Filename Value="kantu_main.pas"/>
-        <Caret Line="262" Column="13" TopLine="245"/>
+        <Caret Line="1172" Column="62" TopLine="1152"/>
       </Position22>
       <Position23>
-        <Filename Value="kantu_indicators.pas"/>
-        <Caret Line="460" Column="85" TopLine="436"/>
+        <Filename Value="kantu_simulation.pas"/>
+        <Caret Line="76" Column="143" TopLine="64"/>
       </Position23>
       <Position24>
-        <Filename Value="kantu_simulation_show.pas"/>
-        <Caret Line="203" Column="105" TopLine="178"/>
+        <Filename Value="kantu_simulation.pas"/>
+        <Caret Line="75" Column="143" TopLine="63"/>
       </Position24>
       <Position25>
         <Filename Value="kantu_simulation_show.pas"/>
-        <Caret Line="209" Column="1" TopLine="193"/>
+        <Caret Line="41" Column="61" TopLine="32"/>
       </Position25>
       <Position26>
-        <Filename Value="kantu_simulation.pas"/>
-        <Caret Line="103" Column="106" TopLine="33"/>
+        <Filename Value="kantu_simulation_show.pas"/>
+        <Caret Line="40" Column="61" TopLine="31"/>
       </Position26>
       <Position27>
-        <Filename Value="kantu_simulation.pas"/>
-        <Caret Line="102" Column="106" TopLine="64"/>
+        <Filename Value="kantu_main.pas"/>
+        <Caret Line="1180" Column="81" TopLine="1152"/>
       </Position27>
       <Position28>
         <Filename Value="kantu_main.pas"/>
-        <Caret Line="922" Column="68" TopLine="905"/>
+        <Caret Line="264" Column="69" TopLine="248"/>
       </Position28>
       <Position29>
-        <Filename Value="kantu_main.pas"/>
-        <Caret Line="646" Column="11" TopLine="629"/>
+        <Filename Value="kantu_indicators.pas"/>
+        <Caret Line="463" Column="7" TopLine="461"/>
       </Position29>
       <Position30>
-        <Filename Value="kantu_main.pas"/>
-        <Caret Line="648" Column="11" TopLine="624"/>
+        <Filename Value="kantu_simulation_show.pas"/>
+        <Caret Line="40" Column="61" TopLine="31"/>
       </Position30>
     </JumpHistory>
   </ProjectOptions>

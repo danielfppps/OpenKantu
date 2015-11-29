@@ -155,7 +155,7 @@ object SimulationForm2: TSimulationForm2
   object OptionsPanel: TPanel
     Left = 312
     Height = 445
-    Top = 72
+    Top = 67
     Width = 200
     ClientHeight = 445
     ClientWidth = 200
@@ -184,7 +184,7 @@ object SimulationForm2: TSimulationForm2
     object UseHourFilter: TCheckBox
       Left = 22
       Height = 29
-      Top = 130
+      Top = 132
       Width = 108
       Caption = 'Use Hour Filter'
       OnChange = UseHourFilterChange
@@ -193,7 +193,7 @@ object SimulationForm2: TSimulationForm2
     object UseDayFilter: TCheckBox
       Left = 22
       Height = 29
-      Top = 159
+      Top = 161
       Width = 101
       Caption = 'Use Day Filter'
       OnChange = UseDayFilterChange
@@ -202,38 +202,29 @@ object SimulationForm2: TSimulationForm2
     object LROriginCheck: TCheckBox
       Left = 22
       Height = 29
-      Top = 192
+      Top = 190
       Width = 123
       Caption = 'LR through origin'
       OnChange = LROriginCheckChange
       TabOrder = 4
     end
-    object AsymmetryCheck: TCheckBox
-      Left = 22
-      Height = 29
-      Top = 224
-      Width = 91
-      Caption = 'Asymmetry'
-      OnChange = AsymmetryCheckChange
-      TabOrder = 5
-    end
     object UseFixedSLTP: TCheckBox
       Left = 22
       Height = 29
-      Top = 72
+      Top = 74
       Width = 113
       Caption = 'Use Fixed SL/TP'
       OnChange = UseFixedSLTPChange
-      TabOrder = 6
+      TabOrder = 5
     end
     object UseFixedHour: TCheckBox
       Left = 22
       Height = 29
-      Top = 101
+      Top = 103
       Width = 109
       Caption = 'Use Fixed Hour'
       OnChange = UseFixedHourChange
-      TabOrder = 7
+      TabOrder = 6
     end
   end
   object OptionsGrid: TStringGrid

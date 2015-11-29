@@ -16,7 +16,8 @@
 #define EPSILON 0.0000001
 
 #define COMPONENT_NAME        "KANTU_GENERATED_SYSTEM"
-#define COMPONENT_VERSION     "KT_v2.20"
+
+//addOpenKantuVersion
 
 #define OP_DEPOSITORWITHDRAWAL         6
 
@@ -51,6 +52,7 @@
 #define STATUS_RUNNING_ON_DEFAULTS      8
 #define STATUS_BELOW_MIN_LOT_SIZE       9
 #define STATUS_LIBS_NOT_ALLOWED         10
+#define STATUS_NOT_ENOUGH_DATA			11
 
 #define QUERY_NONE             0
 #define QUERY_LONGS_COUNT      1
@@ -91,7 +93,7 @@
 
 extern string Kantu = "This is a trading strategy created using Kantu";
 extern int    OPERATIONAL_MODE    = OPERATIONAL_MODE_TRADING;
-extern int    INSTANCE_ID         = -1  ;
+//insertInstanceID
 extern double SLIPPAGE            = 5   ;
 extern bool   DISABLE_COMPOUNDING = true;
 extern int    ATR_PERIOD          = 20;
@@ -120,6 +122,8 @@ int g_alertStatus ;
 string g_lastError ;
 int g_lastErrorPrintTime ;
 int g_indiLibraryStatus;
+int g_periodSeconds;
+int g_barsAvailable;
 
 double g_maxTradeSize,
        g_minTradeSize,
@@ -130,6 +134,8 @@ double g_maxTradeSize,
 		 
 double g_stopLossPIPs,
 	   g_takeProfitPIPs;
+	   
+//defineMaxShiftNeeded
 
 int g_minimalStopPIPs;
 int g_contractSize,
@@ -189,9 +195,10 @@ int init()
 
 	g_symbol = Symbol();
 	g_period = Period();
-	g_pipValue = Point;
-	
-		generateINSTANCE_ID() ;
+	g_periodSeconds = PeriodSeconds(g_period);
+	g_pipValue = Point;	
+	generateINSTANCE_ID() ;
+	g_barsAvailable = iBars(g_symbol, g_period);
 		
 	// Retrieve the minimum stop loss in PIPs
 	g_minimalStopPIPs = MarketInfo( g_symbol, MODE_STOPLEVEL );
@@ -262,7 +269,16 @@ checkLibraryUsageAllowed();
 		return (0);
 	}
 
-
+	if(g_barsAvailable < MathMax(g_maxShift, ATR_PERIOD*(SECONDS_IN_DAY/g_periodSeconds)+10)){
+	
+		g_lastStatusID = STATUS_NOT_ENOUGH_DATA;
+	    g_severityStatus = SEVERITY_ERROR;
+		if( OPERATIONAL_MODE_TESTING != OPERATIONAL_MODE )
+			updateStatusUI( true );
+			
+	    return (0);
+	}
+	
 	calculateATR();
 	
 	if( STATUS_DIVIDE_BY_ZERO == g_lastStatusID )
@@ -1280,6 +1296,7 @@ int initUI()
    g_statusMessages[ STATUS_RUNNING_ON_DEFAULTS] = "Change to defaults, Instance IDs cannot be -1" ;
    g_statusMessages[ STATUS_BELOW_MIN_LOT_SIZE ] = "Lot size is below minimum (capital too low)" ;
    g_statusMessages[ STATUS_LIBS_NOT_ALLOWED ]   = "Please allow external lib usage" ;
+   g_statusMessages[ STATUS_NOT_ENOUGH_DATA ]   = "Not enough data present on chart" ;
 	// Set severity status to default
 	g_severityStatus = SEVERITY_INFO;
 
@@ -1373,6 +1390,9 @@ void updateStatusUI( bool doRedraw )
 			statusMessage = g_statusMessages[ g_lastStatusID ];
 			break;
 		case STATUS_LIBS_NOT_ALLOWED :
+			statusMessage = g_statusMessages[ g_lastStatusID ];
+			break;
+		case STATUS_NOT_ENOUGH_DATA :
 			statusMessage = g_statusMessages[ g_lastStatusID ];
 			break;
 										 } // switch( g_lastStatusID )

@@ -175,21 +175,13 @@ object SimulationForm: TSimulationForm
       Caption = 'LR through origin'
       TabOrder = 4
     end
-    object AsymmetryCheck: TCheckBox
-      Left = 23
-      Height = 29
-      Top = 224
-      Width = 121
-      Caption = 'Asymmetry'
-      TabOrder = 5
-    end
     object UseFixedSLTP: TCheckBox
       Left = 23
       Height = 29
       Top = 72
       Width = 154
       Caption = 'Use Fixed SL/TP'
-      TabOrder = 6
+      TabOrder = 5
     end
     object UseFixedHour: TCheckBox
       Left = 23
@@ -197,7 +189,7 @@ object SimulationForm: TSimulationForm
       Top = 100
       Width = 150
       Caption = 'Use Fixed Hour'
-      TabOrder = 7
+      TabOrder = 6
     end
   end
   object OptionsGrid: TStringGrid

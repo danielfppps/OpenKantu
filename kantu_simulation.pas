@@ -14,7 +14,6 @@ type
   { TSimulationForm }
 
   TSimulationForm = class(TForm)
-    AsymmetryCheck: TCheckBox;
     BeginInSampleCalendar: TCalendarDialog;
     BeginInSampleEdit: TEdit;
     Button1: TButton;

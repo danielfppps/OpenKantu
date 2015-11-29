@@ -462,9 +462,6 @@ begin
 
     end;
 
-end;
-
-
    // while isIndicatorPatternPresent(randomPattern) do
     //randomPattern := generateRandomIndicatorPattern(maxRules, maxCandleShift);
 

@@ -22,7 +22,6 @@ type
     EndInSampleEdit: TEdit;
     EndOutOfSampleCalendar: TCalendarDialog;
     EndOutOfSampleEdit: TEdit;
-    FixComplexityCheck: TCheckBox;
     Label1: TLabel;
     Label15: TLabel;
     Label16: TLabel;
