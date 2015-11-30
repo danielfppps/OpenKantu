@@ -452,12 +452,12 @@ begin
 
            end;
 
-           if Col <> IDX_GRID_RESULT_NUMBER then
+           if Col = IDX_GRID_USE_IN_PORTFOLIO then
            Exit;
 
-           selectedSystem := StrToInt(ResultsGrid.Cells[Col, Row])-1;
+           selectedSystem := StrToInt(ResultsGrid.Cells[IDX_GRID_RESULT_NUMBER, Row])-1;
 
-           selectedPatternLabel.Caption := IntToStr(StrToInt(ResultsGrid.Cells[Col, Row])-1) ;
+           selectedPatternLabel.Caption := IntToStr(StrToInt(ResultsGrid.Cells[IDX_GRID_RESULT_NUMBER, Row])-1) ;
 
            symbol := findSymbol(ResultsGrid.Cells[IDX_GRID_SYMBOL, Row]);
 
@@ -466,8 +466,8 @@ begin
            if simulationType = SIMULATION_TYPE_INDICATORS then
            begin
 
-           indicatorSimulationResultsInSample := runIndicatorSimulation(   indicatorEntryPatterns[StrToInt(ResultsGrid.Cells[Col, Row])-1],
-                                                                  indicatorClosePatterns[StrToInt(ResultsGrid.Cells[Col, Row])-1],
+           indicatorSimulationResultsInSample := runIndicatorSimulation(   indicatorEntryPatterns[StrToInt(ResultsGrid.Cells[IDX_GRID_RESULT_NUMBER, Row])-1],
+                                                                  indicatorClosePatterns[StrToInt(ResultsGrid.Cells[IDX_GRID_RESULT_NUMBER, Row])-1],
                                                                   symbol,
                                                                   SimulationForm.useSLCheck.Checked,
                                                                   SimulationForm.useTPCheck.Checked,
@@ -475,8 +475,8 @@ begin
                                                                   SimulationForm.EndInSampleCalendar.Date,
                                                                   true);
 
-           indicatorSimulationResults := runIndicatorSimulation(           indicatorEntryPatterns[StrToInt(ResultsGrid.Cells[Col, Row])-1],
-                                                                  indicatorClosePatterns[StrToInt(ResultsGrid.Cells[Col, Row])-1],
+           indicatorSimulationResults := runIndicatorSimulation(           indicatorEntryPatterns[StrToInt(ResultsGrid.Cells[IDX_GRID_RESULT_NUMBER, Row])-1],
+                                                                  indicatorClosePatterns[StrToInt(ResultsGrid.Cells[IDX_GRID_RESULT_NUMBER, Row])-1],
                                                                   symbol,
                                                                   SimulationForm.useSLCheck.Checked,
                                                                   SimulationForm.useTPCheck.Checked,

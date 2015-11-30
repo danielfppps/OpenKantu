@@ -198,7 +198,6 @@ int init()
 	g_periodSeconds = PeriodSeconds(g_period);
 	g_pipValue = Point;	
 	generateINSTANCE_ID() ;
-	g_barsAvailable = iBars(g_symbol, g_period);
 		
 	// Retrieve the minimum stop loss in PIPs
 	g_minimalStopPIPs = MarketInfo( g_symbol, MODE_STOPLEVEL );
@@ -234,6 +233,7 @@ int start()
 
 g_lastStatusID = STATUS_NONE ;
 g_severityStatus = SEVERITY_INFO;
+g_barsAvailable = iBars(g_symbol, g_period);
 
 checkLibraryUsageAllowed();
 	
