@@ -135,6 +135,7 @@ type TIndicatorPatternGroup = array of TIndicatorPattern;
      endDate                  : TDateTime;
      entryPricePattern        : TPricePattern;
      closePricePattern        : TPricePattern;
+     isInconsistentLogic      : boolean;
    end;
 
    type
@@ -374,7 +375,7 @@ const
 
   // program version
 
-  KANTU_VERSION         = '2.31';
+  KANTU_VERSION         = '2.33';
 
 implementation
 

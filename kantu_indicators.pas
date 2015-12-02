@@ -556,7 +556,9 @@ begin
 
  if CustomFilterForm.CustomFormulaEdit.Text = '0' then Exit;
 
- FParser := TFpExpressionParser.Create(SimulationForm);
+ try
+
+ FParser := TFpExpressionParser.Create(nil);
  FParser.BuiltIns := [bcMath];
 
       for i:= 1 to 20 do
@@ -587,22 +589,22 @@ begin
 
       end;
 
-      try
-
       FParser.Expression := CustomFilterForm.CustomFormulaEdit.Text;
       parserResult := FParser.Evaluate;
-      Result := parserResult.ResFloat;
-
-      except on Exception do
-             begin
-                  ShowMessage('Custom criteria is invalid. Canceling simulation.') ;
-                  MainForm.isCancel := true;
-                  FParser.Free;
-                  Exit;
-             end;
-      end;
+      Result := Round(parserResult.ResFloat*10000)/10000;
 
       FParser.Free;
+
+ except on Exception do
+         begin
+              ShowMessage('Custom criteria is invalid. Canceling simulation.') ;
+              MainForm.isCancel := true;
+              FParser.Free;
+              Exit;
+         end;
+  end;
+
+
 
 end;
 
@@ -771,6 +773,8 @@ begin
  standardDeviationTrades := 0;
  averageTrades := 0;
  simulationResults.totalYears := 100000;
+
+ if (simulationResults.isInconsistentLogic) then Exit;
 
  if (simulationResults.totalTrades < 3) then Exit;
 
@@ -1019,8 +1023,6 @@ begin
      if standardDeviationTrades <> 0 then
      simulationResults.modifiedSharpeRatio    := averageTrades/standardDeviationTrades;
 
-     simulationResults.customFilter := getIndicatorCustomCriteria(simulationResults);
-
      // ideal R calculation
      j := 0;
      SetLength(idealRperiodCorrelations, 0);
@@ -1069,6 +1071,7 @@ begin
           simulationResults.idealR := Round(100*idealR)/100;
      end;
 
+     simulationResults.customFilter := getIndicatorCustomCriteria(simulationResults);
 
  except on Exception do
  // do nothing on exception
@@ -1142,6 +1145,7 @@ begin
  simulationResults.linearFitR2 := 0;
  simulationResults.systemQualityNumber:=0;
  SimulationResults.daysOut := 0;
+ SimulationResults.isInconsistentLogic := False;
 
  SetLength(simulationResults.MFE_Longs, StrToInt(SimulationForm.OptionsGrid.Cells[1, IDX_OPT_BARS_ME]));
  SetLength(simulationResults.MUE_Longs, StrToInt(SimulationForm.OptionsGrid.Cells[1, IDX_OPT_BARS_ME]));
@@ -1218,7 +1222,10 @@ begin
 
       // if there are contradictory signals then quit
       if isBuySignal and isSellSignal then
-      Break;
+      begin
+            SimulationResults.isInconsistentLogic := True;
+           Break;
+      end;
 
       if isBuySignal then
       entryPatternResult := BUY;
