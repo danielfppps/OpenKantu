@@ -185,6 +185,7 @@ type TIndicatorPatternGroup = array of TIndicatorPattern;
      daysOut                  : integer;
      isLastYearProfit         : boolean;
      idealR                   : double;
+     isInconsistentLogic      : boolean;
    end;
 
 const

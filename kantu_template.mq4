@@ -117,6 +117,7 @@ string g_initBalBackupFile ;
 int g_balanceBackupTime = 0 ;
 double g_initialBalance ;
 int g_instanceStartTime ;
+int g_lastTradingTime;
 
 int g_alertStatus ;
 string g_lastError ;
@@ -165,6 +166,9 @@ string g_objGeneralInfo      = "labelGeneral",
 		 g_objBalance          = "labelBalance";
 string g_fontName = "Times New Roman";
 
+string g_orderTimeGlobalString;
+string g_orderGlobalString ;
+
 int   FontSize = 10;
 // The value at index 'i' returns the string
 // to be displayed for the error/warning, having ID equal to i.
@@ -197,6 +201,8 @@ int init()
 	g_period = Period();
 	g_periodSeconds = PeriodSeconds(g_period);
 	g_pipValue = Point;	
+	g_orderTimeGlobalString = StringConcatenate(INSTANCE_ID, "_LAST_OP_TIME");
+	g_orderGlobalString = StringConcatenate(INSTANCE_ID,  "_LAST_OP");
 	generateINSTANCE_ID() ;
 		
 	// Retrieve the minimum stop loss in PIPs
@@ -307,11 +313,14 @@ checkLibraryUsageAllowed();
 	calculateTradeSize();
 	calculateStopLossPIPs();
 	calculateTakeProfitPIPs();
-
+	
+	g_lastTradingTime = GlobalVariableGet(g_orderTimeGlobalString);
+  
 	g_tradingSignal = checkTradingSignal();
 
 	// Handle already opened trades
 	int openedTradesCount = 0;
+	
 	for( int cnt = 0; cnt < OrdersTotal(); cnt++ )   
 	{
 		if( ! OrderSelect( cnt, SELECT_BY_POS, MODE_TRADES ) )
@@ -328,6 +337,7 @@ checkLibraryUsageAllowed();
 		}
 
 		handleTrade();
+		
 		openedTradesCount++;
 	}
 	
@@ -339,18 +349,23 @@ checkLibraryUsageAllowed();
 		// Just handle existing trade
 		return (0);
 	}
-	
-
+	 
 	g_tradingSignal = checkTradingSignal();
 	
-	switch( g_tradingSignal ) {
-	case SIGNAL_ENTER_BUY:
-		openBuyOrder();
-	break;
-	case SIGNAL_ENTER_SELL:
-		openSellOrder();
-	break;
+	if (g_lastTradingTime != iTime(Symbol(),0,0)) {
+	
+	   switch( g_tradingSignal ) {
+	      case SIGNAL_ENTER_BUY:
+		      openBuyOrder();
+	      break;
+	      case SIGNAL_ENTER_SELL:
+		      openSellOrder();
+	      break;
+	      case SIGNAL_NONE:   
+	         GlobalVariableSet(g_orderTimeGlobalString, iTime(Symbol(),0,0));
+	      break;
 									  } // switch( g_tradingSignal )
+							}
 									  
    if( ( STATUS_TRADE_CONTEXT_BUSY  == g_lastStatusID ) ||
 		 ( STATUS_TRADING_NOT_ALLOWED == g_lastStatusID ) ||
@@ -596,11 +611,10 @@ void openBuyOrder()
 	
 	SetBuyOrderSLAndTP( tradeTicket, tradeOpenPrice );
 	
-	string orderGlobalString = StringConcatenate(INSTANCE_ID,  "_LAST_OP");
-	string orderTimeGlobalString = StringConcatenate(INSTANCE_ID, "_LAST_OP_TIME");
+	
 	GlobalVariableSet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD"), iTime(g_symbol, g_period, 0));
-	GlobalVariableSet(orderGlobalString, tradeOpenPrice);
-	GlobalVariableSet(orderTimeGlobalString, iTime(Symbol(),0,0));
+	GlobalVariableSet(g_orderGlobalString, tradeOpenPrice);
+	GlobalVariableSet(g_orderTimeGlobalString, iTime(Symbol(),0,0));
 	
 }
 
@@ -677,11 +691,9 @@ void openSellOrder()
 
 	SetSellOrderSLAndTP( tradeTicket, tradeOpenPrice );
 	
-	string orderGlobalString = StringConcatenate(INSTANCE_ID,  "_LAST_OP");
-	string orderTimeGlobalString = StringConcatenate(INSTANCE_ID, "_LAST_OP_TIME");
 	GlobalVariableSet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD"), iTime(g_symbol, g_period, 0));
-	GlobalVariableSet(orderGlobalString, tradeOpenPrice);
-	GlobalVariableSet(orderTimeGlobalString, iTime(Symbol(),0,0));
+	GlobalVariableSet(g_orderGlobalString, tradeOpenPrice);
+	GlobalVariableSet(g_orderTimeGlobalString, iTime(Symbol(),0,0));
 
 }
 
@@ -701,14 +713,23 @@ void handleBuyTrade()
 {
 
 int tradeTicket = OrderTicket() ; 
-string orderGlobalString = StringConcatenate(INSTANCE_ID, "_LAST_OP");
-double tradeOpenPrice = GlobalVariableGet(orderGlobalString);
+double tradeOpenPrice = GlobalVariableGet(g_orderGlobalString);
 double stopLossPrice = OrderStopLoss() ;
+double takeProfitPrice = OrderTakeProfit() ;
 
 //Remodify order if it wasn't adequately modified on entry
   
   if( (     OrderMagicNumber()   == INSTANCE_ID ) && 
-		 ( MathAbs( stopLossPrice ) <  EPSILON    )
+		 ( MathAbs( stopLossPrice ) <  EPSILON    ) &&
+		 ( STOP_LOSS != 0 )
+	  )
+	{	 
+		SetBuyOrderSLAndTP( tradeTicket, tradeOpenPrice );
+	}
+	
+  if( (     OrderMagicNumber()   == INSTANCE_ID ) && 
+		 ( MathAbs( takeProfitPrice ) <  EPSILON    ) &&
+		 ( TAKE_PROFIT != 0 )
 	  )
 	{	 
 		SetBuyOrderSLAndTP( tradeTicket, tradeOpenPrice );
@@ -738,7 +759,8 @@ double stopLossPrice = OrderStopLoss() ;
 	  	     if (SetBuyOrderSLAndTP( tradeTicket, Ask ))
 		     {
             GlobalVariableSet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD"), iTime(g_symbol, g_period, 0));
-            GlobalVariableSet(orderGlobalString, Ask);
+            GlobalVariableSet(g_orderTimeGlobalString, iTime(Symbol(),0,0));
+            GlobalVariableSet(g_orderGlobalString, Ask);
            }
 		}
 	}
@@ -749,15 +771,25 @@ void handleSellTrade()
 {
 
 int tradeTicket = OrderTicket();
-string orderGlobalString = StringConcatenate(INSTANCE_ID, "_LAST_OP");
-double tradeOpenPrice = GlobalVariableGet(orderGlobalString);
+double tradeOpenPrice = GlobalVariableGet(g_orderGlobalString);
 double stopLossPrice = OrderStopLoss() ;
+double takeProfitPrice = OrderTakeProfit();
 
 // Update the order if it wasn't adequately modified on entry
+
 	if( (     OrderMagicNumber()   == INSTANCE_ID ) && 
-		 ( MathAbs( stopLossPrice ) <  EPSILON    )
+		 ( MathAbs( stopLossPrice ) <  EPSILON    ) &&
+		 ( STOP_LOSS != 0 )
 	  )
-	{
+	{	 
+		SetSellOrderSLAndTP( tradeTicket, tradeOpenPrice );
+	}
+	
+  if( (     OrderMagicNumber()   == INSTANCE_ID ) && 
+		 ( MathAbs( takeProfitPrice ) <  EPSILON    ) &&
+		 ( TAKE_PROFIT != 0 )
+	  )
+	{	 
 		SetSellOrderSLAndTP( tradeTicket, tradeOpenPrice );
 	}
 
@@ -786,7 +818,8 @@ double stopLossPrice = OrderStopLoss() ;
 		   if (SetSellOrderSLAndTP( tradeTicket, Bid))
 		   {
             GlobalVariableSet(StringConcatenate(INSTANCE_ID,"_TRADE_MOD"), iTime(g_symbol, g_period, 0));
-            GlobalVariableSet(orderGlobalString, Bid);
+            GlobalVariableSet(g_orderTimeGlobalString, iTime(Symbol(),0,0));
+            GlobalVariableSet(g_orderGlobalString, Bid);
          }
 		}
 	}
