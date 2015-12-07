@@ -52,7 +52,8 @@
 #define STATUS_RUNNING_ON_DEFAULTS      8
 #define STATUS_BELOW_MIN_LOT_SIZE       9
 #define STATUS_LIBS_NOT_ALLOWED         10
-#define STATUS_NOT_ENOUGH_DATA			11
+#define STATUS_NOT_ENOUGH_DATA			 11
+#define STATUS_SPREAD_TOO_HIGH          12
 
 #define QUERY_NONE             0
 #define QUERY_LONGS_COUNT      1
@@ -95,6 +96,7 @@ extern string Kantu = "This is a trading strategy created using Kantu";
 extern int    OPERATIONAL_MODE    = OPERATIONAL_MODE_TRADING;
 //insertInstanceID
 extern double SLIPPAGE            = 5   ;
+extern double MAX_SPREAD_PIPS     = 0.0;
 extern bool   DISABLE_COMPOUNDING = true;
 extern int    ATR_PERIOD          = 20;
 extern double RISK                = 1;
@@ -542,7 +544,34 @@ bool SetSellOrderSLAndTP( int tradeTicket, double tradeOpenPrice )
 
 void openBuyOrder()
 {
+
+   if( (g_spreadPIPs > MAX_SPREAD_PIPS) && (MAX_SPREAD_PIPS > 0.0 ))
+	{
+		g_lastStatusID = STATUS_SPREAD_TOO_HIGH;
+		
+		if ((TimeCurrent()- g_lastErrorPrintTime) > ERROR_TIME_BUFFER) 
+		{
+		Print( "openBuyOrder: Spread is above threshold." );
+		g_lastErrorPrintTime = TimeCurrent();
+		}
+		
+		return;
+	}
+	
 	if( ! IsTradeAllowed() )
+	{
+		g_lastStatusID = STATUS_TRADING_NOT_ALLOWED;
+		
+		if ((TimeCurrent()- g_lastErrorPrintTime) > ERROR_TIME_BUFFER) 
+		{
+		Print( "openBuyOrder: Trading is not allowed." );
+		g_lastErrorPrintTime = TimeCurrent();
+		}
+		
+		return;
+	}
+	
+	if( ! MarketInfo(Symbol(), MODE_TRADEALLOWED) && ! IsTesting() )
 	{
 		g_lastStatusID = STATUS_TRADING_NOT_ALLOWED;
 		
@@ -620,7 +649,34 @@ void openBuyOrder()
 
 void openSellOrder()
 {
+
+   if( (g_spreadPIPs > MAX_SPREAD_PIPS) && (MAX_SPREAD_PIPS > 0.0))
+	{
+		g_lastStatusID = STATUS_SPREAD_TOO_HIGH;
+		
+		if ((TimeCurrent()- g_lastErrorPrintTime) > ERROR_TIME_BUFFER) 
+		{
+		Print( "openSellOrder: Spread is above threshold." );
+		g_lastErrorPrintTime = TimeCurrent();
+		}
+		
+		return;
+	}
+	
 	if( ! IsTradeAllowed() )
+	{
+		g_lastStatusID = STATUS_TRADING_NOT_ALLOWED;
+		
+		if ((TimeCurrent()- g_lastErrorPrintTime) > ERROR_TIME_BUFFER) 
+		{
+		Print( "openSellOrder: Trading is not allowed." );
+		g_lastErrorPrintTime = TimeCurrent();
+		}
+		
+		return;
+	}
+	
+	if( ! MarketInfo(Symbol(), MODE_TRADEALLOWED) && ! IsTesting() )
 	{
 		g_lastStatusID = STATUS_TRADING_NOT_ALLOWED;
 		
@@ -1330,6 +1386,7 @@ int initUI()
    g_statusMessages[ STATUS_BELOW_MIN_LOT_SIZE ] = "Lot size is below minimum (capital too low)" ;
    g_statusMessages[ STATUS_LIBS_NOT_ALLOWED ]   = "Please allow external lib usage" ;
    g_statusMessages[ STATUS_NOT_ENOUGH_DATA ]   = "Not enough data present on chart" ;
+   g_statusMessages[ STATUS_SPREAD_TOO_HIGH ]   = "Spread above allowed threshold" ;
 	// Set severity status to default
 	g_severityStatus = SEVERITY_INFO;
 
@@ -1426,6 +1483,9 @@ void updateStatusUI( bool doRedraw )
 			statusMessage = g_statusMessages[ g_lastStatusID ];
 			break;
 		case STATUS_NOT_ENOUGH_DATA :
+			statusMessage = g_statusMessages[ g_lastStatusID ];
+			break;
+		case STATUS_SPREAD_TOO_HIGH :
 			statusMessage = g_statusMessages[ g_lastStatusID ];
 			break;
 										 } // switch( g_lastStatusID )

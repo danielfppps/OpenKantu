@@ -591,7 +591,7 @@ begin
 
       FParser.Expression := CustomFilterForm.CustomFormulaEdit.Text;
       parserResult := FParser.Evaluate;
-      Result := parserResult.ResFloat;
+      Result := Round(parserResult.ResFloat*10000)/10000;
 
       FParser.Free;
 
@@ -2103,6 +2103,7 @@ begin
 
   mergeIndicatorSimulationResults(simulationResults, simulationResultsPortfolio, SimulationForm.BeginInSampleCalendar.Date, SimulationForm.EndOutOfSampleCalendar.Date);
   simulationResultsPortfolio.endDate := SimulationForm.EndOutOfSampleCalendar.Date;
+  simulationResultsPortfolio.isInconsistentLogic:=False;
   getIndicatorStatistics(simulationResultsPortfolio);
   //ShowMessage(FloatToStr(simulationResultsPortfolio.modifiedSharpeRatio));
 
@@ -2165,6 +2166,9 @@ begin
           end;
 
           PortfolioResultForm.Visible := true;
+
+    MainForm.Chart1.AxisList.BottomAxis.Range.Max:= simulationResultsPortfolio.trades[Length(indicatorSimulationResults.trades)-1].closeTime;
+    MainForm.Chart1.AxisList.BottomAxis.Range.Min:= simulationResultsPortfolio.trades[0].closeTime ;
 
 end;
 
